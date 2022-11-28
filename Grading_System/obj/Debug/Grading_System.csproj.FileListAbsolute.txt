@@ -1,0 +1,59 @@
+C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System.exe
+C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System.pdb
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.AssemblyReference.cache
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Properties.Resources.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.GenerateResource.cache
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.CoreCompileInputs.cache
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.exe
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.pdb
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Registrar.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Login.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Main_Form.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Student.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Teacher.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\bin\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\bin\Debug\Grading_System.pdb
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.AssemblyReference.cache
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Registrar.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Student.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Teacher.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Main_Form.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Login.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.Properties.Resources.resources
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.GenerateResource.cache
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.CoreCompileInputs.cache
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Grading_System\Grading_System\obj\Debug\Grading_System.pdb
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\bin\Debug\Grading_System.mdf
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\bin\Debug\Grading_System_log.ldf
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\bin\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\bin\Debug\Grading_System.pdb
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.AssemblyReference.cache
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Registrar.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Student.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Teacher.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Main_Form.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Login.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.Properties.Resources.resources
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.GenerateResource.cache
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.CoreCompileInputs.cache
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Finals\Grading_System\Grading_System\obj\Debug\Grading_System.pdb
+C:\Grading_System\Grading_System\bin\Debug\Grading_System.mdf
+C:\Grading_System\Grading_System\bin\Debug\Grading_System_log.ldf
+C:\Grading_System\Grading_System\bin\Debug\Grading_System.exe
+C:\Grading_System\Grading_System\bin\Debug\Grading_System.pdb
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.AssemblyReference.cache
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Registrar.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Student.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Teacher.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Main_Form.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Login.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.Properties.Resources.resources
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.GenerateResource.cache
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.CoreCompileInputs.cache
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.exe
+C:\Grading_System\Grading_System\obj\Debug\Grading_System.pdb
+C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System.mdf
+C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System_log.ldf
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.Add_Subject.resources
