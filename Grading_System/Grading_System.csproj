@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ForDataGridView.cs" />
     <EmbeddedResource Include="Add_Registrar.resx">
       <DependentUpon>Add_Registrar.cs</DependentUpon>
     </EmbeddedResource>

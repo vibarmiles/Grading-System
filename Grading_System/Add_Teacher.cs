@@ -28,13 +28,9 @@ namespace Grading_System
         {
             btnUpdate.Hide();
             tblList.Columns.Clear();
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
-            edit.Name = "Edit";
-            edit.Text = "Edit";
-            edit.UseColumnTextForButtonValue = true;
             tblList.CellClick -= new DataGridViewCellEventHandler(edit_Click);
             tblList.CellClick += new DataGridViewCellEventHandler(edit_Click);
-            tblList.Columns.Insert(0, edit);
+            tblList.Columns.Insert(0, ForDataGridView.AddButton("Edit"));
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             tblList.DataSource = Database.ViewTable("TeachersView");
             tblList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -42,11 +38,7 @@ namespace Grading_System
             tblList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             tblList.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             tblList.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DataGridViewButtonColumn delete = new DataGridViewButtonColumn();
-            delete.Name = "Delete";
-            delete.Text = "Delete";
-            delete.UseColumnTextForButtonValue = true;
-            tblList.Columns.Insert(tblList.Columns.Count, delete);
+            tblList.Columns.Insert(tblList.Columns.Count, ForDataGridView.AddButton("Delete"));
             tblList.Columns[tblList.Columns.Count-1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
@@ -55,7 +47,7 @@ namespace Grading_System
             DataGridView dgv = (DataGridView)sender;
             DataTable dt = Database.ViewTable("TeachersView");
 
-            if (dgv.Columns[e.ColumnIndex] is DataGridViewButtonColumn && tblList.Columns[e.ColumnIndex].Name == "Edit" && e.RowIndex >= 0)
+            if (ForDataGridView.ButtonColumn_Clicked(dgv, e, "Edit"))
             {
                 DataRow index = dt.Rows[e.RowIndex];
                 this.id = index[0].ToString();
@@ -74,7 +66,7 @@ namespace Grading_System
                 cbGender.Text = row[5].ToString();
             }
 
-            if (dgv.Columns[e.ColumnIndex] is DataGridViewButtonColumn && tblList.Columns[e.ColumnIndex].Name == "Delete" && e.RowIndex >= 0)
+            if (ForDataGridView.ButtonColumn_Clicked(dgv, e, "Delete"))
             {
                 DataRow index = dt.Rows[e.RowIndex];
                 this.id = index[0].ToString();
