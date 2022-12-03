@@ -135,7 +135,7 @@ namespace Grading_System
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
             string user = txtUsername.Text;
             string pos = "Teacher";
-            string pass = Database.HashPassword(txtUsername.Text);
+            string pass = Database.HashPassword(txtPassword.Text);
 
             if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
             {

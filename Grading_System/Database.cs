@@ -39,11 +39,13 @@ namespace Grading_System
 
                 using (SqlCommand cmd = new SqlCommand("SELECT " + column + " FROM " + table + " WHERE " + condition + "=" + value, con))
                 {
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    
-                    if (dr.Read())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        select = Int32.Parse(dr.GetSqlValue(0).ToString());
+
+                        if (dr.Read())
+                        {
+                            select = Int32.Parse(dr.GetSqlValue(0).ToString());
+                        }
                     }
                 }
 
@@ -59,22 +61,25 @@ namespace Grading_System
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT " + column + " FROM " + table + " WHERE " + condition + "=" + value, con))
+                using (SqlCommand cmd = new SqlCommand("SELECT " + column + " FROM " + table + " WHERE " + condition + " = " + value, con))
                 {
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    string[] result = new string[dr.FieldCount];
-
-                    if(dr.Read())
+                    Console.WriteLine(cmd.CommandText);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        for (int i = 0; i < dr.FieldCount; i++)
-                        {
-                            result[i] = dr[i].ToString();
-                        }
-                    }
+                        string[] result = new string[dr.FieldCount];
 
-                    dr.Close();
-                    con.Close();
-                    return result;
+                        if (dr.Read())
+                        {
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                result[i] = dr[i].ToString();
+                            }
+                        }
+
+                        dr.Close();
+                        con.Close();
+                        return result;
+                    }
                 }
             }
         }

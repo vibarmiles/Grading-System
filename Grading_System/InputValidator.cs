@@ -11,7 +11,7 @@ namespace Grading_System
     {
         public static string CheckStringTextBox(string input)
         {
-            if (input != null && Regex.IsMatch(input, @"^[a-zA-Z]+$")) {
+            if (input != null && Regex.IsMatch(input, @"^[a-zA-Z\s]+$")) {
                 return input;
             }
 

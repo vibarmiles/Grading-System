@@ -12,7 +12,6 @@ namespace Grading_System
 {
     public partial class Login : Form
     {
-        private string connectionString = "";
         public Login()
         {
             InitializeComponent();
@@ -23,19 +22,30 @@ namespace Grading_System
             this.Dock = DockStyle.Fill;
         }
 
+        public event EventHandler OnSubmit;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            /*using (SqlConnection con = new SqlConnection(connectionString))
+            string username = "'" + txtUsername.Text + "'";
+            string password = txtPassword.Text;
+            string position = String.Empty;
+            string[] result = Database.SelectRow("[Users]", "[Position],[Password]", "[Username]", username);
+
+            if (result[0] == null || result[1] == null)
             {
-                con.Open();
+                MessageBox.Show("Incorrect Username/Password");
+                return;
+            }
 
-                using (SqlCommand cmd = new SqlCommand("", con))
-                {
-
-                }
-            }*/
-
-            this.Close();
+            if (Database.HashPassword(password).Equals(result[1].ToString()))
+            {
+                position = result[0].ToString();
+                this.OnSubmit?.Invoke(position, EventArgs.Empty);
+                this.Close();
+            } else
+            {
+                MessageBox.Show("Incorrect Username/Password");
+            }
         }
     }
 }
