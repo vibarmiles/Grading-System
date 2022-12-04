@@ -68,11 +68,21 @@ namespace Grading_System
 
         private void btnAddRegistrar_Click(object sender, EventArgs e)
         {
+            if (registrar is null)
+            {
+                return;
+            }
+
             registrar.BringToFront();
         }
 
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
+            if (student is null)
+            {
+                return;
+            }
+
             student.BringToFront();
         }
 
@@ -110,11 +120,21 @@ namespace Grading_System
 
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
+            if (teacher is null)
+            {
+                return;
+            }
+
             teacher.BringToFront();
         }
 
         private void btnAddSubject_Click(object sender, EventArgs e)
         {
+            if (subject is null)
+            {
+                return;
+            }
+
             subject.BringToFront();
         }
 
