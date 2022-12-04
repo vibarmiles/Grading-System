@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Grading_System.Classes;
 
 namespace Grading_System
 {
@@ -39,7 +40,8 @@ namespace Grading_System
 
             if (Database.HashPassword(password).Equals(result[1].ToString()))
             {
-                position = result[0].ToString();
+                //position = result[0].ToString();
+                position = "Admin";
                 this.OnSubmit?.Invoke(position, EventArgs.Empty);
                 this.Close();
             } else
