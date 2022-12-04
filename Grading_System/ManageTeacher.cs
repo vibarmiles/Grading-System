@@ -57,7 +57,7 @@ namespace Grading_System
             {
                 DialogResult result = InputValidator.ContinueDelete();
 
-                if (result == DialogResult.Yes)
+                if (result is DialogResult.Yes)
                 {
                     Database.Delete("Teachers", "[UserID]", this.id);
                     Database.Delete("Users", "[UserID]", this.id);

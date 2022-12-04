@@ -32,7 +32,7 @@ namespace Grading_System
             string position = String.Empty;
             string[] result = Database.SelectRow("[Users]", "[Position],[Password]", "[Username]", username);
 
-            if (result[0] == null || result[1] == null)
+            if (result[0] is null || result[1] is null)
             {
                 MessageBox.Show("Incorrect Username/Password");
                 return;

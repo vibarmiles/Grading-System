@@ -47,7 +47,7 @@ namespace Grading_System
             {
                 DialogResult result = InputValidator.ContinueDelete();
 
-                if (result == DialogResult.Yes)
+                if (result is DialogResult.Yes)
                 {
                     Database.Delete("Subjects", "[SubjectID]", this.id);
                     RefreshTable();
