@@ -16,6 +16,14 @@ namespace Grading_System
         public Login()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler((sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    button1_Click(sender, e);
+                }
+            });
         }
 
         private void Login_Load(object sender, EventArgs e)
