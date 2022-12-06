@@ -34,5 +34,13 @@ namespace Grading_System.Classes
             string caption = "Delete Row";
             return MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
         }
+
+        public static void ClearTextBox(Panel panel)
+        {
+            foreach(TextBox textbox in panel.Controls.OfType<TextBox>())
+            {
+                textbox.Clear();
+            }
+        }
     }
 }

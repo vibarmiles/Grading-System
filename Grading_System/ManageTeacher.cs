@@ -34,7 +34,7 @@ namespace Grading_System
 
         private void Edit_Click(object sender, DataGridViewCellEventArgs e)
         {
-            this.id = tblList.Rows[e.RowIndex].Cells[1].Value.ToString();
+            this.id = tblList.Rows[e.RowIndex].Cells["UserID"].Value.ToString();
 
             if (ForDataGridView.ButtonColumn_Clicked(tblList, e, "Edit"))
             {
@@ -49,7 +49,6 @@ namespace Grading_System
                 txtLastName.Text = row[2].ToString();
                 txtSpecialization.Text = spec[0].ToString();
                 txtUsername.Text = row[3].ToString();
-                txtPassword.Text = row[4].ToString();
                 cbGender.Text = row[5].ToString();
             }
 
@@ -72,7 +71,7 @@ namespace Grading_System
             btnAdd.Text = "Add";
             btnAdd.Click += btnAdd_Click;
             btnAdd.Click -= btnCancel_Click;
-            clear();
+            InputValidator.ClearTextBox(panel1);
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -83,7 +82,7 @@ namespace Grading_System
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
             string user = txtUsername.Text;
             string pos = "Teacher";
-            string pass = Database.HashPassword(txtUsername.Text);
+            string pass = Database.HashPassword(txtPassword.Text);
 
             if(fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
             {
@@ -91,22 +90,12 @@ namespace Grading_System
                 Database.Insert("Users", "[FirstName],[MiddleName],[LastName],[Username],[Password],[Position],[Gender]", userValue);
                 string teacherValue = Database.SelectID("Users", "[UserID]", "[Username]", "'" + user + "'").ToString() + ",'" + spec + "'";
                 Database.Insert("Teachers", "[UserID], [Specialization]", teacherValue);
-                clear();
+                InputValidator.ClearTextBox(panel1);
                 RefreshTable();
             } else
             {
                 MessageBox.Show("Invalid/Missing Input!");
             }
-        }
-
-        private void clear()
-        {
-            txtFirstName.Clear();
-            txtMiddleName.Clear();
-            txtLastName.Clear();
-            txtSpecialization.Clear();
-            txtUsername.Clear();
-            txtPassword.Clear();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -124,7 +113,7 @@ namespace Grading_System
             {
                 Database.Update("Users", "[FirstName]='" + fname + "',[MiddleName]='"+ mname +"',[LastName]='"+ lname +"',[Username]='"+ user +"',[Password]='"+ pass +"',[Position]='"+ pos +"',[Gender]='"+ gender +"'", "[UserID]", this.id);
                 Database.Update("Teachers", "[Specialization]='" + spec + "'", "[UserID]", this.id);
-                clear();
+                InputValidator.ClearTextBox(panel1);
                 RefreshTable();
                 btnCancel_Click(sender, e);
             }

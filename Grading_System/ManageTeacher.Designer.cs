@@ -83,7 +83,7 @@
             this.cbGender.Location = new System.Drawing.Point(169, 194);
             this.cbGender.Name = "cbGender";
             this.cbGender.Size = new System.Drawing.Size(292, 33);
-            this.cbGender.TabIndex = 2;
+            this.cbGender.TabIndex = 3;
             // 
             // txtMiddleName
             // 
@@ -91,7 +91,7 @@
             this.txtMiddleName.Location = new System.Drawing.Point(169, 134);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(292, 30);
-            this.txtMiddleName.TabIndex = 1;
+            this.txtMiddleName.TabIndex = 2;
             // 
             // txtPassword
             // 
@@ -99,7 +99,7 @@
             this.txtPassword.Location = new System.Drawing.Point(659, 134);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(292, 30);
-            this.txtPassword.TabIndex = 1;
+            this.txtPassword.TabIndex = 6;
             // 
             // txtUsername
             // 
@@ -107,7 +107,7 @@
             this.txtUsername.Location = new System.Drawing.Point(659, 76);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(292, 30);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 5;
             // 
             // txtSpecialization
             // 
@@ -115,7 +115,7 @@
             this.txtSpecialization.Location = new System.Drawing.Point(659, 19);
             this.txtSpecialization.Name = "txtSpecialization";
             this.txtSpecialization.Size = new System.Drawing.Size(292, 30);
-            this.txtSpecialization.TabIndex = 1;
+            this.txtSpecialization.TabIndex = 4;
             // 
             // txtFirstName
             // 
@@ -131,7 +131,7 @@
             this.txtLastName.Location = new System.Drawing.Point(169, 19);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(292, 30);
-            this.txtLastName.TabIndex = 1;
+            this.txtLastName.TabIndex = 0;
             // 
             // label8
             // 
@@ -251,7 +251,7 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // Add_Teacher
+            // ManageTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -261,7 +261,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tblList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Add_Teacher";
+            this.Name = "ManageTeacher";
             this.Text = "Add_Teacher";
             this.Load += new System.EventHandler(this.Add_Teacher_Load);
             this.panel1.ResumeLayout(false);

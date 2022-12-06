@@ -28,31 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tblList = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
+            this.tblList = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tblList
-            // 
-            this.tblList.AllowUserToAddRows = false;
-            this.tblList.AllowUserToResizeColumns = false;
-            this.tblList.AllowUserToResizeRows = false;
-            this.tblList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblList.Location = new System.Drawing.Point(13, 76);
-            this.tblList.Name = "tblList";
-            this.tblList.RowHeadersWidth = 51;
-            this.tblList.RowTemplate.Height = 24;
-            this.tblList.Size = new System.Drawing.Size(1025, 544);
-            this.tblList.TabIndex = 4;
             // 
             // btnAdd
             // 
@@ -82,7 +66,7 @@
             this.txtSubject.Location = new System.Drawing.Point(219, 20);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(292, 30);
-            this.txtSubject.TabIndex = 1;
+            this.txtSubject.TabIndex = 0;
             // 
             // label1
             // 
@@ -91,7 +75,7 @@
             this.label1.Location = new System.Drawing.Point(13, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(186, 25);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Subject Description:";
             // 
             // btnUpdate
@@ -106,33 +90,48 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // Add_Subject
+            // tblList
+            // 
+            this.tblList.AllowUserToAddRows = false;
+            this.tblList.AllowUserToResizeColumns = false;
+            this.tblList.AllowUserToResizeRows = false;
+            this.tblList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblList.Location = new System.Drawing.Point(12, 76);
+            this.tblList.Name = "tblList";
+            this.tblList.RowHeadersWidth = 51;
+            this.tblList.RowTemplate.Height = 24;
+            this.tblList.Size = new System.Drawing.Size(1025, 544);
+            this.tblList.TabIndex = 7;
+            // 
+            // ManageSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 673);
+            this.Controls.Add(this.tblList);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.tblList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Add_Subject";
+            this.Name = "ManageSubject";
             this.Text = "Add_Section";
             this.Load += new System.EventHandler(this.Add_Subject_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tblList)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblList)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView tblList;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.DataGridView tblList;
     }
 }
