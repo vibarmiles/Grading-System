@@ -58,16 +58,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ManageObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ManageRegistrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageRegistrar.Designer.cs">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageSubject.cs">
+    <Compile Include="ChildForms\ManageSubject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageSubject.Designer.cs">
+    <Compile Include="ChildForms\ManageSubject.Designer.cs">
       <DependentUpon>ManageSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageStudent.cs">
@@ -76,10 +79,10 @@
     <Compile Include="ManageStudent.Designer.cs">
       <DependentUpon>ManageStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageTeacher.cs">
+    <Compile Include="ChildForms\ManageTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageTeacher.Designer.cs">
+    <Compile Include="ChildForms\ManageTeacher.Designer.cs">
       <DependentUpon>ManageTeacher.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Database.cs" />
@@ -90,10 +93,10 @@
     <Compile Include="ParentForm.Designer.cs">
       <DependentUpon>ParentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="ChildForms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="ChildForms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -102,19 +105,19 @@
     <EmbeddedResource Include="ManageRegistrar.resx">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageSubject.resx">
+    <EmbeddedResource Include="ChildForms\ManageSubject.resx">
       <DependentUpon>ManageSubject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageStudent.resx">
       <DependentUpon>ManageStudent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageTeacher.resx">
+    <EmbeddedResource Include="ChildForms\ManageTeacher.resx">
       <DependentUpon>ManageTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ParentForm.resx">
       <DependentUpon>ParentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="ChildForms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -152,5 +155,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
