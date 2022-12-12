@@ -13,7 +13,6 @@ namespace Grading_System.ChildForms
 {
     public partial class ManageSubject : ManageObject
     {
-        string id;
         public ManageSubject() : base("Subjects", "SubjectID")
         {
             InitializeComponent();

@@ -12,7 +12,6 @@ namespace Grading_System.ChildForms
 {
     public partial class ManageTeacher : ManageObject
     {
-        private string id;
         public ManageTeacher() : base("TeachersView", "UserID")
         {
             InitializeComponent();
