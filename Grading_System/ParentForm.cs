@@ -95,7 +95,7 @@ namespace Grading_System
             subject = null;
             position = String.Empty;
 
-            Login login = new Login();
+            LoginForm login = new LoginForm();
             login.MdiParent = this;
 
             rbtnAddAsstTeacher.Visible = false;

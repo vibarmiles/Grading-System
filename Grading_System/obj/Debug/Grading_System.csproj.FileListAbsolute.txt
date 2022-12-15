@@ -56,4 +56,4 @@ C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_Syst
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ParentForm.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageSubject.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageTeacher.resources
-C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.Login.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.LoginForm.resources

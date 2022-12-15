@@ -19,9 +19,8 @@ namespace Grading_System.ChildForms
             BtnAdd = btnAdd;
             TblList = tblList;
             Panel = panel1;
-            RefreshTable();
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
-
+            RefreshTable();
         }
 
         private void RefreshTable()
