@@ -58,10 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Account.cs" />
-    <Compile Include="Classes\IAccount.cs" />
+    <Compile Include="Repositories\Account.cs" />
+    <Compile Include="Repositories\AHasObject.cs" />
+    <Compile Include="Repositories\IAccount.cs" />
     <Compile Include="Classes\Login.cs" />
-    <Compile Include="Classes\ManageObject.cs">
+    <Compile Include="Classes\BaseManageObject.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageRegistrar.cs">
@@ -88,7 +89,6 @@
     <Compile Include="ChildForms\ManageTeacher.Designer.cs">
       <DependentUpon>ManageTeacher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Database.cs" />
     <Compile Include="Classes\InputValidator.cs" />
     <Compile Include="ParentForm.cs">
       <SubType>Form</SubType>
@@ -105,6 +105,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ForDataGridView.cs" />
+    <Compile Include="Repositories\AObject.cs" />
+    <Compile Include="Repositories\ATeacher.cs" />
+    <Compile Include="Repositories\AUser.cs" />
+    <Compile Include="Repositories\Subject.cs" />
+    <Compile Include="Repositories\Teacher.cs" />
     <EmbeddedResource Include="ManageRegistrar.resx">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
     </EmbeddedResource>

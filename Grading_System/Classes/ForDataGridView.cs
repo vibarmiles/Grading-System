@@ -13,12 +13,9 @@ namespace Grading_System.Classes
     {
         public static bool ButtonColumn_Clicked(DataGridView dgv, DataGridViewCellEventArgs e, string name)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgv.Columns[e.ColumnIndex].Name == name)
             {
-                if (dgv.Columns[e.ColumnIndex].Name == name)
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;

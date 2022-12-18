@@ -7,25 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.Classes;
+using Grading_System.Repositories;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Grading_System.ChildForms
 {
-    public partial class ManageTeacher : ManageObject
+    public partial class ManageTeacher : BaseManageObject
     {
-        public ManageTeacher() : base("TeachersView", "UserID")
+        private readonly ATeacher teacher;
+
+        public ManageTeacher(string connectionString) : base(new Teacher(connectionString), "UserID")
         {
             InitializeComponent();
+            teacher = new Teacher(connectionString);
             BtnUpdate = btnUpdate;
             BtnAdd = btnAdd;
             TblList = tblList;
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
-            RefreshTable();
+            ViewTable();
         }
 
-        private void RefreshTable()
+        protected override void ViewTable()
         {
-            SetTableFormat();
+            base.ViewTable();
             tblList.Columns[1].HeaderText = "User ID";
         }
 
@@ -37,17 +42,20 @@ namespace Grading_System.ChildForms
             string gender = cbGender.Text;
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
             string user = txtUsername.Text;
-            string pos = "Teacher";
-            string pass = Database.HashPassword(txtPassword.Text);
+            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && txtPassword.Text != "")
+            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
             {
-                string userValue = "'" + fname + "','" + mname + "','" + lname + "','" + user + "',N'" + pass + "','" + pos + "','" + gender + "'";
-                Database.Insert("Users", "[FirstName],[MiddleName],[LastName],[Username],[Password],[Position],[Gender]", userValue);
-                string teacherValue = Database.SelectID("Users", "[UserID]", "[Username]", "'" + user + "'").ToString() + ",'" + spec + "'";
-                Database.Insert("Teachers", "[UserID], [Specialization]", teacherValue);
-                InputValidator.ClearTextBox(panel1);
-                RefreshTable();
+                teacher.Fname = fname;
+                teacher.Mname = mname;
+                teacher.Lname = lname;
+                teacher.Username = user;
+                teacher.Password = pass;
+                teacher.Gender = gender;
+                teacher.Specialization = spec;
+                teacher.Add();
+                Cancel(sender, e);
+                ViewTable();
             }
             else
             {
@@ -57,14 +65,13 @@ namespace Grading_System.ChildForms
 
         protected override void Edit()
         {
-            string[] row = Database.SelectRow("[Users]", "[FirstName],[MiddleName],[LastName],[Username],[Password],[Gender]", "[UserID]", Id);
-            string[] spec = Database.SelectRow("[Teachers]", "[Specialization]", "[UserID]", Id);
-            txtFirstName.Text = row[0].ToString();
-            txtMiddleName.Text = row[1].ToString();
-            txtLastName.Text = row[2].ToString();
-            txtSpecialization.Text = spec[0].ToString();
-            txtUsername.Text = row[3].ToString();
-            cbGender.Text = row[5].ToString();
+            DataRow row = teacher.GetValues(Id);
+            txtFirstName.Text = row["FirstName"].ToString();
+            txtMiddleName.Text = row["MiddleName"].ToString();
+            txtLastName.Text = row["LastName"].ToString();
+            txtSpecialization.Text = row["Specialization"].ToString();
+            txtUsername.Text = row["Username"].ToString();
+            cbGender.Text = row["Gender"].ToString();
         }
 
         protected override void Update(object sender, EventArgs e)
@@ -75,14 +82,19 @@ namespace Grading_System.ChildForms
             string gender = cbGender.Text;
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
             string user = txtUsername.Text;
-            string pos = "Teacher";
-            string pass = Database.HashPassword(txtPassword.Text);
+            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && txtPassword.Text != "")
+            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
             {
-                Database.Update("Users", "[FirstName]='" + fname + "',[MiddleName]='"+ mname +"',[LastName]='"+ lname +"',[Username]='"+ user +"',[Password]='"+ pass +"',[Position]='"+ pos +"',[Gender]='"+ gender +"'", "[UserID]", Id);
-                Database.Update("Teachers", "[Specialization]='" + spec + "'", "[UserID]", Id);
-                RefreshTable();
+                teacher.Fname = fname;
+                teacher.Mname = mname;
+                teacher.Lname = lname;
+                teacher.Username = user;
+                teacher.Password = pass;
+                teacher.Gender = gender;
+                teacher.Specialization = spec;
+                teacher.Update(Id);
+                ViewTable();
                 Cancel(sender, e);
             }
             else
@@ -93,9 +105,8 @@ namespace Grading_System.ChildForms
 
         protected override void Delete()
         {
-            Database.Delete("Teachers", "[UserID]", Id);
-            Database.Delete("Users", "[UserID]", Id);
-            RefreshTable();
+            teacher.Delete(Id);
+            ViewTable();
         }
     }
 }

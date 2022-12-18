@@ -8,25 +8,29 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.Classes;
+using Grading_System.Repositories;
 
 namespace Grading_System.ChildForms
 {
-    public partial class ManageSubject : ManageObject
+    public partial class ManageSubject : BaseManageObject
     {
-        public ManageSubject() : base("Subjects", "SubjectID")
+        private readonly AHasObject subject;
+
+        public ManageSubject(string connectionString) : base(new Subject(connectionString), "SubjectID")
         {
             InitializeComponent();
+            subject = new Subject(connectionString);
             BtnUpdate = btnUpdate;
             BtnAdd = btnAdd;
             TblList = tblList;
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
-            RefreshTable();
+            ViewTable();
         }
 
-        private void RefreshTable()
+        protected override void ViewTable()
         {
-            SetTableFormat();
+            base.ViewTable();
             tblList.Columns[1].HeaderText = "Subject ID";
             tblList.Columns[2].HeaderText = "Subject Description";
         }
@@ -37,9 +41,10 @@ namespace Grading_System.ChildForms
 
             if (sub != "")
             {
-                Database.Insert("Subjects", "[SubjectName]", "'" + sub + "'");
+                subject.Name = sub;
+                subject.Add();
                 txtSubject.Clear();
-                RefreshTable();
+                ViewTable();
             }
             else
             {
@@ -49,8 +54,8 @@ namespace Grading_System.ChildForms
 
         protected override void Edit()
         {
-            string[] row = Database.SelectRow("[Subjects]", "[SubjectName]", "[SubjectID]", Id);
-            txtSubject.Text = row[0].ToString();
+            DataRow row = subject.GetValues(Id);
+            txtSubject.Text = row["SubjectName"].ToString();
         }
 
         protected override void Update(object sender, EventArgs e)
@@ -59,8 +64,9 @@ namespace Grading_System.ChildForms
 
             if (sub != "")
             {
-                Database.Update("Subjects", "[SubjectName]='" + sub + "'", "[SubjectID]", Id);
-                RefreshTable();
+                subject.Name = sub;
+                subject.Update(Id);
+                ViewTable();
                 Cancel(sender, e);
             }
             else
@@ -71,8 +77,8 @@ namespace Grading_System.ChildForms
 
         protected override void Delete()
         {
-            Database.Delete("Subjects", "[SubjectID]", Id);
-            RefreshTable();
+            subject.Delete(Id);
+            ViewTable();
         }
     }
 }

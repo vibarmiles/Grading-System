@@ -15,7 +15,8 @@ namespace Grading_System
     {
         //Wala pang Admin at Registrar Accounts
 
-        string position;
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;Integrated Security=True";
+        private string position;
         ManageRegistrar registrar;
         ManageStudent student;
         ManageTeacher teacher;
@@ -39,8 +40,8 @@ namespace Grading_System
                 rbtnAddSection.Visible = true;
 
                 student = new ManageStudent();
-                teacher = new ManageTeacher();
-                subject = new ManageSubject();
+                teacher = new ManageTeacher(connectionString);
+                subject = new ManageSubject(connectionString);
 
                 student.MdiParent = this;
                 teacher.MdiParent = this;
