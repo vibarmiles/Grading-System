@@ -42,23 +42,8 @@ namespace Grading_System.Repositories
             return dt;
         }
 
-        protected string HashPassword(string password)
-        {
-            string hash = String.Empty;
-
-            using (HashAlgorithm sha256 = SHA256.Create())
-            {
-                foreach (byte b in sha256.ComputeHash(Encoding.UTF8.GetBytes(password)))
-                {
-                    hash += b.ToString("x2");
-                }
-            }
-
-            return hash;
-        }
-
         public abstract void Add();
-        public abstract DataRow GetValues(string id);
+        public abstract void GetValues(string id);
         public abstract void Update(string id);
         public abstract void Delete(string id);
     }

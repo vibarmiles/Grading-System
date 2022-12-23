@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace Grading_System.Repositories
 {
@@ -94,6 +95,21 @@ namespace Grading_System.Repositories
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        protected string HashPassword(string password)
+        {
+            string hash = String.Empty;
+
+            using (HashAlgorithm sha256 = SHA256.Create())
+            {
+                foreach (byte b in sha256.ComputeHash(Encoding.UTF8.GetBytes(password)))
+                {
+                    hash += b.ToString("x2");
+                }
+            }
+
+            return hash;
         }
     }
 }

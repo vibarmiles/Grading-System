@@ -115,7 +115,7 @@ namespace Grading_System.Repositories
             }
         }
 
-        public override DataRow GetValues(string id)
+        public override void GetValues(string id)
         {
             DataTable dt = new DataTable();
 
@@ -134,7 +134,14 @@ namespace Grading_System.Repositories
                 con.Close();
             }
 
-            return dt.Rows[0];
+            DataRow row = dt.Rows[0];
+
+            fname = row["FirstName"].ToString();
+            mname = row["MiddleName"].ToString();
+            lname = row["LastName"].ToString();
+            specialization = row["Specialization"].ToString();
+            username = row["Username"].ToString();
+            gender = row["Gender"].ToString();
         }
 
         public override void Update(string id)

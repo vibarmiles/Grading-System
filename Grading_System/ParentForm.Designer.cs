@@ -30,6 +30,7 @@
         {
             this.pnlTaskbar = new System.Windows.Forms.Panel();
             this.Options = new System.Windows.Forms.GroupBox();
+            this.rbtnAddRegistrar = new System.Windows.Forms.RadioButton();
             this.rbtnAddSection = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.rbtnGrades = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPosition = new System.Windows.Forms.Label();
-            this.rbtnAddRegistrar = new System.Windows.Forms.RadioButton();
             this.pnlTaskbar.SuspendLayout();
             this.Options.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,6 +83,24 @@
             this.Options.Size = new System.Drawing.Size(208, 669);
             this.Options.TabIndex = 0;
             this.Options.TabStop = false;
+            // 
+            // rbtnAddRegistrar
+            // 
+            this.rbtnAddRegistrar.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnAddRegistrar.AutoSize = true;
+            this.rbtnAddRegistrar.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.rbtnAddRegistrar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbtnAddRegistrar.FlatAppearance.BorderSize = 0;
+            this.rbtnAddRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnAddRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rbtnAddRegistrar.Location = new System.Drawing.Point(0, 365);
+            this.rbtnAddRegistrar.MinimumSize = new System.Drawing.Size(208, 52);
+            this.rbtnAddRegistrar.Name = "rbtnAddRegistrar";
+            this.rbtnAddRegistrar.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddRegistrar.TabIndex = 6;
+            this.rbtnAddRegistrar.TabStop = true;
+            this.rbtnAddRegistrar.Text = "Add Registrar";
+            this.rbtnAddRegistrar.UseVisualStyleBackColor = false;
             // 
             // rbtnAddSection
             // 
@@ -243,32 +261,14 @@
             this.lblPosition.TabIndex = 1;
             this.lblPosition.Text = "Admin";
             // 
-            // rbtnAddRegistrar
-            // 
-            this.rbtnAddRegistrar.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnAddRegistrar.AutoSize = true;
-            this.rbtnAddRegistrar.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.rbtnAddRegistrar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rbtnAddRegistrar.FlatAppearance.BorderSize = 0;
-            this.rbtnAddRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnAddRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddRegistrar.Location = new System.Drawing.Point(0, 365);
-            this.rbtnAddRegistrar.MinimumSize = new System.Drawing.Size(208, 52);
-            this.rbtnAddRegistrar.Name = "rbtnAddRegistrar";
-            this.rbtnAddRegistrar.Size = new System.Drawing.Size(208, 52);
-            this.rbtnAddRegistrar.TabIndex = 6;
-            this.rbtnAddRegistrar.TabStop = true;
-            this.rbtnAddRegistrar.Text = "Add Registrar";
-            this.rbtnAddRegistrar.UseVisualStyleBackColor = false;
-            // 
-            // Main_Form
+            // ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.pnlTaskbar);
             this.IsMdiContainer = true;
-            this.Name = "Main_Form";
+            this.Name = "ParentForm";
             this.Text = "Grading System";
             this.pnlTaskbar.ResumeLayout(false);
             this.Options.ResumeLayout(false);

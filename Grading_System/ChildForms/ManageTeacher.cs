@@ -65,13 +65,13 @@ namespace Grading_System.ChildForms
 
         protected override void Edit()
         {
-            DataRow row = teacher.GetValues(Id);
-            txtFirstName.Text = row["FirstName"].ToString();
-            txtMiddleName.Text = row["MiddleName"].ToString();
-            txtLastName.Text = row["LastName"].ToString();
-            txtSpecialization.Text = row["Specialization"].ToString();
-            txtUsername.Text = row["Username"].ToString();
-            cbGender.Text = row["Gender"].ToString();
+            teacher.GetValues(Id);
+            txtFirstName.Text = teacher.Fname;
+            txtMiddleName.Text = teacher.Mname;
+            txtLastName.Text = teacher.Lname;
+            txtSpecialization.Text = teacher.Specialization;
+            txtUsername.Text = teacher.Username;
+            cbGender.Text = teacher.Gender;
         }
 
         protected override void Update(object sender, EventArgs e)

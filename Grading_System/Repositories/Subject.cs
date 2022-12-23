@@ -70,7 +70,7 @@ namespace Grading_System.Repositories
             }
         }
 
-        public override DataRow GetValues(string id)
+        public override void GetValues(string id)
         {
             DataTable dt = new DataTable();
 
@@ -89,7 +89,8 @@ namespace Grading_System.Repositories
                 con.Close();
             }
 
-            return dt.Rows[0];
+            DataRow row = dt.Rows[0];
+            name = row["SubjectName"].ToString();
         }
 
         public override void Update(string id)

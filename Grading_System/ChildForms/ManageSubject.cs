@@ -54,8 +54,8 @@ namespace Grading_System.ChildForms
 
         protected override void Edit()
         {
-            DataRow row = subject.GetValues(Id);
-            txtSubject.Text = row["SubjectName"].ToString();
+            subject.GetValues(Id);
+            txtSubject.Text = subject.Name;
         }
 
         protected override void Update(object sender, EventArgs e)
