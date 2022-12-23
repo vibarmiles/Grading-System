@@ -14,9 +14,9 @@ namespace Grading_System.ChildForms
 {
     public partial class ManageTeacher : BaseManageObject
     {
-        private readonly ATeacher teacher;
+        private readonly ITeacher teacher;
 
-        public ManageTeacher(string connectionString) : base(new Teacher(connectionString), "UserID")
+        public ManageTeacher(string connectionString) : base(new Teacher(connectionString))
         {
             InitializeComponent();
             teacher = new Teacher(connectionString);
@@ -32,6 +32,7 @@ namespace Grading_System.ChildForms
         {
             base.ViewTable();
             tblList.Columns[1].HeaderText = "User ID";
+            tblList.Columns[1].Name = "ID";
         }
 
         protected override void Add(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace Grading_System.ChildForms
                 teacher.Password = pass;
                 teacher.Gender = gender;
                 teacher.Specialization = spec;
+                teacher.Position = "Teacher";
                 teacher.Add();
                 Cancel(sender, e);
                 ViewTable();

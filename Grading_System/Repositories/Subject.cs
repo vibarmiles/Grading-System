@@ -10,19 +10,19 @@ using System.Xml.Linq;
 
 namespace Grading_System.Repositories
 {
-    internal class Subject : AHasObject
+    internal class Subject : BaseRepository, IHasObject
     {
         private string connectionString;
         private string name;
 
-        public Subject(string connectionString) : base(connectionString, "Subjects", "[SubjectID]")
+        public Subject(string connectionString) : base(connectionString, "Subjects", "SubjectID")
         {
             this.connectionString = connectionString;
         }
 
-        public override string Name { get => name; set => name = value; }
+        public string Name { get => name; set => name = value; }
 
-        public override void Add()
+        public void Add()
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Grading_System.Repositories
             }
         }
 
-        public override void Delete(string id)
+        public void Delete(string id)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Grading_System.Repositories
             }
         }
 
-        public override void GetValues(string id)
+        public void GetValues(string id)
         {
             DataTable dt = new DataTable();
 
@@ -93,7 +93,7 @@ namespace Grading_System.Repositories
             name = row["SubjectName"].ToString();
         }
 
-        public override void Update(string id)
+        public void Update(string id)
         {
             try
             {

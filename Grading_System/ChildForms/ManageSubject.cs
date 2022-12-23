@@ -14,9 +14,9 @@ namespace Grading_System.ChildForms
 {
     public partial class ManageSubject : BaseManageObject
     {
-        private readonly AHasObject subject;
+        private readonly IHasObject subject;
 
-        public ManageSubject(string connectionString) : base(new Subject(connectionString), "SubjectID")
+        public ManageSubject(string connectionString) : base(new Subject(connectionString))
         {
             InitializeComponent();
             subject = new Subject(connectionString);
@@ -32,6 +32,7 @@ namespace Grading_System.ChildForms
         {
             base.ViewTable();
             tblList.Columns[1].HeaderText = "Subject ID";
+            tblList.Columns[1].Name = "ID";
             tblList.Columns[2].HeaderText = "Subject Description";
         }
 

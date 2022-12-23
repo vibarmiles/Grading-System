@@ -11,18 +11,16 @@ namespace Grading_System.Classes
 {
     public class BaseManageObject : Form
     {
-        private readonly AObject obj;
+        private readonly IBaseRepository baseRepository;
         private Button btnUpdate;
         private Button btnAdd;
         private DataGridView tblList;
         private Panel panel;
         private string id;
-        private string primaryKey;
 
-        public BaseManageObject(AObject obj, string primaryKey) : base()
+        public BaseManageObject(IBaseRepository baseRepository) : base()
         {
-            this.obj = obj;
-            this.primaryKey = primaryKey;
+            this.baseRepository = baseRepository;
         }
 
         protected BaseManageObject() : base() { }
@@ -34,7 +32,7 @@ namespace Grading_System.Classes
 
         private void SetTableFormat()
         {
-            DataTable dt = obj.View();
+            DataTable dt = baseRepository.View();
             DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
             DataGridViewButtonColumn delete = new DataGridViewButtonColumn();
 
@@ -70,7 +68,7 @@ namespace Grading_System.Classes
         {
             try
             {
-                this.id = tblList.Rows[e.RowIndex].Cells[primaryKey].Value.ToString();
+                this.id = tblList.Rows[e.RowIndex].Cells["ID"].Value.ToString();
             } catch (ArgumentOutOfRangeException) { }
 
             if (ForDataGridView.ButtonColumn_Clicked(tblList, e, "Edit"))
