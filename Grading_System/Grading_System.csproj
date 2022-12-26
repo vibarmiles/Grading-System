@@ -58,7 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildForms\ManageAsstTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\ManageAsstTeacher.Designer.cs">
+      <DependentUpon>ManageAsstTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Account.cs" />
+    <Compile Include="Repositories\AssistantTeacher.cs" />
     <Compile Include="Repositories\IHasObject.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IAccount.cs" />
@@ -66,10 +73,10 @@
     <Compile Include="Classes\BaseManageObject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageRegistrar.cs">
+    <Compile Include="ChildForms\ManageRegistrar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageRegistrar.Designer.cs">
+    <Compile Include="ChildForms\ManageRegistrar.Designer.cs">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
     </Compile>
     <Compile Include="ChildForms\ManageSubject.cs">
@@ -110,10 +117,14 @@
     <Compile Include="Repositories\ITeacher.cs" />
     <Compile Include="Repositories\IUser.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\Registrar.cs" />
     <Compile Include="Repositories\Subject.cs" />
     <Compile Include="Repositories\Teacher.cs" />
     <Compile Include="Repositories\BaseUserRepository.cs" />
-    <EmbeddedResource Include="ManageRegistrar.resx">
+    <EmbeddedResource Include="ChildForms\ManageAsstTeacher.resx">
+      <DependentUpon>ManageAsstTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\ManageRegistrar.resx">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageSubject.resx">

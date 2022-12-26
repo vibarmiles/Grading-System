@@ -51,9 +51,10 @@ C:\Grading_System\Grading_System\obj\Debug\Grading_System.exe
 C:\Grading_System\Grading_System\obj\Debug\Grading_System.pdb
 C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System.mdf
 C:\Users\vibar\source\repos\Grading_System\Grading_System\bin\Debug\Grading_System_log.ldf
-C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ManageRegistrar.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ManageStudent.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ParentForm.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageSubject.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageTeacher.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.LoginForm.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageRegistrar.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageAsstTeacher.resources

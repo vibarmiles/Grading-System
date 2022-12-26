@@ -13,14 +13,14 @@ namespace Grading_System
 {
     public partial class ParentForm : Form
     {
-        //Wala pang Admin at Registrar Accounts
-
         private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;Integrated Security=True";
         private string position;
         ManageRegistrar registrar;
         ManageStudent student;
         ManageTeacher teacher;
         ManageSubject subject;
+        ManageAsstTeacher asstTeacher;
+
         public ParentForm()
         {
             InitializeComponent();
@@ -42,14 +42,17 @@ namespace Grading_System
                 student = new ManageStudent();
                 teacher = new ManageTeacher(connectionString);
                 subject = new ManageSubject(connectionString);
+                asstTeacher = new ManageAsstTeacher(connectionString);
 
                 student.MdiParent = this;
                 teacher.MdiParent = this;
                 subject.MdiParent = this;
+                asstTeacher.MdiParent = this;
 
                 student.Show();
                 teacher.Show();
                 subject.Show();
+                asstTeacher.Show();
             }
 
             if (position.Equals("Admin") || position.Equals("Teacher"))
@@ -60,7 +63,7 @@ namespace Grading_System
             if (position.Equals("Admin"))
             {
                 rbtnAddRegistrar.Visible = true;
-                registrar = new ManageRegistrar();
+                registrar = new ManageRegistrar(connectionString);
                 registrar.MdiParent = this;
                 registrar.Show();
             }
@@ -90,10 +93,16 @@ namespace Grading_System
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            foreach(Form frm in this.MdiChildren)
+            {
+                frm.Dispose();
+            }
+
             registrar = null;
             student = null;
             teacher = null;
             subject = null;
+            asstTeacher = null;
             position = String.Empty;
 
             LoginForm login = new LoginForm();
@@ -142,7 +151,12 @@ namespace Grading_System
 
         private void rbtnAddAsstTeacher_CheckedChanged(object sender, EventArgs e)
         {
+            if (asstTeacher is null)
+            {
+                return;
+            }
 
+            asstTeacher.BringToFront();
         }
     }
 }
