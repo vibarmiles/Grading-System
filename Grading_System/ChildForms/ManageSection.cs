@@ -15,12 +15,14 @@ namespace Grading_System.ChildForms
     public partial class ManageSection : BaseManageObject
     {
         private readonly ISection section;
+        private readonly IAdviser teacher;
         private IDictionary<int, string> advisers;
 
         public ManageSection(string connectionString) : base(new Section(connectionString))
         {
             InitializeComponent();
             section = new Section(connectionString);
+            teacher = new Teacher(connectionString);
             BtnUpdate = btnUpdate;
             BtnAdd = btnAdd;
             TblList = tblList;
@@ -100,7 +102,7 @@ namespace Grading_System.ChildForms
 
         private void cbAdvisers_DropDown(object sender, EventArgs e)
         {
-            advisers = section.GetAdvisers();
+            advisers = teacher.GetTeachers();
             cbAdvisers.Items.Clear();
 
             foreach(string adviser in advisers.Values)

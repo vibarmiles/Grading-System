@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Grading_System.Models
 {
-    internal class Teacher : BaseUserModel, ITeacher
+    internal class Teacher : BaseUserModel, ITeacher, IAdviser
     {
         private string connectionString;
         private string specialization;
@@ -246,6 +246,31 @@ namespace Grading_System.Models
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public IDictionary<int, string> GetTeachers()
+        {
+            Dictionary<int, string> advisers = new Dictionary<int, string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID, Name FROM TeachersView", con))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            advisers.Add(Int32.Parse(reader["TeacherID"].ToString()), reader["Name"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return advisers;
         }
     }
 }

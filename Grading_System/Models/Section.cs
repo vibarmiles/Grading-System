@@ -78,31 +78,6 @@ namespace Grading_System.Models
             }
         }
 
-        public IDictionary<int, string> GetAdvisers()
-        {
-            Dictionary<int, string> advisers = new Dictionary<int, string>();
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-
-                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID, Name FROM TeachersView", con))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while(reader.Read())
-                        {
-                            advisers.Add(Int32.Parse(reader["TeacherID"].ToString()), reader["Name"].ToString());
-                        }
-                    }
-                }
-
-                con.Close();
-            }
-
-            return advisers;
-        }
-
         public void GetValues(string id)
         {
             DataTable dt = new DataTable();

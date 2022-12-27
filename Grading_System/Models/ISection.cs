@@ -12,6 +12,5 @@ namespace Grading_System.Models
         string AdviserName { get; }
         int YearLevel { get; set; }
 
-        IDictionary<int, string> GetAdvisers();
     }
 }
