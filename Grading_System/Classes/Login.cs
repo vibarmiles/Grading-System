@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Grading_System.Repositories;
+using Grading_System.Models;
 
 namespace Grading_System.Classes
 {

@@ -20,6 +20,7 @@ namespace Grading_System
         ManageTeacher teacher;
         ManageSubject subject;
         ManageAsstTeacher asstTeacher;
+        ManageSection section;
 
         public ParentForm()
         {
@@ -27,7 +28,7 @@ namespace Grading_System
             this.Load += btnLogout_Click;
         }
 
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        private void Login_FormClosed(object sender, FormClosingEventArgs e)
         {
             lblPosition.Text = position;
 
@@ -43,16 +44,19 @@ namespace Grading_System
                 teacher = new ManageTeacher(connectionString);
                 subject = new ManageSubject(connectionString);
                 asstTeacher = new ManageAsstTeacher(connectionString);
+                section = new ManageSection(connectionString);
 
                 student.MdiParent = this;
                 teacher.MdiParent = this;
                 subject.MdiParent = this;
                 asstTeacher.MdiParent = this;
+                section.MdiParent = this;
 
                 student.Show();
                 teacher.Show();
                 subject.Show();
                 asstTeacher.Show();
+                section.Show();
             }
 
             if (position.Equals("Admin") || position.Equals("Teacher"))
@@ -121,7 +125,7 @@ namespace Grading_System
             login.Show();
             login.BringToFront();
             login.OnSubmit += new EventHandler((s, eArgs) => this.position = (string)s);
-            login.FormClosed += Login_FormClosed;
+            login.FormClosing += Login_FormClosed;
         }
 
         private void btnGrades_Click(object sender, EventArgs e)
@@ -149,7 +153,7 @@ namespace Grading_System
             subject.BringToFront();
         }
 
-        private void rbtnAddAsstTeacher_CheckedChanged(object sender, EventArgs e)
+        private void rbtnAddAsstTeacher_Click(object sender, EventArgs e)
         {
             if (asstTeacher is null)
             {
@@ -157,6 +161,17 @@ namespace Grading_System
             }
 
             asstTeacher.BringToFront();
+        }
+
+        private void rbtnAddSection_Click(object sender, EventArgs e)
+        {
+            if (section is null)
+            {
+                return;
+            }
+
+            section.RefreshTable();
+            section.BringToFront();
         }
     }
 }

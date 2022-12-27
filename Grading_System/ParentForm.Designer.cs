@@ -120,6 +120,7 @@
             this.rbtnAddSection.TabStop = true;
             this.rbtnAddSection.Text = "Add Section";
             this.rbtnAddSection.UseVisualStyleBackColor = false;
+            this.rbtnAddSection.Click += new System.EventHandler(this.rbtnAddSection_Click);
             // 
             // panel2
             // 
@@ -162,7 +163,7 @@
             this.rbtnAddAsstTeacher.TabStop = true;
             this.rbtnAddAsstTeacher.Text = "Add Asst. Teacher";
             this.rbtnAddAsstTeacher.UseVisualStyleBackColor = false;
-            this.rbtnAddAsstTeacher.CheckedChanged += new System.EventHandler(this.rbtnAddAsstTeacher_CheckedChanged);
+            this.rbtnAddAsstTeacher.Click += new System.EventHandler(this.rbtnAddAsstTeacher_Click);
             // 
             // rbtnAddSubject
             // 

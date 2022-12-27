@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.Classes;
-using Grading_System.Repositories;
+using Grading_System.Models;
 
 namespace Grading_System.ChildForms
 {

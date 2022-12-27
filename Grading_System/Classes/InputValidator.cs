@@ -20,9 +20,19 @@ namespace Grading_System.Classes
 
         public static double CheckIntTextBox(string input)
         {
-            if (input != null && Regex.IsMatch(input, @"^[0-9\.]{1,10}+$"))
+            if (input != null && Regex.IsMatch(input, @"^[0-9\.]{1,10}$"))
             {
                 return Double.Parse(input);
+            }
+
+            return 0;
+        }
+
+        public static int CheckYearLevelTextBox(string input)
+        {
+            if (input != null && Regex.IsMatch(input, @"^[0-9]{1,2}$"))
+            {
+                return Int32.Parse(input);
             }
 
             return 0;

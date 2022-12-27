@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Grading_System.Repositories;
+using Grading_System.Models;
 
 namespace Grading_System.Classes
 {
@@ -100,6 +100,7 @@ namespace Grading_System.Classes
 
         protected void Cancel(object sender, EventArgs e)
         {
+            btnAdd.Click -= Add;
             btnUpdate.Hide();
             btnAdd.Text = "Add";
             btnAdd.Click += Add;

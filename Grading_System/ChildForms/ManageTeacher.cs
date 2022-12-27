@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.Classes;
-using Grading_System.Repositories;
+using Grading_System.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Grading_System.ChildForms
