@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AssistantTeacher.cs" />
-    <Compile Include="Models\IAdviser.cs" />
+    <Compile Include="Models\IObjectList.cs" />
     <Compile Include="Models\IHasObject.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\IAccount.cs" />
@@ -92,10 +92,10 @@
     <Compile Include="ChildForms\ManageSubject.Designer.cs">
       <DependentUpon>ManageSubject.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageStudent.cs">
+    <Compile Include="ChildForms\ManageStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageStudent.Designer.cs">
+    <Compile Include="ChildForms\ManageStudent.Designer.cs">
       <DependentUpon>ManageStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="ChildForms\ManageTeacher.cs">
@@ -106,7 +106,9 @@
     </Compile>
     <Compile Include="Classes\InputValidator.cs" />
     <Compile Include="Models\ISection.cs" />
+    <Compile Include="Models\IStudent.cs" />
     <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="ParentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,7 +144,7 @@
     <EmbeddedResource Include="ChildForms\ManageSubject.resx">
       <DependentUpon>ManageSubject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageStudent.resx">
+    <EmbeddedResource Include="ChildForms\ManageStudent.resx">
       <DependentUpon>ManageStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageTeacher.resx">

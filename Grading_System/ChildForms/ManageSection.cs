@@ -15,7 +15,7 @@ namespace Grading_System.ChildForms
     public partial class ManageSection : BaseManageObject
     {
         private readonly ISection section;
-        private readonly IAdviser teacher;
+        private readonly IObjectList teacher;
         private IDictionary<int, string> advisers;
 
         public ManageSection(string connectionString) : base(new Section(connectionString))
@@ -48,7 +48,7 @@ namespace Grading_System.ChildForms
         {
             string name = txtSectionName.Text;
             string adviser = cbAdvisers.Text;
-            int yearlvl = InputValidator.CheckYearLevelTextBox(txtYearLevel.Text);
+            int yearlvl = InputValidator.CheckIntTextBox(txtYearLevel.Text);
 
             if (name != "" && adviser != "" && yearlvl > 0)
             {
@@ -77,7 +77,7 @@ namespace Grading_System.ChildForms
         {
             string name = txtSectionName.Text;
             string adviser = cbAdvisers.Text;
-            int yearlvl = InputValidator.CheckYearLevelTextBox(txtYearLevel.Text);
+            int yearlvl = InputValidator.CheckIntTextBox(txtYearLevel.Text);
 
             if (name != "" && adviser != "" && yearlvl > 0)
             {
@@ -102,7 +102,7 @@ namespace Grading_System.ChildForms
 
         private void cbAdvisers_DropDown(object sender, EventArgs e)
         {
-            advisers = teacher.GetTeachers();
+            advisers = teacher.GetList();
             cbAdvisers.Items.Clear();
 
             foreach(string adviser in advisers.Values)

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Grading_System.Models
 {
-    internal class Teacher : BaseUserModel, ITeacher, IAdviser
+    internal class Teacher : BaseUserModel, ITeacher, IObjectList
     {
         private string connectionString;
         private string specialization;
@@ -248,7 +248,7 @@ namespace Grading_System.Models
             }
         }
 
-        public IDictionary<int, string> GetTeachers()
+        public IDictionary<int, string> GetList()
         {
             Dictionary<int, string> advisers = new Dictionary<int, string>();
 

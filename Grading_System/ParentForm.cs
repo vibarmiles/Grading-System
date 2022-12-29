@@ -40,7 +40,7 @@ namespace Grading_System
                 rbtnAddTeacher.Visible = true;
                 rbtnAddSection.Visible = true;
 
-                student = new ManageStudent();
+                student = new ManageStudent(connectionString);
                 teacher = new ManageTeacher(connectionString);
                 subject = new ManageSubject(connectionString);
                 asstTeacher = new ManageAsstTeacher(connectionString);
@@ -92,6 +92,7 @@ namespace Grading_System
                 return;
             }
 
+            student.RefreshTable();
             student.BringToFront();
         }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Grading_System.Models
 {
-    public class Section : BaseModel, ISection
+    public class Section : BaseModel, ISection, IObjectList
     {
         private string connectionString;
         private string name, adviserName;
@@ -58,6 +58,20 @@ namespace Grading_System.Models
         {
             try
             {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Students WHERE [SectionID] = @id", con))
+                    {
+                        cmd.Parameters.Add("id", SqlDbType.BigInt);
+                        cmd.Parameters["id"].Value = Int32.Parse(id);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
+                }
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -131,6 +145,31 @@ namespace Grading_System.Models
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public IDictionary<int, string> GetList()
+        {
+            Dictionary<int, string> sections = new Dictionary<int, string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT SectionID, SectionName FROM Sections", con))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sections.Add(Int32.Parse(reader["SectionID"].ToString()), reader["SectionName"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return sections;
         }
     }
 }

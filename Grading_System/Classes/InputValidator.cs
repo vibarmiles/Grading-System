@@ -18,7 +18,7 @@ namespace Grading_System.Classes
             return null;
         }
 
-        public static double CheckIntTextBox(string input)
+        public static double CheckDoubleTextBox(string input)
         {
             if (input != null && Regex.IsMatch(input, @"^[0-9\.]{1,10}$"))
             {
@@ -28,9 +28,9 @@ namespace Grading_System.Classes
             return 0;
         }
 
-        public static int CheckYearLevelTextBox(string input)
+        public static int CheckIntTextBox(string input)
         {
-            if (input != null && Regex.IsMatch(input, @"^[0-9]{1,2}$"))
+            if (input != null && Regex.IsMatch(input, @"^[0-9]{1,}$"))
             {
                 return Int32.Parse(input);
             }
