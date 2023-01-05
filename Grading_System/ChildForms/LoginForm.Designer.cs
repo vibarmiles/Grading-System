@@ -46,7 +46,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(820, 156);
+            this.panel1.Location = new System.Drawing.Point(608, 206);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 285);
             this.panel1.TabIndex = 0;
@@ -104,14 +104,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
             // 
-            // Login
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 623);
+            this.ClientSize = new System.Drawing.Size(1050, 673);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);

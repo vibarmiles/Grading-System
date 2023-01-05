@@ -21,6 +21,7 @@ namespace Grading_System
         ManageSubject subject;
         ManageAsstTeacher asstTeacher;
         ManageSection section;
+        ManageClassForm classForm;
 
         public ParentForm()
         {
@@ -39,24 +40,28 @@ namespace Grading_System
                 rbtnAddSubject.Visible = true;
                 rbtnAddTeacher.Visible = true;
                 rbtnAddSection.Visible = true;
+                rbtnClass.Visible = true;
 
                 student = new ManageStudent(connectionString);
                 teacher = new ManageTeacher(connectionString);
                 subject = new ManageSubject(connectionString);
                 asstTeacher = new ManageAsstTeacher(connectionString);
                 section = new ManageSection(connectionString);
+                classForm = new ManageClassForm(connectionString);
 
                 student.MdiParent = this;
                 teacher.MdiParent = this;
                 subject.MdiParent = this;
                 asstTeacher.MdiParent = this;
                 section.MdiParent = this;
+                classForm.MdiParent = this;
 
                 student.Show();
                 teacher.Show();
                 subject.Show();
                 asstTeacher.Show();
                 section.Show();
+                classForm.Show();
             }
 
             if (position.Equals("Admin") || position.Equals("Teacher"))
@@ -108,6 +113,8 @@ namespace Grading_System
             teacher = null;
             subject = null;
             asstTeacher = null;
+            section = null;
+            classForm = null;
             position = String.Empty;
 
             LoginForm login = new LoginForm();
@@ -121,6 +128,7 @@ namespace Grading_System
             rbtnAddSubject.Visible = false;
             rbtnAddSection.Visible = false;
             rbtnAddRegistrar.Visible = false;
+            rbtnClass.Visible = false;
             lblPosition.Text = "Login";
 
             login.Show();
@@ -173,6 +181,17 @@ namespace Grading_System
 
             section.RefreshTable();
             section.BringToFront();
+        }
+
+        private void rbtnClass_Click(object sender, EventArgs e)
+        {
+            if (classForm is null)
+            {
+                return;
+            }
+
+            classForm.RefreshTable();
+            classForm.BringToFront();
         }
     }
 }

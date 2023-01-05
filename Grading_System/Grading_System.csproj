@@ -64,6 +64,12 @@
     <Compile Include="ChildForms\ManageAsstTeacher.Designer.cs">
       <DependentUpon>ManageAsstTeacher.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChildForms\ManageClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\ManageClassForm.Designer.cs">
+      <DependentUpon>ManageClassForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\ManageSection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,8 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AssistantTeacher.cs" />
+    <Compile Include="Models\ManageClass.cs" />
+    <Compile Include="Models\IClass.cs" />
     <Compile Include="Models\IObjectList.cs" />
     <Compile Include="Models\IHasObject.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -134,6 +142,9 @@
     <Compile Include="Models\BaseUserModel.cs" />
     <EmbeddedResource Include="ChildForms\ManageAsstTeacher.resx">
       <DependentUpon>ManageAsstTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\ManageClassForm.resx">
+      <DependentUpon>ManageClassForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageRegistrar.resx">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>
