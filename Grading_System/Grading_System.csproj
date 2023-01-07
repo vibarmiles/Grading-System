@@ -77,7 +77,10 @@
       <DependentUpon>ManageSection.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AssignClass.cs" />
     <Compile Include="Models\AssistantTeacher.cs" />
+    <Compile Include="Models\IAssignClass.cs" />
+    <Compile Include="Models\ISectionStudentList.cs" />
     <Compile Include="Models\ManageClass.cs" />
     <Compile Include="Models\IClass.cs" />
     <Compile Include="Models\IObjectList.cs" />

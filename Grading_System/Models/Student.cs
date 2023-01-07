@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Grading_System.Models
 {
-    internal class Student : BaseModel, IStudent
+    internal class Student : BaseModel, IStudent, IObjectList, ISectionStudentList
     {
         string connectionString;
         string fname, mname, lname, gender, lrn, sectionName;
@@ -90,6 +90,59 @@ namespace Grading_System.Models
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public IDictionary<int, string> GetList()
+        {
+            Dictionary<int, string> students = new Dictionary<int, string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name FROM StudentsView", con))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            students.Add(Int32.Parse(reader["StudentID"].ToString()), reader["Name"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return students;
+        }
+
+        public IDictionary<int, string> GetList(int id)
+        {
+            Dictionary<int, string> students = new Dictionary<int, string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT S.StudentID, SV.Name FROM StudentsView SV INNER JOIN Students S ON S.[StudentID]=SV.[StudentID] WHERE S.[SectionID]=@id", con))
+                {
+                    cmd.Parameters.Add("id", SqlDbType.BigInt);
+                    cmd.Parameters["id"].Value = id;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            students.Add(Int32.Parse(reader["StudentID"].ToString()), reader["Name"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return students;
         }
 
         public void GetValues(string id)

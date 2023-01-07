@@ -30,7 +30,6 @@
         {
             this.pnlTaskbar = new System.Windows.Forms.Panel();
             this.Options = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.rbtnClass = new System.Windows.Forms.RadioButton();
             this.rbtnAddRegistrar = new System.Windows.Forms.RadioButton();
             this.rbtnAddAsstTeacher = new System.Windows.Forms.RadioButton();
@@ -42,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPosition = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTaskbar.SuspendLayout();
             this.Options.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -49,9 +49,8 @@
             // 
             // pnlTaskbar
             // 
-            this.pnlTaskbar.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pnlTaskbar.BackColor = System.Drawing.Color.Blue;
             this.pnlTaskbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pnlTaskbar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlTaskbar.Controls.Add(this.Options);
             this.pnlTaskbar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlTaskbar.Location = new System.Drawing.Point(0, 0);
@@ -82,17 +81,9 @@
             this.Options.Margin = new System.Windows.Forms.Padding(0);
             this.Options.Name = "Options";
             this.Options.Padding = new System.Windows.Forms.Padding(0);
-            this.Options.Size = new System.Drawing.Size(208, 669);
+            this.Options.Size = new System.Drawing.Size(212, 673);
             this.Options.TabIndex = 0;
             this.Options.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 469);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(208, 148);
-            this.panel2.TabIndex = 4;
             // 
             // rbtnClass
             // 
@@ -106,7 +97,7 @@
             this.rbtnClass.Location = new System.Drawing.Point(0, 417);
             this.rbtnClass.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnClass.Name = "rbtnClass";
-            this.rbtnClass.Size = new System.Drawing.Size(208, 52);
+            this.rbtnClass.Size = new System.Drawing.Size(212, 52);
             this.rbtnClass.TabIndex = 7;
             this.rbtnClass.TabStop = true;
             this.rbtnClass.Text = "Class";
@@ -125,7 +116,7 @@
             this.rbtnAddRegistrar.Location = new System.Drawing.Point(0, 365);
             this.rbtnAddRegistrar.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddRegistrar.Name = "rbtnAddRegistrar";
-            this.rbtnAddRegistrar.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddRegistrar.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddRegistrar.TabIndex = 6;
             this.rbtnAddRegistrar.TabStop = true;
             this.rbtnAddRegistrar.Text = "Registrar";
@@ -144,7 +135,7 @@
             this.rbtnAddAsstTeacher.Location = new System.Drawing.Point(0, 313);
             this.rbtnAddAsstTeacher.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddAsstTeacher.Name = "rbtnAddAsstTeacher";
-            this.rbtnAddAsstTeacher.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddAsstTeacher.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddAsstTeacher.TabIndex = 3;
             this.rbtnAddAsstTeacher.TabStop = true;
             this.rbtnAddAsstTeacher.Text = "Asst. Teacher";
@@ -163,7 +154,7 @@
             this.rbtnAddStudent.Location = new System.Drawing.Point(0, 261);
             this.rbtnAddStudent.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddStudent.Name = "rbtnAddStudent";
-            this.rbtnAddStudent.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddStudent.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddStudent.TabIndex = 0;
             this.rbtnAddStudent.TabStop = true;
             this.rbtnAddStudent.Text = "Student";
@@ -182,7 +173,7 @@
             this.rbtnAddSection.Location = new System.Drawing.Point(0, 209);
             this.rbtnAddSection.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddSection.Name = "rbtnAddSection";
-            this.rbtnAddSection.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddSection.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddSection.TabIndex = 5;
             this.rbtnAddSection.TabStop = true;
             this.rbtnAddSection.Text = "Section";
@@ -201,7 +192,7 @@
             this.rbtnAddSubject.Location = new System.Drawing.Point(0, 157);
             this.rbtnAddSubject.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddSubject.Name = "rbtnAddSubject";
-            this.rbtnAddSubject.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddSubject.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddSubject.TabIndex = 2;
             this.rbtnAddSubject.TabStop = true;
             this.rbtnAddSubject.Text = "Subject";
@@ -220,7 +211,7 @@
             this.rbtnAddTeacher.Location = new System.Drawing.Point(0, 105);
             this.rbtnAddTeacher.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddTeacher.Name = "rbtnAddTeacher";
-            this.rbtnAddTeacher.Size = new System.Drawing.Size(208, 52);
+            this.rbtnAddTeacher.Size = new System.Drawing.Size(212, 52);
             this.rbtnAddTeacher.TabIndex = 1;
             this.rbtnAddTeacher.TabStop = true;
             this.rbtnAddTeacher.Text = "Teacher";
@@ -239,7 +230,7 @@
             this.rbtnGrades.Location = new System.Drawing.Point(0, 53);
             this.rbtnGrades.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnGrades.Name = "rbtnGrades";
-            this.rbtnGrades.Size = new System.Drawing.Size(208, 52);
+            this.rbtnGrades.Size = new System.Drawing.Size(212, 52);
             this.rbtnGrades.TabIndex = 0;
             this.rbtnGrades.Text = "Grades";
             this.rbtnGrades.UseVisualStyleBackColor = false;
@@ -251,7 +242,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(208, 52);
+            this.panel1.Size = new System.Drawing.Size(212, 52);
             this.panel1.TabIndex = 2;
             // 
             // lblPosition
@@ -260,7 +251,7 @@
             this.lblPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblPosition.Location = new System.Drawing.Point(0, 0);
             this.lblPosition.Name = "lblPosition";
-            this.lblPosition.Size = new System.Drawing.Size(208, 52);
+            this.lblPosition.Size = new System.Drawing.Size(212, 52);
             this.lblPosition.TabIndex = 1;
             this.lblPosition.Text = "Admin";
             this.lblPosition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -273,13 +264,21 @@
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnLogout.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLogout.Location = new System.Drawing.Point(0, 617);
+            this.btnLogout.Location = new System.Drawing.Point(0, 621);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(208, 52);
+            this.btnLogout.Size = new System.Drawing.Size(212, 52);
             this.btnLogout.TabIndex = 0;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 469);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(212, 152);
+            this.panel2.TabIndex = 4;
             // 
             // ParentForm
             // 
@@ -310,10 +309,10 @@
         private System.Windows.Forms.RadioButton rbtnAddAsstTeacher;
         private System.Windows.Forms.RadioButton rbtnAddSubject;
         private System.Windows.Forms.RadioButton rbtnAddTeacher;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton rbtnAddSection;
         private System.Windows.Forms.RadioButton rbtnAddRegistrar;
         private System.Windows.Forms.RadioButton rbtnClass;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
