@@ -76,6 +76,20 @@ namespace Grading_System.Models
                 {
                     con.Open();
 
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Students_Teachers_Subjects WHERE [StudentID] = @id", con))
+                    {
+                        cmd.Parameters.Add("id", SqlDbType.BigInt);
+                        cmd.Parameters["id"].Value = Int32.Parse(id);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
+                }
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
                     using (SqlCommand cmd = new SqlCommand("DELETE FROM Students WHERE [StudentID] = @id", con))
                     {
                         cmd.Parameters.Add("id", SqlDbType.BigInt);

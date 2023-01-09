@@ -70,6 +70,12 @@
     <Compile Include="ChildForms\ManageClassForm.Designer.cs">
       <DependentUpon>ManageClassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChildForms\ManageGrades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\ManageGrades.Designer.cs">
+      <DependentUpon>ManageGrades.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\ManageSection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageClassForm.resx">
       <DependentUpon>ManageClassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\ManageGrades.resx">
+      <DependentUpon>ManageGrades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageRegistrar.resx">
       <DependentUpon>ManageRegistrar.cs</DependentUpon>

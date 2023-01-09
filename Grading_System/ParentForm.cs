@@ -22,6 +22,7 @@ namespace Grading_System
         ManageAsstTeacher asstTeacher;
         ManageSection section;
         ManageClassForm classForm;
+        ManageGrades grades;
 
         public ParentForm()
         {
@@ -62,11 +63,24 @@ namespace Grading_System
                 asstTeacher.Show();
                 section.Show();
                 classForm.Show();
+
+                if (position.Equals("Registrar"))
+                {
+                    rbtnClass.Checked = true;
+                    classForm.BringToFront();
+                }
             }
 
             if (position.Equals("Admin") || position.Equals("Teacher"))
             {
                 rbtnGrades.Visible = true;
+                grades = new ManageGrades(connectionString);
+                grades.MdiParent = this;
+                grades.Show();
+                if (position.Equals("Teacher"))
+                {
+                    rbtnGrades.Checked = true;
+                }
             }
 
             if (position.Equals("Admin"))
@@ -75,6 +89,8 @@ namespace Grading_System
                 registrar = new ManageRegistrar(connectionString);
                 registrar.MdiParent = this;
                 registrar.Show();
+                rbtnGrades.Checked = true;
+                grades.BringToFront();
             }
 
             btnLogout.Visible = true;
@@ -115,6 +131,7 @@ namespace Grading_System
             asstTeacher = null;
             section = null;
             classForm = null;
+            grades = null;
             position = String.Empty;
 
             LoginForm login = new LoginForm();
@@ -139,7 +156,12 @@ namespace Grading_System
 
         private void btnGrades_Click(object sender, EventArgs e)
         {
+            if (grades is null)
+            {
+                return;
+            }
 
+            grades.BringToFront();
         }
 
         private void btnAddTeacher_Click(object sender, EventArgs e)
