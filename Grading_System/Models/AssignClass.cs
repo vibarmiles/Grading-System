@@ -59,7 +59,7 @@ namespace Grading_System.Models
                 {
                     connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Students_Teachers_Subjects VALUES (@studentId, @teacherId, @subjectId, @year)", connection))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Students_Teachers_Subjects VALUES (@studentId, @teacherId, @subjectId, @year); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 1, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 2, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 3, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 4, 0)", connection))
                     {
                         cmd.Parameters.Add("studentId", SqlDbType.BigInt);
                         cmd.Parameters["studentId"].Value = studentId;
@@ -111,7 +111,7 @@ namespace Grading_System.Models
                 {
                     connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Students_Teachers_Subjects WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId", connection))
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Grades WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId; DELETE FROM Students_Teachers_Subjects WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId", connection))
                     {
                         cmd.Parameters.Add("studentId", SqlDbType.BigInt);
                         cmd.Parameters["studentId"].Value = studentId;

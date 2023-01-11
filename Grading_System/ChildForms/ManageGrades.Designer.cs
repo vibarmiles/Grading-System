@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtQuarter4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtQuarter3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbSection = new System.Windows.Forms.ComboBox();
+            this.cbStudent = new System.Windows.Forms.ComboBox();
+            this.cbSubjects = new System.Windows.Forms.ComboBox();
             this.txtQuarter2 = new System.Windows.Forms.TextBox();
             this.txtQuarter1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -36,13 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbSubjects = new System.Windows.Forms.ComboBox();
-            this.cbStudent = new System.Windows.Forms.ComboBox();
-            this.cbSection = new System.Windows.Forms.ComboBox();
-            this.txtQuarter3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtQuarter4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tblList = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -73,6 +73,73 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1050, 256);
             this.panel1.TabIndex = 5;
+            // 
+            // txtQuarter4
+            // 
+            this.txtQuarter4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtQuarter4.Location = new System.Drawing.Point(659, 185);
+            this.txtQuarter4.Name = "txtQuarter4";
+            this.txtQuarter4.Size = new System.Drawing.Size(292, 30);
+            this.txtQuarter4.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(497, 188);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "4th Quarter:";
+            // 
+            // txtQuarter3
+            // 
+            this.txtQuarter3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtQuarter3.Location = new System.Drawing.Point(659, 130);
+            this.txtQuarter3.Name = "txtQuarter3";
+            this.txtQuarter3.Size = new System.Drawing.Size(292, 30);
+            this.txtQuarter3.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(497, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "3rd Quarter:";
+            // 
+            // cbSection
+            // 
+            this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbSection.FormattingEnabled = true;
+            this.cbSection.Location = new System.Drawing.Point(169, 17);
+            this.cbSection.Name = "cbSection";
+            this.cbSection.Size = new System.Drawing.Size(292, 33);
+            this.cbSection.TabIndex = 0;
+            this.cbSection.DropDown += new System.EventHandler(this.cbSection_DropDown);
+            this.cbSection.SelectedValueChanged += new System.EventHandler(this.cbSection_SelectedValueChanged);
+            // 
+            // cbStudent
+            // 
+            this.cbStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbStudent.FormattingEnabled = true;
+            this.cbStudent.Location = new System.Drawing.Point(169, 75);
+            this.cbStudent.Name = "cbStudent";
+            this.cbStudent.Size = new System.Drawing.Size(292, 33);
+            this.cbStudent.TabIndex = 1;
+            this.cbStudent.SelectedValueChanged += new System.EventHandler(this.cbStudent_SelectedValueChanged);
+            // 
+            // cbSubjects
+            // 
+            this.cbSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbSubjects.FormattingEnabled = true;
+            this.cbSubjects.Location = new System.Drawing.Point(169, 130);
+            this.cbSubjects.Name = "cbSubjects";
+            this.cbSubjects.Size = new System.Drawing.Size(292, 33);
+            this.cbSubjects.TabIndex = 2;
+            this.cbSubjects.SelectedValueChanged += new System.EventHandler(this.cbSubjects_SelectedValueChanged);
             // 
             // txtQuarter2
             // 
@@ -139,69 +206,6 @@
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Section:";
-            // 
-            // cbSubjects
-            // 
-            this.cbSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbSubjects.FormattingEnabled = true;
-            this.cbSubjects.Location = new System.Drawing.Point(169, 130);
-            this.cbSubjects.Name = "cbSubjects";
-            this.cbSubjects.Size = new System.Drawing.Size(292, 33);
-            this.cbSubjects.TabIndex = 2;
-            // 
-            // cbStudent
-            // 
-            this.cbStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbStudent.FormattingEnabled = true;
-            this.cbStudent.Location = new System.Drawing.Point(169, 75);
-            this.cbStudent.Name = "cbStudent";
-            this.cbStudent.Size = new System.Drawing.Size(292, 33);
-            this.cbStudent.TabIndex = 1;
-            // 
-            // cbSection
-            // 
-            this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbSection.FormattingEnabled = true;
-            this.cbSection.Location = new System.Drawing.Point(169, 17);
-            this.cbSection.Name = "cbSection";
-            this.cbSection.Size = new System.Drawing.Size(292, 33);
-            this.cbSection.TabIndex = 0;
-            // 
-            // txtQuarter3
-            // 
-            this.txtQuarter3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtQuarter3.Location = new System.Drawing.Point(659, 130);
-            this.txtQuarter3.Name = "txtQuarter3";
-            this.txtQuarter3.Size = new System.Drawing.Size(292, 30);
-            this.txtQuarter3.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(497, 133);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 25);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "3rd Quarter:";
-            // 
-            // txtQuarter4
-            // 
-            this.txtQuarter4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtQuarter4.Location = new System.Drawing.Point(659, 185);
-            this.txtQuarter4.Name = "txtQuarter4";
-            this.txtQuarter4.Size = new System.Drawing.Size(292, 30);
-            this.txtQuarter4.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(497, 188);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "4th Quarter:";
             // 
             // tblList
             // 

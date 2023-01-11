@@ -16,7 +16,7 @@ namespace Grading_System.ChildForms
         private readonly IAssignClass student;
         private readonly IObjectList teachers;
         private readonly IObjectList sections;
-        private readonly ISectionStudentList students;
+        private readonly ISectionStudent students;
         private IDictionary<int, string> teacherList;
         private IDictionary<int, string> sectionList;
         private IDictionary<int, string> studentList;
@@ -127,6 +127,7 @@ namespace Grading_System.ChildForms
             }
 
             MessageBox.Show("Successfully Updated!");
+            RefreshTable();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

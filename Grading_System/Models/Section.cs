@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Grading_System.Models
 {
@@ -58,18 +59,44 @@ namespace Grading_System.Models
         {
             try
             {
+                List<int> IDs = new List<int>();
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Students_Teachers_Subjects WHERE [SectionID] = @id", con))
+                    using (SqlCommand cmd = new SqlCommand("SELECT [StudentID] FROM Students WHERE [SectionID]=@id", con))
                     {
                         cmd.Parameters.Add("id", SqlDbType.BigInt);
                         cmd.Parameters["id"].Value = Int32.Parse(id);
-                        cmd.ExecuteNonQuery();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                IDs.Add(Convert.ToInt32(reader["StudentID"]));
+                            }
+                        }
                     }
 
                     con.Close();
+                }
+
+                foreach(int ID in IDs)
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("DELETE FROM Grades WHERE [StudentID]=@id; DELETE FROM Students_Teachers_Subjects WHERE [StudentID]=@id", con))
+                        {
+                            cmd.Parameters.Add("id", SqlDbType.BigInt);
+                            cmd.Parameters["id"].Value = ID;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        con.Close();
+                    }
                 }
 
                 using (SqlConnection con = new SqlConnection(connectionString))

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Grading_System.Models
 {
-    internal class Student : BaseModel, IStudent, IObjectList, ISectionStudentList
+    internal class Student : BaseModel, IStudent, IObjectList, ISectionStudent
     {
         string connectionString;
         string fname, mname, lname, gender, lrn, sectionName;
@@ -72,6 +72,20 @@ namespace Grading_System.Models
         {
             try
             {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Grades WHERE [StudentID] = @id", con))
+                    {
+                        cmd.Parameters.Add("id", SqlDbType.BigInt);
+                        cmd.Parameters["id"].Value = Int32.Parse(id);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
+                }
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
