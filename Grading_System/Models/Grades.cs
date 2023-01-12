@@ -89,7 +89,49 @@ namespace Grading_System.Models
                 conn.Close();
             }
 
-            dt.Columns.Add(new DataColumn("Grade"));
+            return this.AddRow(dt);
+        }
+
+        public DataTable View(int id, string position, int teacherId, int subjectId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                if (position.Equals("Admin"))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [SubjectID]=@subjectId AND [SectionID]=@sectionId", conn))
+                    {
+                        cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = id;
+                        cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+                else
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [SubjectID]=@subjectId AND [TeacherID]=@teacherId AND [SectionID]=@sectionId", conn))
+                    {
+                        cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = id;
+                        cmd.Parameters.Add("teacherId", SqlDbType.Int).Value = teacherId;
+                        cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return this.AddRow(dt);
+        }
+
+        private DataTable AddRow(DataTable dt)
+        {
+            DataColumn grade = new DataColumn("Grade");
+            dt.Columns.Add(grade);
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -97,7 +139,8 @@ namespace Grading_System.Models
                 if (value >= 98 && value <= 100)
                 {
                     dr["Grade"] = 1.00;
-                } else if (value >= 96 && value < 98)
+                }
+                else if (value >= 96 && value < 98)
                 {
                     dr["Grade"] = 1.25;
                 }

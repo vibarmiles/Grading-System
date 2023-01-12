@@ -61,3 +61,4 @@ C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_Syst
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageStudent.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageClassForm.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageGrades.resources
+C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.ResolveComReference.cache

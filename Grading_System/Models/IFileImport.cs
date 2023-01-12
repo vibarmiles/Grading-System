@@ -7,6 +7,6 @@ namespace Grading_System.Models
 {
     public interface IFileImport
     {
-        void Import();
+        void Import(string filename);
     }
 }

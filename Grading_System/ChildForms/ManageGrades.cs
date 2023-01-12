@@ -23,10 +23,12 @@ namespace Grading_System.ChildForms
         private IDictionary<int, string> studentList;
         private IDictionary<int[], string> classList;
         private string position;
+        private string connectionString;
         private int id;
 
         public ManageGrades(string connectionString, string position, int id)
         {
+            this.connectionString = connectionString;
             sections = new Section(connectionString);
             sectionsOfTeacher = new Section(connectionString);
             students = new Student(connectionString);
@@ -113,6 +115,7 @@ namespace Grading_System.ChildForms
             txtQuarter3.Text = col.Rows[2][0].ToString();
             txtQuarter4.Text = col.Rows[3][0].ToString();
             btnUpdate.Enabled = true;
+            btnExport.Enabled = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -125,6 +128,7 @@ namespace Grading_System.ChildForms
             cbSection.Text = String.Empty;
             cbStudent.Text = String.Empty;
             cbSubjects.Text = String.Empty;
+            btnExport.Enabled = false;
             btnUpdate.Enabled = false;
         }
 
@@ -159,6 +163,7 @@ namespace Grading_System.ChildForms
                 txtQuarter3.Clear();
                 txtQuarter4.Clear();
                 btnUpdate.Enabled = false;
+                btnExport.Enabled = false;
                 cbStudent_SelectedValueChanged(sender, e);
             } else
             {
@@ -168,7 +173,31 @@ namespace Grading_System.ChildForms
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            IFileExport file = null;
 
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Select File: ";
+                saveFileDialog.InitialDirectory = @"c:\\";
+                saveFileDialog.Filter = "Excel Sheet|*.xlsx|Document|*.docx|PDF|*.pdf";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    switch (saveFileDialog.FilterIndex)
+                    {
+                        case 1:
+                            file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, position, id, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                            break;
+                        case 2:
+                            break;
+                    }
+
+                    file.Export(saveFileDialog.FileName);
+                    MessageBox.Show("Successfully Exported!");
+                }
+            }
         }
 
         private void btnImport_Click(object sender, EventArgs e)

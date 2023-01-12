@@ -7,6 +7,6 @@ namespace Grading_System.Models
 {
     public interface IFileExport
     {
-        void Export();
+        void Export(string filename);
     }
 }
