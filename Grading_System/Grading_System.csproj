@@ -88,7 +88,11 @@
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Models\IAssignClass.cs" />
+    <Compile Include="Models\IFileExport.cs" />
+    <Compile Include="Models\IFileImport.cs" />
     <Compile Include="Models\IGrades.cs" />
+    <Compile Include="Models\IObjectListStudent.cs" />
+    <Compile Include="Models\IObjectListTeacher.cs" />
     <Compile Include="Models\ISectionStudent.cs" />
     <Compile Include="Models\IStudentClass.cs" />
     <Compile Include="Models\ManageClass.cs" />

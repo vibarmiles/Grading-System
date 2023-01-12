@@ -22,10 +22,14 @@ namespace Grading_System.Classes
         {
             if (input != null && Regex.IsMatch(input, @"^[0-9\.]{1,10}$"))
             {
-                return Double.Parse(input);
+                try
+                {
+                    return Double.Parse(input);
+                }
+                catch (Exception) { }
             }
 
-            return 0;
+            return -1;
         }
 
         public static int CheckIntTextBox(string input)

@@ -43,9 +43,9 @@ namespace Grading_System.ChildForms
             Login login = new Login(new Account(connectionString));
             login.Username = username;
             login.Password = password;
-            string position = login.GetAccount();
+            IDictionary<int, string> position = login.GetAccount();
 
-            if (position != "")
+            if (position.Count > 0)
             {
                 this.OnSubmit?.Invoke(position, EventArgs.Empty);
                 this.Close();

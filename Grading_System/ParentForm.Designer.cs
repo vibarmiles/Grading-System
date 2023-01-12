@@ -30,6 +30,7 @@
         {
             this.pnlTaskbar = new System.Windows.Forms.Panel();
             this.Options = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.rbtnClass = new System.Windows.Forms.RadioButton();
             this.rbtnAddRegistrar = new System.Windows.Forms.RadioButton();
             this.rbtnAddAsstTeacher = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPosition = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTaskbar.SuspendLayout();
             this.Options.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,6 +84,14 @@
             this.Options.Size = new System.Drawing.Size(212, 673);
             this.Options.TabIndex = 0;
             this.Options.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 469);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(212, 152);
+            this.panel2.TabIndex = 4;
             // 
             // rbtnClass
             // 
@@ -272,14 +280,6 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 469);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(212, 152);
-            this.panel2.TabIndex = 4;
-            // 
             // ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -287,6 +287,7 @@
             this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.pnlTaskbar);
             this.IsMdiContainer = true;
+            this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "ParentForm";
             this.Text = "Grading System";
             this.pnlTaskbar.ResumeLayout(false);

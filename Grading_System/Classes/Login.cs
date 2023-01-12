@@ -20,7 +20,7 @@ namespace Grading_System.Classes
         public string Username { set => username = value; }
         public string Password { set => password = value; }
 
-        public string GetAccount()
+        public IDictionary<int, string> GetAccount()
         {
             return account.VerifyAccount(username, password);
         }

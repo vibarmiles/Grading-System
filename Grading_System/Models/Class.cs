@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Grading_System.Models
 {
-    public class Class : IStudentClass
+    public class Class : IStudentClass, IObjectListStudent
     {
         private string connectionString;
 
@@ -34,6 +34,37 @@ namespace Grading_System.Models
                         while (reader.Read())
                         {
                             int[] ids = { Int32.Parse(reader["SubjectID"].ToString()), Int32.Parse(reader["TeacherID"].ToString()) };
+                            classes.Add(ids, reader["SubjectName"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return classes;
+        }
+
+        public IDictionary<int[], string> GetStudentList(int id, int teacherId)
+        {
+            Dictionary<int[], string> classes = new Dictionary<int[], string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT STS.[SubjectID], STS.[TeacherID], S.[SubjectName] FROM Students_Teachers_Subjects STS INNER JOIN Subjects S ON S.[SubjectID]=STS.[SubjectID] WHERE STS.[StudentID]=@id AND STS.[TeacherID]=@teacherId", con))
+                {
+                    cmd.Parameters.Add("id", SqlDbType.BigInt);
+                    cmd.Parameters["id"].Value = id;
+                    cmd.Parameters.Add("teacherId", SqlDbType.BigInt);
+                    cmd.Parameters["teacherId"].Value = teacherId;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int[] ids = { Int32.Parse(reader["SubjectID"].ToString()), teacherId };
                             classes.Add(ids, reader["SubjectName"].ToString());
                         }
                     }

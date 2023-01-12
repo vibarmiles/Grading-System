@@ -32,13 +32,17 @@ namespace Grading_System.Models
             return hash;
         }
 
-        public string VerifyAccount(string username, string password)
+        public IDictionary<int, string> VerifyAccount(string username, string password)
         {
+            Dictionary<int, string> account = new Dictionary<int, string>();
+            string result = String.Empty;
+            int id = 0;
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT [Position] FROM [Users] WHERE [Username] = @username AND [Password] = @password", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT [UserID], [Position] FROM [Users] WHERE [Username] = @username AND [Password] = @password", con))
                 {
                     cmd.Parameters.Add("@username", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@username"].Value = username;
@@ -48,19 +52,42 @@ namespace Grading_System.Models
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        string result = String.Empty;
-
                         if (dr.Read())
                         {
                             result = dr["Position"].ToString();
+                            id = Convert.ToInt32(dr["UserID"]);
                         }
 
                         dr.Close();
                         con.Close();
-                        return result;
                     }
                 }
             }
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT [TeacherID] FROM [Teachers] WHERE [UserID] = @id", con))
+                {
+                    cmd.Parameters.Add("id", System.Data.SqlDbType.BigInt);
+                    cmd.Parameters["id"].Value = id;
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            id = Convert.ToInt32(dr["TeacherID"]);
+                        }
+
+                        dr.Close();
+                        con.Close();
+                    }
+                }
+            }
+
+            account.Add(id, result);
+            return account;
         }
     }
 }

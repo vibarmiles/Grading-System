@@ -80,7 +80,7 @@
             this.txtQuarter4.Location = new System.Drawing.Point(659, 185);
             this.txtQuarter4.Name = "txtQuarter4";
             this.txtQuarter4.Size = new System.Drawing.Size(292, 30);
-            this.txtQuarter4.TabIndex = 6;
+            this.txtQuarter4.TabIndex = 7;
             // 
             // label5
             // 
@@ -98,7 +98,7 @@
             this.txtQuarter3.Location = new System.Drawing.Point(659, 130);
             this.txtQuarter3.Name = "txtQuarter3";
             this.txtQuarter3.Size = new System.Drawing.Size(292, 30);
-            this.txtQuarter3.TabIndex = 5;
+            this.txtQuarter3.TabIndex = 6;
             // 
             // label4
             // 
@@ -213,17 +213,19 @@
             this.tblList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblList.Location = new System.Drawing.Point(13, 262);
             this.tblList.Name = "tblList";
             this.tblList.RowHeadersWidth = 51;
             this.tblList.RowTemplate.Height = 24;
             this.tblList.Size = new System.Drawing.Size(1025, 358);
-            this.tblList.TabIndex = 9;
+            this.tblList.TabIndex = 19;
             // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnUpdate.Location = new System.Drawing.Point(832, 626);
             this.btnUpdate.Name = "btnUpdate";
@@ -231,6 +233,7 @@
             this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnCancel
             // 
@@ -242,6 +245,7 @@
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnImport
             // 
@@ -253,6 +257,7 @@
             this.btnImport.TabIndex = 12;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnExport
             // 
@@ -264,6 +269,7 @@
             this.btnExport.TabIndex = 11;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // ManageGrades
             // 

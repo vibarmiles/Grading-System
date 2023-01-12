@@ -9,7 +9,7 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace Grading_System.Models
 {
-    public class Section : BaseModel, ISection, IObjectList
+    public class Section : BaseModel, ISection, IObjectList, IObjectListTeacher
     {
         private string connectionString;
         private string name, adviserName;
@@ -198,6 +198,32 @@ namespace Grading_System.Models
 
                 using (SqlCommand cmd = new SqlCommand("SELECT SectionID, SectionName FROM Sections", con))
                 {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sections.Add(Int32.Parse(reader["SectionID"].ToString()), reader["SectionName"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return sections;
+        }
+
+        public IDictionary<int, string> GetTeacherList(int id)
+        {
+            Dictionary<int, string> sections = new Dictionary<int, string>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT S.SectionID, S.SectionName FROM Sections S INNER JOIN Students ON S.SectionID=Students.SectionID INNER JOIN Students_Teachers_Subjects STS ON STS.StudentID=Students.StudentID WHERE STS.TeacherID=@id GROUP BY S.[SectionID], S.[SectionName]", con))
+                {
+                    cmd.Parameters.Add("id", SqlDbType.BigInt).Value = id;
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())

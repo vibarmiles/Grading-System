@@ -15,14 +15,16 @@ namespace Grading_System
     {
         private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;Integrated Security=True";
         private string position;
-        ManageRegistrar registrar;
-        ManageStudent student;
-        ManageTeacher teacher;
-        ManageSubject subject;
-        ManageAsstTeacher asstTeacher;
-        ManageSection section;
-        ManageClassForm classForm;
-        ManageGrades grades;
+        private int id;
+        private Dictionary<int, string> account;
+        private ManageRegistrar registrar;
+        private ManageStudent student;
+        private ManageTeacher teacher;
+        private ManageSubject subject;
+        private ManageAsstTeacher asstTeacher;
+        private ManageSection section;
+        private ManageClassForm classForm;
+        private ManageGrades grades;
 
         public ParentForm()
         {
@@ -32,6 +34,12 @@ namespace Grading_System
 
         private void Login_FormClosed(object sender, FormClosingEventArgs e)
         {
+            foreach (KeyValuePair<int, string> kvp in account)
+            {
+                position = kvp.Value;
+                id = kvp.Key;
+            }
+
             lblPosition.Text = position;
 
             if (position.Equals("Admin") || position.Equals("Registrar"))
@@ -74,7 +82,7 @@ namespace Grading_System
             if (position.Equals("Admin") || position.Equals("Teacher"))
             {
                 rbtnGrades.Visible = true;
-                grades = new ManageGrades(connectionString);
+                grades = new ManageGrades(connectionString, position, id);
                 grades.MdiParent = this;
                 grades.Show();
                 if (position.Equals("Teacher"))
@@ -119,7 +127,7 @@ namespace Grading_System
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            foreach(Form frm in this.MdiChildren)
+            foreach (Form frm in this.MdiChildren)
             {
                 frm.Dispose();
             }
@@ -133,6 +141,7 @@ namespace Grading_System
             classForm = null;
             grades = null;
             position = String.Empty;
+            id = 0;
 
             LoginForm login = new LoginForm();
             login.MdiParent = this;
@@ -150,7 +159,7 @@ namespace Grading_System
 
             login.Show();
             login.BringToFront();
-            login.OnSubmit += new EventHandler((s, eArgs) => this.position = (string)s);
+            login.OnSubmit += new EventHandler((s, eArgs) => this.account = (Dictionary<int, string>)s);
             login.FormClosing += Login_FormClosed;
         }
 
