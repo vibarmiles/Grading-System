@@ -188,9 +188,13 @@ namespace Grading_System.ChildForms
                     switch (saveFileDialog.FilterIndex)
                     {
                         case 1:
-                            file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, position, id, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                            file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
                             break;
                         case 2:
+                            file = new WordFile(connectionString, studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key, 2);
+                            break;
+                        case 3:
+                            file = new WordFile(connectionString, studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key, 3);
                             break;
                     }
 

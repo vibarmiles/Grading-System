@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Grading_System.Models
 {
-    public class Grades : IGrades
+    public class Grades : IGrades, IGradesExcel, IGradesWord
     {
         private string connectionString;
 
@@ -92,7 +92,7 @@ namespace Grading_System.Models
             return this.AddRow(dt);
         }
 
-        public DataTable View(int id, string position, int teacherId, int subjectId)
+        public DataTable ExportExcel(int sectionId, int teacherId, int subjectId)
         {
             DataTable dt = new DataTable();
 
@@ -100,26 +100,13 @@ namespace Grading_System.Models
             {
                 conn.Open();
 
-                if (position.Equals("Admin"))
+                using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [SubjectID]=@subjectId AND [TeacherID]=@teacherId AND [SectionID]=@sectionId", conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [SubjectID]=@subjectId AND [SectionID]=@sectionId", conn))
-                    {
-                        cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = id;
-                        cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                }
-                else
-                {
-                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [SubjectID]=@subjectId AND [TeacherID]=@teacherId AND [SectionID]=@sectionId", conn))
-                    {
-                        cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = id;
-                        cmd.Parameters.Add("teacherId", SqlDbType.Int).Value = teacherId;
-                        cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
+                    cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = sectionId;
+                    cmd.Parameters.Add("teacherId", SqlDbType.Int).Value = teacherId;
+                    cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
                 }
 
                 conn.Close();
@@ -179,6 +166,27 @@ namespace Grading_System.Models
             }
 
             return dt;
+        }
+
+        public DataTable ExportWord(int studentId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT SubjectName, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [StudentID]=@studentId", conn))
+                {
+                    cmd.Parameters.Add("studentId", SqlDbType.Int).Value = studentId;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+
+                conn.Close();
+            }
+
+            return this.AddRow(dt);
         }
     }
 }

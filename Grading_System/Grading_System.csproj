@@ -92,6 +92,8 @@
     <Compile Include="Models\IFileExport.cs" />
     <Compile Include="Models\IFileImport.cs" />
     <Compile Include="Models\IGrades.cs" />
+    <Compile Include="Models\IGradesExcel.cs" />
+    <Compile Include="Models\IGradesWord.cs" />
     <Compile Include="Models\IObjectListStudent.cs" />
     <Compile Include="Models\IObjectListTeacher.cs" />
     <Compile Include="Models\ISectionStudent.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="Models\IStudent.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\WordFile.cs" />
     <Compile Include="ParentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +240,15 @@
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

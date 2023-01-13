@@ -10,7 +10,6 @@ namespace Grading_System.Models
     {
         DataTable GetGrades(int studentId, int subjectId, int teacherId);
         DataTable View(int id, string position, int teacherId);
-        DataTable View(int id, string position, int teacherId, int subjectId);
         void Update(int studentId, int subjectId, int teacherId, int quarter, double grade);
     }
 }

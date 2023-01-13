@@ -34,6 +34,11 @@ namespace Grading_System
 
         private void Login_FormClosed(object sender, FormClosingEventArgs e)
         {
+            if (account is null)
+            {
+                return;
+            }
+
             foreach (KeyValuePair<int, string> kvp in account)
             {
                 position = kvp.Value;
