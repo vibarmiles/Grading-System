@@ -14,6 +14,7 @@ namespace Grading_System.ChildForms
     public partial class ManageGrades : Form
     {
         private readonly IObjectList sections;
+        private readonly ISection section;
         private readonly IObjectListTeacher sectionsOfTeacher;
         private readonly ISectionStudent students;
         private readonly IStudentClass classes;
@@ -30,6 +31,7 @@ namespace Grading_System.ChildForms
         {
             this.connectionString = connectionString;
             sections = new Section(connectionString);
+            section = new Section(connectionString);
             sectionsOfTeacher = new Section(connectionString);
             students = new Student(connectionString);
             classes = new Class(connectionString);
@@ -61,9 +63,12 @@ namespace Grading_System.ChildForms
 
         private void cbSection_SelectedValueChanged(object sender, EventArgs e)
         {
+            btnExportCard.Enabled = false;
+            btnExportBook.Enabled = false;
             string input = cbSection.Text;
             studentList = students.GetList(sectionList.FirstOrDefault(x => x.Value == input).Key);
             cbStudent.Items.Clear();
+            cbSubjects.Items.Clear();
             cbStudent.Text = String.Empty;
             cbSubjects.Text = String.Empty;
 
@@ -85,7 +90,18 @@ namespace Grading_System.ChildForms
             {
                 classList = classesOfTeacher.GetStudentList(student, id);
             }
+
+            if (sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key == section.GetAdvisory(id) || position.Equals("Admin"))
+            {
+                btnExportCard.Enabled = true;
+            }
+            else
+            {
+                btnExportCard.Enabled = false;
+            }
+
             cbSubjects.Items.Clear();
+            btnExportBook.Enabled = false;
             cbSubjects.Text = String.Empty;
             tblList.DataSource = grades.View(student, position, id);
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -99,6 +115,7 @@ namespace Grading_System.ChildForms
 
         private void cbSubjects_SelectedValueChanged(object sender, EventArgs e)
         {
+            btnExportBook.Enabled = true;
             int student = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
             int teacher = 0;
             if (position.Equals("Admin"))
@@ -115,7 +132,7 @@ namespace Grading_System.ChildForms
             txtQuarter3.Text = col.Rows[2][0].ToString();
             txtQuarter4.Text = col.Rows[3][0].ToString();
             btnUpdate.Enabled = true;
-            btnExport.Enabled = true;
+            btnExportBook.Enabled = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -128,7 +145,8 @@ namespace Grading_System.ChildForms
             cbSection.Text = String.Empty;
             cbStudent.Text = String.Empty;
             cbSubjects.Text = String.Empty;
-            btnExport.Enabled = false;
+            btnExportBook.Enabled = false;
+            btnExportCard.Enabled = false;
             btnUpdate.Enabled = false;
         }
 
@@ -163,7 +181,7 @@ namespace Grading_System.ChildForms
                 txtQuarter3.Clear();
                 txtQuarter4.Clear();
                 btnUpdate.Enabled = false;
-                btnExport.Enabled = false;
+                btnExportBook.Enabled = false;
                 cbStudent_SelectedValueChanged(sender, e);
             } else
             {
@@ -171,7 +189,12 @@ namespace Grading_System.ChildForms
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportBook_Click(object sender, EventArgs e)
         {
             IFileExport file = null;
 
@@ -179,22 +202,44 @@ namespace Grading_System.ChildForms
             {
                 saveFileDialog.Title = "Select File: ";
                 saveFileDialog.InitialDirectory = @"c:\\";
-                saveFileDialog.Filter = "Excel Sheet|*.xlsx|Document|*.docx|PDF|*.pdf";
+                saveFileDialog.Filter = "Excel Sheet|*.xlsx";
                 saveFileDialog.FilterIndex = 1;
+                saveFileDialog.FileName = cbSection.Text + " - " + cbSubjects.Text;
                 saveFileDialog.RestoreDirectory = true;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    switch (saveFileDialog.FilterIndex)
+                    file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                    file.Export(saveFileDialog.FileName);
+                    MessageBox.Show("Successfully Exported!");
+                }
+            }
+        }
+
+        private void btnExportCard_Click(object sender, EventArgs e)
+        {
+            IFileExport file = null;
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Select File: ";
+                saveFileDialog.InitialDirectory = @"c:\\";
+                saveFileDialog.Filter = "Document|*.docx|PDF|*.pdf";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.FileName = cbStudent.Text + " - " + cbSection.Text;
+                saveFileDialog.RestoreDirectory = true;
+
+                int studentId = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    switch (saveFileDialog.FilterIndex) 
                     {
                         case 1:
-                            file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                            file = new WordFile(connectionString, studentId, 1);
                             break;
                         case 2:
-                            file = new WordFile(connectionString, studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key, 2);
-                            break;
-                        case 3:
-                            file = new WordFile(connectionString, studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key, 3);
+                            file = new WordFile(connectionString, studentId, 2);
                             break;
                     }
 
@@ -202,11 +247,6 @@ namespace Grading_System.ChildForms
                     MessageBox.Show("Successfully Exported!");
                 }
             }
-        }
-
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

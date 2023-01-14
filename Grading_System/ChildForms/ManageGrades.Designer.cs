@@ -47,7 +47,9 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
+            this.btnExportBook = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnExportCard = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
             this.SuspendLayout();
@@ -259,25 +261,51 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // btnExport
+            // btnExportBook
             // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExport.Location = new System.Drawing.Point(118, 626);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 44);
-            this.btnExport.TabIndex = 11;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.btnExportBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportBook.Enabled = false;
+            this.btnExportBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnExportBook.Location = new System.Drawing.Point(244, 626);
+            this.btnExportBook.Name = "btnExportBook";
+            this.btnExportBook.Size = new System.Drawing.Size(173, 44);
+            this.btnExportBook.TabIndex = 11;
+            this.btnExportBook.Text = "Grade Book";
+            this.btnExportBook.UseVisualStyleBackColor = true;
+            this.btnExportBook.Click += new System.EventHandler(this.btnExportBook_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.Location = new System.Drawing.Point(164, 636);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 25);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Export:";
+            // 
+            // btnExportCard
+            // 
+            this.btnExportCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportCard.Enabled = false;
+            this.btnExportCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnExportCard.Location = new System.Drawing.Point(423, 626);
+            this.btnExportCard.Name = "btnExportCard";
+            this.btnExportCard.Size = new System.Drawing.Size(173, 44);
+            this.btnExportCard.TabIndex = 20;
+            this.btnExportCard.Text = "Grade Card";
+            this.btnExportCard.UseVisualStyleBackColor = true;
+            this.btnExportCard.Click += new System.EventHandler(this.btnExportCard_Click);
             // 
             // ManageGrades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 673);
+            this.Controls.Add(this.btnExportCard);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnImport);
-            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.btnExportBook);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.tblList);
             this.Controls.Add(this.btnCancel);
@@ -289,6 +317,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -313,6 +342,8 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnExportBook;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnExportCard;
     }
 }

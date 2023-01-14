@@ -184,5 +184,29 @@ namespace Grading_System.Models
 
             return sections;
         }
+
+        public int GetAdvisory(int teacherId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT SectionID FROM Sections WHERE TeacherID=@id", con))
+                {
+                    cmd.Parameters.Add("id", SqlDbType.BigInt).Value = teacherId;
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return Int32.Parse(reader["SectionID"].ToString());
+                        }
+                    }
+                }
+
+                con.Close();
+            }
+
+            return 0;
+        }
     }
 }

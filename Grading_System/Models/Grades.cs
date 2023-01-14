@@ -176,7 +176,7 @@ namespace Grading_System.Models
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT SubjectName, [1], [2], [3], [4], Average, Name, SectionName FROM GradesPivotedView WHERE [StudentID]=@studentId", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT SubjectName, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [StudentID]=@studentId", conn))
                 {
                     cmd.Parameters.Add("studentId", SqlDbType.Int).Value = studentId;
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);

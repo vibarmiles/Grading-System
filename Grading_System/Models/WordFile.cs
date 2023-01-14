@@ -28,26 +28,19 @@ namespace Grading_System.Models
 
             Word.Application word = new Word.Application();
             Word.Document document = word.Documents.Add();
-
-            document.Content.Text = "Name: " + dt.Rows[1]["Name"].ToString();
-            document.Content.Text = "Section: " + dt.Rows[1]["Section"].ToString();
-
             Word.Table table = document.Tables.Add(document.Range(), dt.Rows.Count + 1, 7);
-            
+
+            int iteration = 1;
             foreach(DataColumn column in dt.Columns)
             {
-                table.Rows[1].Cells[1].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[2].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[3].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[4].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[5].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[6].Range.Text = column.ColumnName;
-                table.Rows[1].Cells[7].Range.Text = column.ColumnName;
+                table.Rows[1].Cells[iteration].Range.Text = column.ColumnName;
+                iteration++;
             }
 
-            int iteration = 2;
+            iteration = 2;
             foreach (DataRow row in dt.Rows)
             {
+                Console.WriteLine(row["Average"].ToString());
                 table.Rows[iteration].Cells[1].Range.Text = row["SubjectName"].ToString();
                 table.Rows[iteration].Cells[2].Range.Text = row["1"].ToString();
                 table.Rows[iteration].Cells[3].Range.Text = row["2"].ToString();
@@ -58,10 +51,10 @@ namespace Grading_System.Models
                 iteration++;
             }
 
-            if (format == 2)
+            if (format == 1)
             {
                 document.SaveAs2(filename);
-            } else if (format == 3)
+            } else if (format == 2)
             {
                 document.SaveAs2(filename, WdSaveFormat.wdFormatPDF);
             }

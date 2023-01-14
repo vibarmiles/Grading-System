@@ -11,6 +11,6 @@ namespace Grading_System.Models
         int AdviserId { get; set; }
         string AdviserName { get; }
         int YearLevel { get; set; }
-
+        int GetAdvisory(int teacherId);
     }
 }

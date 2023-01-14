@@ -188,7 +188,6 @@ namespace Grading_System.ChildForms
 
                     if (Convert.ToBoolean(checkbox.Value) == true)
                     {
-                        Console.WriteLine(student.StudentID);
                         student.Add();
                     }
                     else if (Convert.ToBoolean(checkbox.Value) == false)
@@ -201,9 +200,9 @@ namespace Grading_System.ChildForms
                         return;
                     }
                 }
-
-                MessageBox.Show("Successfully Updated!");
             }
+
+            MessageBox.Show("Successfully Updated!");
         }
 
         private void cbSection_SelectedValueChanged(object sender, EventArgs e)
