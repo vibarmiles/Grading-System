@@ -28,6 +28,10 @@ namespace Grading_System.Models
 
             Word.Application word = new Word.Application();
             Word.Document document = word.Documents.Add();
+
+            document.Content.Text = "Name: " + dt.Rows[1]["Name"].ToString();
+            document.Content.Text = "Section: " + dt.Rows[1]["Section"].ToString();
+
             Word.Table table = document.Tables.Add(document.Range(), dt.Rows.Count + 1, 7);
             
             foreach(DataColumn column in dt.Columns)

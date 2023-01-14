@@ -31,6 +31,8 @@
             this.tblList = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtEnrollmentDate = new System.Windows.Forms.DateTimePicker();
             this.cbSection = new System.Windows.Forms.ComboBox();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.dtEnrollmentDate = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             this.tblList.RowHeadersWidth = 51;
             this.tblList.RowTemplate.Height = 24;
             this.tblList.Size = new System.Drawing.Size(1025, 358);
-            this.tblList.TabIndex = 3;
+            this.tblList.TabIndex = 10;
             // 
             // btnAdd
             // 
@@ -72,7 +72,7 @@
             this.btnAdd.Location = new System.Drawing.Point(938, 626);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 44);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.Add);
@@ -99,6 +99,25 @@
             this.panel1.Size = new System.Drawing.Size(1050, 256);
             this.panel1.TabIndex = 5;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.Location = new System.Drawing.Point(497, 137);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 25);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Enroll Date:";
+            // 
+            // dtEnrollmentDate
+            // 
+            this.dtEnrollmentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtEnrollmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtEnrollmentDate.Location = new System.Drawing.Point(659, 134);
+            this.dtEnrollmentDate.Name = "dtEnrollmentDate";
+            this.dtEnrollmentDate.Size = new System.Drawing.Size(292, 30);
+            this.dtEnrollmentDate.TabIndex = 7;
+            // 
             // cbSection
             // 
             this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -106,7 +125,7 @@
             this.cbSection.Location = new System.Drawing.Point(659, 16);
             this.cbSection.Name = "cbSection";
             this.cbSection.Size = new System.Drawing.Size(292, 33);
-            this.cbSection.TabIndex = 2;
+            this.cbSection.TabIndex = 5;
             this.cbSection.DropDown += new System.EventHandler(this.cbSection_DropDown);
             // 
             // cbGender
@@ -119,7 +138,7 @@
             this.cbGender.Location = new System.Drawing.Point(169, 194);
             this.cbGender.Name = "cbGender";
             this.cbGender.Size = new System.Drawing.Size(292, 33);
-            this.cbGender.TabIndex = 2;
+            this.cbGender.TabIndex = 4;
             // 
             // txtMiddleName
             // 
@@ -127,7 +146,7 @@
             this.txtMiddleName.Location = new System.Drawing.Point(169, 134);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(292, 30);
-            this.txtMiddleName.TabIndex = 1;
+            this.txtMiddleName.TabIndex = 3;
             // 
             // txtLRN
             // 
@@ -135,7 +154,7 @@
             this.txtLRN.Location = new System.Drawing.Point(659, 75);
             this.txtLRN.Name = "txtLRN";
             this.txtLRN.Size = new System.Drawing.Size(292, 30);
-            this.txtLRN.TabIndex = 1;
+            this.txtLRN.TabIndex = 6;
             // 
             // txtFirstName
             // 
@@ -143,7 +162,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(169, 75);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(292, 30);
-            this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.TabIndex = 2;
             // 
             // txtLastName
             // 
@@ -220,29 +239,10 @@
             this.btnUpdate.Location = new System.Drawing.Point(832, 626);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 44);
-            this.btnUpdate.TabIndex = 11;
+            this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.Update);
-            // 
-            // dtEnrollmentDate
-            // 
-            this.dtEnrollmentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtEnrollmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtEnrollmentDate.Location = new System.Drawing.Point(659, 134);
-            this.dtEnrollmentDate.Name = "dtEnrollmentDate";
-            this.dtEnrollmentDate.Size = new System.Drawing.Size(292, 30);
-            this.dtEnrollmentDate.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(497, 137);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 25);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Enroll Date:";
             // 
             // ManageStudent
             // 

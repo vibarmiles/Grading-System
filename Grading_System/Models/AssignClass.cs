@@ -15,6 +15,7 @@ namespace Grading_System.Models
         private int teacherId;
         private int subjectId;
         private int studentId;
+        private int sectionId;
 
         public AssignClass(string connectionString)
         {
@@ -22,6 +23,7 @@ namespace Grading_System.Models
         }
 
         public int StudentID { get => studentId; set => studentId = value; }
+        public int SectionID { get => sectionId; set => sectionId = value; }
         public int TeacherID { get => teacherId; set => teacherId = value; }
         public int SubjectID { get => subjectId; set => subjectId = value; }
 
@@ -59,10 +61,11 @@ namespace Grading_System.Models
                 {
                     connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Students_Teachers_Subjects VALUES (@studentId, @teacherId, @subjectId, @year); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 1, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 2, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 3, 0); INSERT INTO Grades Values (@studentId, @teacherId, @subjectId, 4, 0)", connection))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Students_Teachers_Subjects VALUES (@studentId, @sectionId, @teacherId, @subjectId, @year); INSERT INTO Grades Values (@studentId, @sectionId, @teacherId, @subjectId, 1, 0); INSERT INTO Grades Values (@studentId, @sectionId, @teacherId, @subjectId, 2, 0); INSERT INTO Grades Values (@studentId, @sectionId, @teacherId, @subjectId, 3, 0); INSERT INTO Grades Values (@studentId, @sectionId, @teacherId, @subjectId, 4, 0)", connection))
                     {
                         cmd.Parameters.Add("studentId", SqlDbType.BigInt);
                         cmd.Parameters["studentId"].Value = studentId;
+                        cmd.Parameters.Add("sectionId", SqlDbType.BigInt).Value = sectionId;
                         cmd.Parameters.Add("teacherId", SqlDbType.BigInt);
                         cmd.Parameters["teacherId"].Value = teacherId;
                         cmd.Parameters.Add("subjectId", SqlDbType.BigInt);
@@ -111,7 +114,7 @@ namespace Grading_System.Models
                 {
                     connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Grades WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId; DELETE FROM Students_Teachers_Subjects WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId", connection))
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Grades WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId AND [SectionID]=@sectionID; DELETE FROM Students_Teachers_Subjects WHERE [TeacherID]=@teacherId AND [SubjectID]=@subjectId AND [StudentID]=@studentId AND [SectionID]=@sectionID", connection))
                     {
                         cmd.Parameters.Add("studentId", SqlDbType.BigInt);
                         cmd.Parameters["studentId"].Value = studentId;

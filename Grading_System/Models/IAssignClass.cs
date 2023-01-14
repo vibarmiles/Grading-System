@@ -8,5 +8,6 @@ namespace Grading_System.Models
     internal interface IAssignClass : IClass
     {
         int StudentID { get; set; }
+        int SectionID { get; set; }
     }
 }

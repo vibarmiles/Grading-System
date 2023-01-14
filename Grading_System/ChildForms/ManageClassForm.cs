@@ -168,15 +168,17 @@ namespace Grading_System.ChildForms
         private void btnClassUpdate_Click(object sender, EventArgs e)
         {
             string input = cbSection.Text;
+            int section = sectionList.FirstOrDefault(x => x.Value == input).Key;
 
             if (input != "") 
             {
-                studentList = students.GetList(sectionList.FirstOrDefault(x => x.Value == input).Key);
+                studentList = students.GetList(section);
             }
 
             foreach (int id in studentList.Keys)
             {
                 student.StudentID = id;
+                student.SectionID = section;
 
                 foreach (DataGridViewRow row in tblClass.Rows)
                 {
