@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace Grading_System.Models
@@ -12,6 +13,7 @@ namespace Grading_System.Models
     internal class WordFile : IFileExport
     {
         private int format;
+        private string name;
         private int studentId;
         IGradesWord grades;
 
@@ -21,6 +23,8 @@ namespace Grading_System.Models
             this.format = format;
             grades = new Grades(connectionString);
         }
+
+        public string Name { get => name; set => name = value; }
 
         public void Export(string filename)
         {
@@ -51,12 +55,22 @@ namespace Grading_System.Models
                 iteration++;
             }
 
-            if (format == 1)
+            try
             {
-                document.SaveAs2(filename);
-            } else if (format == 2)
+                if (format == 1)
+                {
+                    document.SaveAs2(filename);
+                }
+                else if (format == 2)
+                {
+                    document.SaveAs2(filename, WdSaveFormat.wdFormatPDF);
+                }
+
+                MessageBox.Show("Successfully Exported!");
+            }
+            catch (Exception ex)
             {
-                document.SaveAs2(filename, WdSaveFormat.wdFormatPDF);
+                MessageBox.Show(ex.Message);
             }
 
             word.Quit();

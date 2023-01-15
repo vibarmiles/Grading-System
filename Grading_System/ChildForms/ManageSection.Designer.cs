@@ -59,6 +59,7 @@
             // 
             // cbAdvisers
             // 
+            this.cbAdvisers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAdvisers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbAdvisers.FormattingEnabled = true;
             this.cbAdvisers.Location = new System.Drawing.Point(169, 78);

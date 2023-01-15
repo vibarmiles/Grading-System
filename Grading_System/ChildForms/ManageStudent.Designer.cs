@@ -120,6 +120,7 @@
             // 
             // cbSection
             // 
+            this.cbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbSection.FormattingEnabled = true;
             this.cbSection.Location = new System.Drawing.Point(659, 16);
@@ -130,6 +131,7 @@
             // 
             // cbGender
             // 
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbGender.FormattingEnabled = true;
             this.cbGender.Items.AddRange(new object[] {

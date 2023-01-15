@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,22 +12,24 @@ namespace Grading_System.Models
 {
 
 
-    public class ExcelFile : IFileExport
+    public class ExcelFile : IFileExport, IFileImport
     {
         private string name;
+        private string connectionString;
         private int sectionId;
         private int teacherId;
         private int subjectId;
         IGradesExcel grades;
 
-        public ExcelFile(string name, string connectionString, int sectionId, int teacherId, int subjectId)
+        public ExcelFile(string connectionString, int sectionId, int teacherId, int subjectId)
         {
-            this.name = name;
+            this.connectionString = connectionString;
             this.sectionId = sectionId;
             this.teacherId = teacherId;
             this.subjectId = subjectId;
             grades = new Grades(connectionString);
         }
+        public string Name { get => name; set => name = value; }
 
         public void Export(string filename)
         {
@@ -63,8 +66,58 @@ namespace Grading_System.Models
             }
 
             ((Excel.Range)worksheet.Columns[2]).AutoFit();
-            wkbook.SaveAs(filename);
+
+            try
+            {
+                wkbook.SaveAs(filename);
+                MessageBox.Show("Successfully Exported!");
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             excel.Quit();
+        }
+
+        public void Import(string filename)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            IGrades grades = new Grades(connectionString);
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(filename))
+                {
+                    conn.Open();
+
+                    System.Data.DataTable excelTable = conn.GetSchema("Tables");
+                    string query = "SELECT * FROM [" + excelTable.Rows[0]["TABLE_NAME"].ToString() + "]";
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                        OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+
+                    conn.Close();
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 1, Convert.ToDouble(row["1"]));
+                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 2, Convert.ToDouble(row["2"]));
+                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 3, Convert.ToDouble(row["3"]));
+                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 4, Convert.ToDouble(row["4"]));
+                }
+
+                MessageBox.Show("Data Import Finished!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
     }
 }

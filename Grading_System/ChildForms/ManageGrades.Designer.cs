@@ -114,6 +114,7 @@
             // 
             // cbSection
             // 
+            this.cbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbSection.FormattingEnabled = true;
             this.cbSection.Location = new System.Drawing.Point(169, 17);
@@ -125,6 +126,7 @@
             // 
             // cbStudent
             // 
+            this.cbStudent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbStudent.FormattingEnabled = true;
             this.cbStudent.Location = new System.Drawing.Point(169, 75);
@@ -135,6 +137,7 @@
             // 
             // cbSubjects
             // 
+            this.cbSubjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbSubjects.FormattingEnabled = true;
             this.cbSubjects.Location = new System.Drawing.Point(169, 130);
@@ -252,6 +255,7 @@
             // btnImport
             // 
             this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Enabled = false;
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnImport.Location = new System.Drawing.Point(12, 626);
             this.btnImport.Name = "btnImport";
@@ -266,7 +270,7 @@
             this.btnExportBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportBook.Enabled = false;
             this.btnExportBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExportBook.Location = new System.Drawing.Point(244, 626);
+            this.btnExportBook.Location = new System.Drawing.Point(259, 626);
             this.btnExportBook.Name = "btnExportBook";
             this.btnExportBook.Size = new System.Drawing.Size(173, 44);
             this.btnExportBook.TabIndex = 11;
@@ -289,7 +293,7 @@
             this.btnExportCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportCard.Enabled = false;
             this.btnExportCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExportCard.Location = new System.Drawing.Point(423, 626);
+            this.btnExportCard.Location = new System.Drawing.Point(438, 626);
             this.btnExportCard.Name = "btnExportCard";
             this.btnExportCard.Size = new System.Drawing.Size(173, 44);
             this.btnExportCard.TabIndex = 20;

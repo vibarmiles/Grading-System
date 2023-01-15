@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.Classes;
+using System.Security.Cryptography;
 
 namespace Grading_System.ChildForms
 {
@@ -102,6 +103,7 @@ namespace Grading_System.ChildForms
 
             cbSubjects.Items.Clear();
             btnExportBook.Enabled = false;
+            btnImport.Enabled = false;
             cbSubjects.Text = String.Empty;
             tblList.DataSource = grades.View(student, position, id);
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -115,7 +117,6 @@ namespace Grading_System.ChildForms
 
         private void cbSubjects_SelectedValueChanged(object sender, EventArgs e)
         {
-            btnExportBook.Enabled = true;
             int student = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
             int teacher = 0;
             if (position.Equals("Admin"))
@@ -131,8 +132,10 @@ namespace Grading_System.ChildForms
             txtQuarter2.Text = col.Rows[1][0].ToString();
             txtQuarter3.Text = col.Rows[2][0].ToString();
             txtQuarter4.Text = col.Rows[3][0].ToString();
+
             btnUpdate.Enabled = true;
             btnExportBook.Enabled = true;
+            btnImport.Enabled = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -147,6 +150,7 @@ namespace Grading_System.ChildForms
             cbSubjects.Text = String.Empty;
             btnExportBook.Enabled = false;
             btnExportCard.Enabled = false;
+            btnImport.Enabled = false;
             btnUpdate.Enabled = false;
         }
 
@@ -182,6 +186,7 @@ namespace Grading_System.ChildForms
                 txtQuarter4.Clear();
                 btnUpdate.Enabled = false;
                 btnExportBook.Enabled = false;
+                btnImport.Enabled = false;
                 cbStudent_SelectedValueChanged(sender, e);
             } else
             {
@@ -191,7 +196,25 @@ namespace Grading_System.ChildForms
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            IFileImport file;
 
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.Title = "Select File: ";
+                dlg.InitialDirectory = @"c:\\";
+                dlg.Filter = "Excel Sheet|*.xlsx";
+                dlg.FilterIndex = 1;
+                dlg.RestoreDirectory = true;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dlg.FileName + ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+                    System.Windows.Forms.Application.DoEvents();
+                    file = new ExcelFile(connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                    file.Import(fileName);
+                    cbStudent_SelectedValueChanged(sender, e);
+                }
+            }
         }
 
         private void btnExportBook_Click(object sender, EventArgs e)
@@ -209,9 +232,10 @@ namespace Grading_System.ChildForms
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    file = new ExcelFile(cbSection.Text + " - " + cbSubjects.Text, connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                    System.Windows.Forms.Application.DoEvents();
+                    file = new ExcelFile(connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
+                    file.Name = cbSubjects.Text;
                     file.Export(saveFileDialog.FileName);
-                    MessageBox.Show("Successfully Exported!");
                 }
             }
         }
@@ -244,7 +268,6 @@ namespace Grading_System.ChildForms
                     }
 
                     file.Export(saveFileDialog.FileName);
-                    MessageBox.Show("Successfully Exported!");
                 }
             }
         }

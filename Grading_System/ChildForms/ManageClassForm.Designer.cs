@@ -89,6 +89,7 @@
             // 
             // cbTeacher
             // 
+            this.cbTeacher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbTeacher.FormattingEnabled = true;
             this.cbTeacher.Location = new System.Drawing.Point(219, 20);
@@ -213,6 +214,7 @@
             // 
             // cbSection
             // 
+            this.cbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbSection.FormattingEnabled = true;
             this.cbSection.Location = new System.Drawing.Point(219, 20);
