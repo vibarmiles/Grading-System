@@ -124,6 +124,7 @@
             // tblSubjectList
             // 
             this.tblSubjectList.AllowUserToAddRows = false;
+            this.tblSubjectList.AllowUserToDeleteRows = false;
             this.tblSubjectList.AllowUserToResizeColumns = false;
             this.tblSubjectList.AllowUserToResizeRows = false;
             this.tblSubjectList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -132,8 +133,11 @@
             this.tblSubjectList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblSubjectList.Location = new System.Drawing.Point(12, 79);
             this.tblSubjectList.Name = "tblSubjectList";
+            this.tblSubjectList.ReadOnly = true;
+            this.tblSubjectList.RowHeadersVisible = false;
             this.tblSubjectList.RowHeadersWidth = 51;
             this.tblSubjectList.RowTemplate.Height = 24;
+            this.tblSubjectList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblSubjectList.Size = new System.Drawing.Size(1025, 507);
             this.tblSubjectList.TabIndex = 11;
             // 
@@ -189,6 +193,7 @@
             // tblClass
             // 
             this.tblClass.AllowUserToAddRows = false;
+            this.tblClass.AllowUserToDeleteRows = false;
             this.tblClass.AllowUserToResizeColumns = false;
             this.tblClass.AllowUserToResizeRows = false;
             this.tblClass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -197,8 +202,10 @@
             this.tblClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblClass.Location = new System.Drawing.Point(9, 79);
             this.tblClass.Name = "tblClass";
+            this.tblClass.RowHeadersVisible = false;
             this.tblClass.RowHeadersWidth = 51;
             this.tblClass.RowTemplate.Height = 24;
+            this.tblClass.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblClass.Size = new System.Drawing.Size(1025, 507);
             this.tblClass.TabIndex = 12;
             // 

@@ -93,6 +93,7 @@
             // tblList
             // 
             this.tblList.AllowUserToAddRows = false;
+            this.tblList.AllowUserToDeleteRows = false;
             this.tblList.AllowUserToResizeColumns = false;
             this.tblList.AllowUserToResizeRows = false;
             this.tblList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -101,8 +102,11 @@
             this.tblList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblList.Location = new System.Drawing.Point(12, 76);
             this.tblList.Name = "tblList";
+            this.tblList.ReadOnly = true;
+            this.tblList.RowHeadersVisible = false;
             this.tblList.RowHeadersWidth = 51;
             this.tblList.RowTemplate.Height = 24;
+            this.tblList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblList.Size = new System.Drawing.Size(1025, 544);
             this.tblList.TabIndex = 7;
             // 
