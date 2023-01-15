@@ -42,6 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPosition = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.rbtnDashboard = new System.Windows.Forms.RadioButton();
             this.pnlTaskbar.SuspendLayout();
             this.Options.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,6 +73,7 @@
             this.Options.Controls.Add(this.rbtnAddSubject);
             this.Options.Controls.Add(this.rbtnAddTeacher);
             this.Options.Controls.Add(this.rbtnGrades);
+            this.Options.Controls.Add(this.rbtnDashboard);
             this.Options.Controls.Add(this.panel1);
             this.Options.Controls.Add(this.btnLogout);
             this.Options.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -280,6 +282,25 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // rbtnDashboard
+            // 
+            this.rbtnDashboard.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnDashboard.AutoSize = true;
+            this.rbtnDashboard.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.rbtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbtnDashboard.FlatAppearance.BorderSize = 0;
+            this.rbtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rbtnDashboard.Location = new System.Drawing.Point(0, 469);
+            this.rbtnDashboard.MinimumSize = new System.Drawing.Size(208, 52);
+            this.rbtnDashboard.Name = "rbtnDashboard";
+            this.rbtnDashboard.Size = new System.Drawing.Size(212, 52);
+            this.rbtnDashboard.TabIndex = 8;
+            this.rbtnDashboard.TabStop = true;
+            this.rbtnDashboard.Text = "Dashboard";
+            this.rbtnDashboard.UseVisualStyleBackColor = false;
+            this.rbtnDashboard.Click += new System.EventHandler(this.rbtnDashboard_Click);
+            // 
             // ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -314,6 +335,7 @@
         private System.Windows.Forms.RadioButton rbtnAddRegistrar;
         private System.Windows.Forms.RadioButton rbtnClass;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rbtnDashboard;
     }
 }
 

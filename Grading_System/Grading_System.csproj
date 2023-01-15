@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildForms\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\ManageAsstTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\BaseUserModel.cs" />
+    <EmbeddedResource Include="ChildForms\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ManageAsstTeacher.resx">
       <DependentUpon>ManageAsstTeacher.cs</DependentUpon>
     </EmbeddedResource>

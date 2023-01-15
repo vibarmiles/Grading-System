@@ -10,8 +10,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Grading_System.Models
 {
-
-
     public class ExcelFile : IFileExport, IFileImport
     {
         private string name;

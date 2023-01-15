@@ -25,6 +25,7 @@ namespace Grading_System
         private ManageSection section;
         private ManageClassForm classForm;
         private ManageGrades grades;
+        private Dashboard dashboard;
 
         public ParentForm()
         {
@@ -76,12 +77,6 @@ namespace Grading_System
                 asstTeacher.Show();
                 section.Show();
                 classForm.Show();
-
-                if (position.Equals("Registrar"))
-                {
-                    rbtnClass.Checked = true;
-                    classForm.BringToFront();
-                }
             }
 
             if (position.Equals("Admin") || position.Equals("Teacher"))
@@ -90,10 +85,6 @@ namespace Grading_System
                 grades = new ManageGrades(connectionString, position, id);
                 grades.MdiParent = this;
                 grades.Show();
-                if (position.Equals("Teacher"))
-                {
-                    rbtnGrades.Checked = true;
-                }
             }
 
             if (position.Equals("Admin"))
@@ -103,10 +94,16 @@ namespace Grading_System
                 registrar.MdiParent = this;
                 registrar.Show();
                 rbtnGrades.Checked = true;
-                grades.BringToFront();
             }
 
+            rbtnDashboard.Visible = true;
             btnLogout.Visible = true;
+
+            dashboard = new Dashboard(connectionString, position, id);
+            dashboard.MdiParent = this;
+            dashboard.Show();
+            rbtnDashboard.Checked = true;
+            dashboard.BringToFront();
         }
 
         private void btnAddRegistrar_Click(object sender, EventArgs e)
@@ -145,6 +142,7 @@ namespace Grading_System
             section = null;
             classForm = null;
             grades = null;
+            dashboard = null;
             position = String.Empty;
             id = 0;
 
@@ -160,6 +158,7 @@ namespace Grading_System
             rbtnAddSection.Visible = false;
             rbtnAddRegistrar.Visible = false;
             rbtnClass.Visible = false;
+            rbtnDashboard.Visible = false;
             lblPosition.Text = "Login";
 
             login.Show();
@@ -228,6 +227,16 @@ namespace Grading_System
 
             classForm.RefreshTable();
             classForm.BringToFront();
+        }
+
+        private void rbtnDashboard_Click(object sender, EventArgs e)
+        {
+            if (dashboard is null)
+            {
+                return;
+            }
+
+            dashboard.BringToFront();
         }
     }
 }
