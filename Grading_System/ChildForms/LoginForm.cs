@@ -14,7 +14,7 @@ namespace Grading_System.ChildForms
 {
     public partial class LoginForm : Form
     {
-        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;Integrated Security=True";
+        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;User ID=LoginChecker;Password=LoginChecker";
         
         public LoginForm()
         {

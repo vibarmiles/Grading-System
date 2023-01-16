@@ -172,7 +172,7 @@ namespace Grading_System.ChildForms
             double prefinal = InputValidator.CheckDoubleTextBox(txtQuarter3.Text);
             double final = InputValidator.CheckDoubleTextBox(txtQuarter4.Text);
 
-            if (prelim < 100 && midterm < 100 && prefinal < 100 && final < 100 && prelim >= 0 && midterm >= 0 && prefinal >= 0 && final >= 0)
+            if (prelim <= 100 && midterm <= 100 && prefinal <= 100 && final <= 100 && prelim >= 0 && midterm >= 0 && prefinal >= 0 && final >= 0)
             {
                 grades.Update(student, subject, teacher, 1, prelim);
                 grades.Update(student, subject, teacher, 2, midterm);
