@@ -13,7 +13,7 @@ namespace Grading_System
 {
     public partial class ParentForm : Form
     {
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;Integrated Security=True";
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf\";Integrated Security=True";
         private string position;
         private int id;
         private Dictionary<int, string> account;
