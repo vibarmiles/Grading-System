@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -99,6 +100,20 @@ namespace Grading_System.Models
                     }
 
                     conn.Close();
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    double prelim = Convert.ToDouble(row["1"]);
+                    double midterm = Convert.ToDouble(row["2"]);
+                    double prefinal = Convert.ToDouble(row["3"]);
+                    double final = Convert.ToDouble(row["4"]);
+
+                    if (prelim > 100 || midterm > 100 || prefinal > 100 || final > 100 || prelim < 0 || midterm < 0 || prefinal < 0 || final < 0)
+                    {
+                        MessageBox.Show("One of the Input is Invalid.\nImporting Canceled.");
+                        return;
+                    }
                 }
 
                 foreach (DataRow row in dt.Rows)

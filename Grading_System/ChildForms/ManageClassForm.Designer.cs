@@ -133,7 +133,6 @@
             this.tblSubjectList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblSubjectList.Location = new System.Drawing.Point(12, 79);
             this.tblSubjectList.Name = "tblSubjectList";
-            this.tblSubjectList.ReadOnly = true;
             this.tblSubjectList.RowHeadersVisible = false;
             this.tblSubjectList.RowHeadersWidth = 51;
             this.tblSubjectList.RowTemplate.Height = 24;

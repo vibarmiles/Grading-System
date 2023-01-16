@@ -13,7 +13,7 @@ namespace Grading_System
 {
     public partial class ParentForm : Form
     {
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf\";Integrated Security=True";
+        private string userId = String.Empty;
         private string position;
         private int id;
         private Dictionary<int, string> account;
@@ -45,6 +45,25 @@ namespace Grading_System
                 position = kvp.Value;
                 id = kvp.Key;
             }
+
+            switch (position)
+            {
+                case "Admin":
+                    userId = "SuperAdmin";
+                    break;
+                case "Assistant Teacher":
+                    userId = "AssistantTeacher";
+                    break;
+                case "Teacher":
+                    userId = "Teacher";
+                    break;
+                case "Registrar":
+                    userId = "Registrar";
+                    break;
+            }
+
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;User ID=" + userId + ";Password=" + userId;
+            Console.WriteLine(connectionString);
 
             lblPosition.Text = position;
 
@@ -144,6 +163,7 @@ namespace Grading_System
             grades = null;
             dashboard = null;
             position = String.Empty;
+            userId = String.Empty;
             id = 0;
 
             LoginForm login = new LoginForm();
