@@ -260,7 +260,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnImport.Enabled = false;
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnImport.Location = new System.Drawing.Point(12, 626);
@@ -273,7 +273,7 @@
             // 
             // btnExportBook
             // 
-            this.btnExportBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportBook.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExportBook.Enabled = false;
             this.btnExportBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExportBook.Location = new System.Drawing.Point(259, 626);
@@ -286,6 +286,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.Location = new System.Drawing.Point(164, 636);
@@ -296,7 +297,7 @@
             // 
             // btnExportCard
             // 
-            this.btnExportCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExportCard.Enabled = false;
             this.btnExportCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExportCard.Location = new System.Drawing.Point(438, 626);
