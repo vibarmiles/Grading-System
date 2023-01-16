@@ -62,7 +62,7 @@ namespace Grading_System
                     break;
             }
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\USERS\\LI XIAN\\DOCUMENTS\\GRADE SYSTEM\\GRADING-SYSTEM\\GRADING_SYSTEM\\GRADING_SYSTEM.MDF;User ID=" + userId + ";Password=" + userId;
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;User ID=" + userId + ";Password=" + userId;
             Console.WriteLine(connectionString);
 
             lblPosition.Text = position;
