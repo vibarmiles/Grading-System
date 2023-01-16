@@ -63,3 +63,25 @@ C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_Syst
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageGrades.resources
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.csproj.ResolveComReference.cache
 C:\Users\vibar\source\repos\Grading_System\Grading_System\obj\Debug\Grading_System.ChildForms.Dashboard.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\bin\Debug\Grading_System.mdf
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\bin\Debug\Grading_System_log.ldf
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\bin\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\bin\Debug\Grading_System.pdb
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.csproj.AssemblyReference.cache
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.csproj.ResolveComReference.cache
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.Dashboard.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageAsstTeacher.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageClassForm.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageGrades.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageRegistrar.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageSection.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageSubject.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageStudent.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.ManageTeacher.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ParentForm.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.ChildForms.LoginForm.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.Properties.Resources.resources
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.csproj.GenerateResource.cache
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.csproj.CoreCompileInputs.cache
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.exe
+C:\Users\Li Xian\Documents\Grade System\Grading-System\Grading_System\obj\Debug\Grading_System.pdb
