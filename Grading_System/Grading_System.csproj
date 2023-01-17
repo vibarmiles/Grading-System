@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildForms\ChangeProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\ChangeProfileForm.Designer.cs">
+      <DependentUpon>ChangeProfileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\BaseUserModel.cs" />
+    <EmbeddedResource Include="ChildForms\ChangeProfileForm.resx">
+      <DependentUpon>ChangeProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>

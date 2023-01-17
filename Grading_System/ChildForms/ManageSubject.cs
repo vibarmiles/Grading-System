@@ -20,32 +20,37 @@ namespace Grading_System.ChildForms
         {
             InitializeComponent();
             subject = new Subject(connectionString);
-            BtnUpdate = btnUpdate;
-            BtnAdd = btnAdd;
             TblList = tblList;
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
             ViewTable();
+
+            tblList.KeyDown += new KeyEventHandler((sender, e) =>
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    foreach (DataGridViewRow row in tblList.SelectedRows)
+                    {
+                        ids.Enqueue(row.Cells["ID"].Value.ToString());
+                        Console.WriteLine(row.Cells["ID"].Value.ToString());
+                    }
+                }
+            });
         }
 
         protected override void ViewTable()
         {
             base.ViewTable();
-            tblList.Columns[0].HeaderText = "Subject ID";
-            tblList.Columns[0].Name = "ID";
             tblList.Columns[1].HeaderText = "Subject Description";
         }
 
-        protected override void Add(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
             string sub = txtSubject.Text;
 
             if (sub != "")
             {
-                subject.Name = sub;
-                subject.Add();
-                txtSubject.Clear();
-                ViewTable();
+                dt.Rows.Add(null, sub);
             }
             else
             {
@@ -53,33 +58,67 @@ namespace Grading_System.ChildForms
             }
         }
 
-        protected override void Edit()
+        private void Update(object sender, EventArgs e)
         {
-            subject.GetValues(Id);
-            txtSubject.Text = subject.Name;
-        }
-
-        protected override void Update(object sender, EventArgs e)
-        {
-            string sub = txtSubject.Text;
-
-            if (sub != "")
+            while (ids.Count > 0)
             {
-                subject.Name = sub;
-                subject.Update(Id);
-                ViewTable();
-                Cancel(sender, e);
+                Console.WriteLine("Deleted!");
+                subject.Delete(ids.Dequeue());
             }
-            else
-            {
-                MessageBox.Show("Invalid/Missing Input!");
-            }
-        }
 
-        protected override void Delete()
-        {
-            subject.Delete(Id);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
+
+                string name = row["SubjectName"].ToString();
+
+                if (name == "")
+                {
+                    MessageBox.Show("Invalid Table Input!");
+                    return;
+                }
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
+
+                string name = row["SubjectName"].ToString();
+
+                if (name != "")
+                {
+                    subject.Name = name;
+
+                    string id = row["ID"].ToString();
+                    Console.WriteLine(id);
+
+                    if (id == "")
+                    {
+                        Console.WriteLine("Add");
+                        subject.Add();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Update");
+                        subject.Update(id);
+                    }
+                }
+            }
+
             ViewTable();
+            Cancel(sender, e);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ViewTable();
+            ids.Clear();
         }
     }
 }

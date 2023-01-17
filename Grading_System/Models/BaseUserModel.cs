@@ -51,7 +51,7 @@ namespace Grading_System.Models
 
                     using (SqlCommand cmd = new SqlCommand("INSERT INTO Users ([FirstName],[MiddleName],[LastName],[Username],[Password],[Position],[Gender]) VALUES (@fname, @mname, @lname, @username, @password, @position, @gender)", con))
                     {
-                        username = lname + " " + fname;
+                        username = lname + fname;
                         cmd.Parameters.Add("fname", SqlDbType.VarChar);
                         cmd.Parameters["fname"].Value = fname;
                         cmd.Parameters.Add("mname", SqlDbType.VarChar);
@@ -113,19 +113,14 @@ namespace Grading_System.Models
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET [FirstName]=@fname,[MiddleName]=@mname,[LastName]=@lname,[Username]=@username,[Password]=@password,[Gender]=@gender WHERE [UserID]=@id", con))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET [FirstName]=@fname,[MiddleName]=@mname,[LastName]=@lname,[Gender]=@gender WHERE [UserID]=@id", con))
                     {
-                        username = lname + " " + fname;
                         cmd.Parameters.Add("fname", SqlDbType.VarChar);
                         cmd.Parameters["fname"].Value = fname;
                         cmd.Parameters.Add("mname", SqlDbType.VarChar);
                         cmd.Parameters["mname"].Value = mname;
                         cmd.Parameters.Add("lname", SqlDbType.VarChar);
                         cmd.Parameters["lname"].Value = lname;
-                        cmd.Parameters.Add("username", SqlDbType.VarChar);
-                        cmd.Parameters["username"].Value = username;
-                        cmd.Parameters.Add("password", SqlDbType.VarChar);
-                        cmd.Parameters["password"].Value = HashPassword(username);
                         cmd.Parameters.Add("gender", SqlDbType.VarChar);
                         cmd.Parameters["gender"].Value = gender;
                         cmd.Parameters.Add("id", SqlDbType.VarChar);

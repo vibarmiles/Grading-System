@@ -74,7 +74,6 @@ namespace Grading_System.ChildForms
             }
 
             cbSubject.Items.Clear();
-            cbSubject.Text = String.Empty;
 
             foreach (string subject in classList.Values)
             {
@@ -88,6 +87,13 @@ namespace Grading_System.ChildForms
             tblList.DataSource = grades.ExportExcel(sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubject.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubject.Text).Key[0]); ;
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             tblList.Columns[0].HeaderText = "ID";
+        }
+
+        public void RefreshTable()
+        {
+            cbSection.Items.Clear();
+            cbSubject.Items.Clear();
+            tblList.Columns.Clear();
         }
     }
 }

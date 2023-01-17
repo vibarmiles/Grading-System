@@ -96,7 +96,8 @@ namespace Grading_System.ChildForms
         {
             ManageViewTable(0);
             AssignViewTable(0);
-            cbTeacher.Text = String.Empty;
+            cbSection.Items.Clear();
+            cbTeacher.Items.Clear();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
