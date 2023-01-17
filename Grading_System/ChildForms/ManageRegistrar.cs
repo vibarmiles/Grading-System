@@ -42,16 +42,12 @@ namespace Grading_System.ChildForms
             string mname = InputValidator.CheckStringTextBox(txtMiddleName.Text);
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && gender != "")
             {
                 registrar.Fname = fname;
                 registrar.Mname = mname;
                 registrar.Lname = lname;
-                registrar.Username = user;
-                registrar.Password = pass;
                 registrar.Gender = gender;
                 registrar.Position = "Registrar";
                 registrar.Add();
@@ -70,7 +66,6 @@ namespace Grading_System.ChildForms
             txtFirstName.Text = registrar.Fname;
             txtMiddleName.Text = registrar.Mname;
             txtLastName.Text = registrar.Lname;
-            txtUsername.Text = registrar.Username;
             cbGender.Text = registrar.Gender;
         }
 
@@ -80,16 +75,12 @@ namespace Grading_System.ChildForms
             string mname = InputValidator.CheckStringTextBox(txtMiddleName.Text);
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && gender != "")
             {
                 registrar.Fname = fname;
                 registrar.Mname = mname;
                 registrar.Lname = lname;
-                registrar.Username = user;
-                registrar.Password = pass;
                 registrar.Gender = gender;
                 registrar.Update(Id);
                 ViewTable();

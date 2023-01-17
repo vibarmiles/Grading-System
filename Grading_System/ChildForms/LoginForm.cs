@@ -14,12 +14,7 @@ namespace Grading_System.ChildForms
 {
     public partial class LoginForm : Form
     {
-<<<<<<< Updated upstream
         private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf;User ID=LoginChecker;Password=LoginChecker";
-=======
-        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\USERS\\LI XIAN\\DOCUMENTS\\GRADE SYSTEM\\GRADING-SYSTEM\\GRADING_SYSTEM\\GRADING_SYSTEM.MDF;User ID=LoginChecker;Password=LoginChecker";
->>>>>>> Stashed changes
-        
         public LoginForm()
         {
             InitializeComponent();
