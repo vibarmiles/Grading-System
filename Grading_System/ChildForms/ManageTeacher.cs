@@ -42,16 +42,12 @@ namespace Grading_System.ChildForms
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && spec != null && gender != "")
             {
                 teacher.Fname = fname;
                 teacher.Mname = mname;
                 teacher.Lname = lname;
-                teacher.Username = user;
-                teacher.Password = pass;
                 teacher.Gender = gender;
                 teacher.Specialization = spec;
                 teacher.Position = "Teacher";
@@ -72,7 +68,6 @@ namespace Grading_System.ChildForms
             txtMiddleName.Text = teacher.Mname;
             txtLastName.Text = teacher.Lname;
             txtSpecialization.Text = teacher.Specialization;
-            txtUsername.Text = teacher.Username;
             cbGender.Text = teacher.Gender;
         }
 
@@ -83,16 +78,12 @@ namespace Grading_System.ChildForms
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
             string spec = InputValidator.CheckStringTextBox(txtSpecialization.Text);
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && spec != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && spec != null && gender != "")
             {
                 teacher.Fname = fname;
                 teacher.Mname = mname;
                 teacher.Lname = lname;
-                teacher.Username = user;
-                teacher.Password = pass;
                 teacher.Gender = gender;
                 teacher.Specialization = spec;
                 teacher.Update(Id);

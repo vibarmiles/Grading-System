@@ -31,13 +31,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,13 +48,9 @@
             // 
             this.panel1.Controls.Add(this.cbGender);
             this.panel1.Controls.Add(this.txtMiddleName);
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.txtFirstName);
             this.panel1.Controls.Add(this.txtLastName);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -89,22 +81,6 @@
             this.txtMiddleName.Size = new System.Drawing.Size(292, 30);
             this.txtMiddleName.TabIndex = 2;
             // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPassword.Location = new System.Drawing.Point(659, 75);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(292, 30);
-            this.txtPassword.TabIndex = 5;
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtUsername.Location = new System.Drawing.Point(659, 20);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(292, 30);
-            this.txtUsername.TabIndex = 4;
-            // 
             // txtFirstName
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -121,16 +97,6 @@
             this.txtLastName.Size = new System.Drawing.Size(292, 30);
             this.txtLastName.TabIndex = 0;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(497, 78);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 25);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Password:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -140,16 +106,6 @@
             this.label4.Size = new System.Drawing.Size(83, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Gender:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(497, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 25);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Username:";
             // 
             // label3
             // 
@@ -249,13 +205,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.TextBox txtMiddleName;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

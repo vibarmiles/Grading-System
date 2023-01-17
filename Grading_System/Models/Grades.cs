@@ -59,39 +59,6 @@ namespace Grading_System.Models
             }
         }
 
-        public DataTable View(int id, string position, int teacherId)
-        {
-            DataTable dt = new DataTable();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                
-                if (position.Equals("Admin"))
-                {
-                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, SubjectName, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [StudentID]=@id", conn))
-                    {
-                        cmd.Parameters.Add("id", SqlDbType.Int).Value = id;
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                } else
-                {
-                    using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Name, SubjectName, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [StudentID]=@id AND [TeacherID]=@teacherId", conn))
-                    {
-                        cmd.Parameters.Add("id", SqlDbType.Int).Value = id;
-                        cmd.Parameters.Add("teacherId", SqlDbType.Int).Value = teacherId;
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                }
-
-                conn.Close();
-            }
-
-            return this.AddRow(dt);
-        }
-
         public DataTable ExportExcel(int sectionId, int teacherId, int subjectId)
         {
             DataTable dt = new DataTable();

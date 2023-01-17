@@ -14,6 +14,7 @@ namespace Grading_System.ChildForms
 {
     public partial class ManageGrades : Form
     {
+        private readonly IGradesExcel gradeExcel;
         private readonly IObjectList sections;
         private readonly ISection section;
         private readonly IObjectListTeacher sectionsOfTeacher;
@@ -31,6 +32,7 @@ namespace Grading_System.ChildForms
         public ManageGrades(string connectionString, string position, int id)
         {
             this.connectionString = connectionString;
+            gradeExcel = new Grades(connectionString);
             sections = new Section(connectionString);
             section = new Section(connectionString);
             sectionsOfTeacher = new Section(connectionString);
@@ -71,29 +73,56 @@ namespace Grading_System.ChildForms
             btnExportBook.Enabled = false;
             string input = cbSection.Text;
             studentList = students.GetList(sectionList.FirstOrDefault(x => x.Value == input).Key);
+            int studentId = studentList.FirstOrDefault(x => x.Value == studentList.First().Value).Key;
+
+            if (position.Equals("Admin"))
+            {
+                classList = classes.GetList(studentId);
+            }
+            else
+            {
+                classList = classesOfTeacher.GetStudentList(studentId, this.id);
+            }
+
             cbStudent.Items.Clear();
             cbSubjects.Items.Clear();
-            cbStudent.Text = String.Empty;
-            cbSubjects.Text = String.Empty;
 
-            foreach (string student in studentList.Values)
+            foreach (string subject in classList.Values)
             {
-                cbStudent.Items.Add(student);
+                cbSubjects.Items.Add(subject);
             }
+
+            tblList.Columns.Clear();
+            DataTable dt = new DataTable();
+            DataColumn id = new DataColumn("ID");
+            DataColumn name = new DataColumn("Name");
+            dt.Columns.Add(id);
+            dt.Columns.Add(name);
+            
+            foreach (KeyValuePair<int, string> student in studentList)
+            {
+                dt.Rows.Add(student.Key, student.Value);
+            }
+
+            tblList.DataSource = dt;
+            tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void cbStudent_SelectedValueChanged(object sender, EventArgs e)
         {
-            tblList.Columns.Clear();
-            string input = cbStudent.Text;
-            int student = studentList.FirstOrDefault(x => x.Value == input).Key;
+            int student = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
+            int teacher = 0;
             if (position.Equals("Admin"))
             {
-                classList = classes.GetList(student);
-            } else
-            {
-                classList = classesOfTeacher.GetStudentList(student, id);
+                teacher = classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1];
             }
+            else
+            {
+                teacher = id;
+            }
+
+            int subject = classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0];
+            DataTable col = grades.GetGrades(student, subject, teacher);
 
             if (sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key == section.GetAdvisory(id) || position.Equals("Admin"))
             {
@@ -104,40 +133,42 @@ namespace Grading_System.ChildForms
                 btnExportCard.Enabled = false;
             }
 
-            cbSubjects.Items.Clear();
-            btnExportBook.Enabled = false;
-            btnImport.Enabled = false;
-            btnUpdate.Enabled = false;
-            cbSubjects.Text = String.Empty;
-            tblList.DataSource = grades.View(student, position, id);
-            tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            tblList.Columns[0].HeaderText = "ID";
-
-            foreach (string subject in classList.Values)
-            {
-                cbSubjects.Items.Add(subject);
-            }
+            btnExportBook.Enabled = true;
+            btnImport.Enabled = true;
+            btnUpdate.Enabled = true;
         }
 
         private void cbSubjects_SelectedValueChanged(object sender, EventArgs e)
         {
-            int student = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
             int teacher = 0;
             if (position.Equals("Admin"))
             {
                 teacher = classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1];
-            } else
+            }
+            else
             {
                 teacher = id;
             }
             int subject = classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0];
-            DataTable col = grades.GetGrades(student, subject, teacher);
-            txtQuarter1.Text = col.Rows[0][0].ToString();
-            txtQuarter2.Text = col.Rows[1][0].ToString();
-            txtQuarter3.Text = col.Rows[2][0].ToString();
-            txtQuarter4.Text = col.Rows[3][0].ToString();
+            int section = sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key;
+
+            cbStudent.Items.Clear();
+            tblList.Columns.Clear();
+            DataTable dt = gradeExcel.ExportExcel(section, teacher, subject);
+
+            tblList.DataSource = dt;
+            tblList.Columns[0].HeaderText = "ID";
+            tblList.Columns[0].Name = "ID";
+            tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            foreach (string student in studentList.Values)
+            {
+                cbStudent.Items.Add(student);
+            }
 
             btnUpdate.Enabled = true;
+            btnExportCard.Enabled = false;
             btnExportBook.Enabled = true;
             btnImport.Enabled = true;
         }
@@ -145,10 +176,6 @@ namespace Grading_System.ChildForms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             tblList.Columns.Clear();
-            txtQuarter1.Clear();
-            txtQuarter2.Clear();
-            txtQuarter3.Clear();
-            txtQuarter4.Clear();
             cbSection.Text = String.Empty;
             cbStudent.Text = String.Empty;
             cbSubjects.Text = String.Empty;
@@ -163,7 +190,6 @@ namespace Grading_System.ChildForms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            int student = studentList.FirstOrDefault(x => x.Value == cbStudent.Text).Key;
             int teacher = 0;
             if (position.Equals("Admin"))
             {
@@ -174,31 +200,26 @@ namespace Grading_System.ChildForms
                 teacher = id;
             }
             int subject = classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0];
-            double prelim = InputValidator.CheckDoubleTextBox(txtQuarter1.Text);
-            double midterm = InputValidator.CheckDoubleTextBox(txtQuarter2.Text);
-            double prefinal = InputValidator.CheckDoubleTextBox(txtQuarter3.Text);
-            double final = InputValidator.CheckDoubleTextBox(txtQuarter4.Text);
 
-            if (prelim <= 100 && midterm <= 100 && prefinal <= 100 && final <= 100 && prelim >= 0 && midterm >= 0 && prefinal >= 0 && final >= 0)
+            foreach (DataGridViewRow row in tblList.Rows)
             {
-                grades.Update(student, subject, teacher, 1, prelim);
-                grades.Update(student, subject, teacher, 2, midterm);
-                grades.Update(student, subject, teacher, 3, prefinal);
-                grades.Update(student, subject, teacher, 4, final);
-                MessageBox.Show("Successfully Updated!");
-                cbSubjects.Text = String.Empty;
-                txtQuarter1.Clear();
-                txtQuarter2.Clear();
-                txtQuarter3.Clear();
-                txtQuarter4.Clear();
-                btnUpdate.Enabled = false;
-                btnExportBook.Enabled = false;
-                btnImport.Enabled = false;
-                cbStudent_SelectedValueChanged(sender, e);
-            } else
-            {
-                MessageBox.Show("Invalid Input!");
+                if (InputValidator.CheckDoubleTextBox(row.Cells["1"].Value.ToString()) > 100 || InputValidator.CheckDoubleTextBox(row.Cells["1"].Value.ToString()) < 0 || InputValidator.CheckDoubleTextBox(row.Cells["2"].Value.ToString()) > 100 || InputValidator.CheckDoubleTextBox(row.Cells["2"].Value.ToString()) < 0 || InputValidator.CheckDoubleTextBox(row.Cells["3"].Value.ToString()) > 100 || InputValidator.CheckDoubleTextBox(row.Cells["3"].Value.ToString()) < 0 || InputValidator.CheckDoubleTextBox(row.Cells["4"].Value.ToString()) > 100 || InputValidator.CheckDoubleTextBox(row.Cells["4"].Value.ToString()) < 0)
+                {
+                    MessageBox.Show("One of the inputs is invalid!");
+                    return;
+                }
             }
+
+            foreach (DataGridViewRow row in tblList.Rows)
+            {
+                grades.Update(Convert.ToInt32(row.Cells["ID"].Value), subject, teacher, 1, InputValidator.CheckDoubleTextBox(row.Cells["1"].Value.ToString()));
+                grades.Update(Convert.ToInt32(row.Cells["ID"].Value), subject, teacher, 2, InputValidator.CheckDoubleTextBox(row.Cells["2"].Value.ToString()));
+                grades.Update(Convert.ToInt32(row.Cells["ID"].Value), subject, teacher, 3, InputValidator.CheckDoubleTextBox(row.Cells["3"].Value.ToString()));
+                grades.Update(Convert.ToInt32(row.Cells["ID"].Value), subject, teacher, 4, InputValidator.CheckDoubleTextBox(row.Cells["4"].Value.ToString()));
+            }
+
+            cbSubjects_SelectedValueChanged(sender, e);
+            MessageBox.Show("Successfully Updated!");
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -218,8 +239,19 @@ namespace Grading_System.ChildForms
                     string fileName = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dlg.FileName + ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
                     System.Windows.Forms.Application.DoEvents();
                     file = new ExcelFile(connectionString, sectionList.FirstOrDefault(x => x.Value == cbSection.Text).Key, classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[1], classList.FirstOrDefault(x => x.Value == cbSubjects.Text).Key[0]);
-                    file.Import(fileName);
-                    cbStudent_SelectedValueChanged(sender, e);
+                    DataTable dt = file.Import(fileName);
+                    if (dt is null)
+                    {
+                        return;
+                    }
+
+                    tblList.DataSource = file.Import(fileName);
+                    tblList.Columns["1"].DefaultCellStyle.Format = "N2";
+                    tblList.Columns["2"].DefaultCellStyle.Format = "N2";
+                    tblList.Columns["3"].DefaultCellStyle.Format = "N2";
+                    tblList.Columns["4"].DefaultCellStyle.Format = "N2";
+                    tblList.Columns["Average"].DefaultCellStyle.Format = "N2";
+                    MessageBox.Show("Data Import Finished!");
                 }
             }
         }

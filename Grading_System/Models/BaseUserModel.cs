@@ -12,7 +12,7 @@ namespace Grading_System.Models
     public class BaseUserModel : BaseModel, IUser
     {
         private string connectionString;
-        private string fname, mname, lname, username, password, gender, position;
+        private string fname, mname, lname, username, gender, position;
 
         public BaseUserModel(string connectionString, string tableOrView, string key) : base(connectionString, tableOrView, key)
         {
@@ -22,8 +22,7 @@ namespace Grading_System.Models
         public string Fname { get => fname; set => fname = value; }
         public string Mname { get => mname; set => mname = value; }
         public string Lname { get => lname; set => lname = value; }
-        public string Username { get => username; set => username = value; }
-        public string Password { set => password = value; }
+        public string Username => username;
         public string Gender { get => gender; set => gender = value; }
         public string Position { get => position; set => position = value; }
 
@@ -52,6 +51,7 @@ namespace Grading_System.Models
 
                     using (SqlCommand cmd = new SqlCommand("INSERT INTO Users ([FirstName],[MiddleName],[LastName],[Username],[Password],[Position],[Gender]) VALUES (@fname, @mname, @lname, @username, @password, @position, @gender)", con))
                     {
+                        username = lname + " " + fname;
                         cmd.Parameters.Add("fname", SqlDbType.VarChar);
                         cmd.Parameters["fname"].Value = fname;
                         cmd.Parameters.Add("mname", SqlDbType.VarChar);
@@ -61,7 +61,7 @@ namespace Grading_System.Models
                         cmd.Parameters.Add("username", SqlDbType.VarChar);
                         cmd.Parameters["username"].Value = username;
                         cmd.Parameters.Add("password", SqlDbType.VarChar);
-                        cmd.Parameters["password"].Value = HashPassword(password);
+                        cmd.Parameters["password"].Value = HashPassword(username);
                         cmd.Parameters.Add("position", SqlDbType.VarChar);
                         cmd.Parameters["position"].Value = position;
                         cmd.Parameters.Add("gender", SqlDbType.VarChar);
@@ -115,6 +115,7 @@ namespace Grading_System.Models
 
                     using (SqlCommand cmd = new SqlCommand("UPDATE Users SET [FirstName]=@fname,[MiddleName]=@mname,[LastName]=@lname,[Username]=@username,[Password]=@password,[Gender]=@gender WHERE [UserID]=@id", con))
                     {
+                        username = lname + " " + fname;
                         cmd.Parameters.Add("fname", SqlDbType.VarChar);
                         cmd.Parameters["fname"].Value = fname;
                         cmd.Parameters.Add("mname", SqlDbType.VarChar);
@@ -124,7 +125,7 @@ namespace Grading_System.Models
                         cmd.Parameters.Add("username", SqlDbType.VarChar);
                         cmd.Parameters["username"].Value = username;
                         cmd.Parameters.Add("password", SqlDbType.VarChar);
-                        cmd.Parameters["password"].Value = HashPassword(password);
+                        cmd.Parameters["password"].Value = HashPassword(username);
                         cmd.Parameters.Add("gender", SqlDbType.VarChar);
                         cmd.Parameters["gender"].Value = gender;
                         cmd.Parameters.Add("id", SqlDbType.VarChar);

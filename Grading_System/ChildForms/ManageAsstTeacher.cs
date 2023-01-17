@@ -41,16 +41,12 @@ namespace Grading_System.ChildForms
             string mname = InputValidator.CheckStringTextBox(txtMiddleName.Text);
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && gender != "")
             {
                 assistantTeacher.Fname = fname;
                 assistantTeacher.Mname = mname;
                 assistantTeacher.Lname = lname;
-                assistantTeacher.Username = user;
-                assistantTeacher.Password = pass;
                 assistantTeacher.Gender = gender;
                 assistantTeacher.Position = "Assistant Teacher";
                 assistantTeacher.Add();
@@ -69,7 +65,6 @@ namespace Grading_System.ChildForms
             txtFirstName.Text = assistantTeacher.Fname;
             txtMiddleName.Text = assistantTeacher.Mname;
             txtLastName.Text = assistantTeacher.Lname;
-            txtUsername.Text = assistantTeacher.Username;
             cbGender.Text = assistantTeacher.Gender;
         }
 
@@ -79,16 +74,12 @@ namespace Grading_System.ChildForms
             string mname = InputValidator.CheckStringTextBox(txtMiddleName.Text);
             string lname = InputValidator.CheckStringTextBox(txtLastName.Text);
             string gender = cbGender.Text;
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
 
-            if (fname != null && mname != null && lname != null && gender != "" && user != "" && pass != "")
+            if (fname != null && mname != null && lname != null && gender != "")
             {
                 assistantTeacher.Fname = fname;
                 assistantTeacher.Mname = mname;
                 assistantTeacher.Lname = lname;
-                assistantTeacher.Username = user;
-                assistantTeacher.Password = pass;
                 assistantTeacher.Gender = gender;
                 assistantTeacher.Update(Id);
                 ViewTable();

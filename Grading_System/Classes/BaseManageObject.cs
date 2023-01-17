@@ -33,35 +33,16 @@ namespace Grading_System.Classes
         private void SetTableFormat()
         {
             DataTable dt = baseRepository.View();
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
-            DataGridViewButtonColumn delete = new DataGridViewButtonColumn();
-
-            edit.Name = "Edit";
-            edit.Text = "Edit";
-            edit.UseColumnTextForButtonValue = true;
-            delete.Name = "Delete";
-            delete.Text = "Delete";
-            delete.UseColumnTextForButtonValue = true;
-
-            btnUpdate.Hide();
-            tblList.Columns.Clear();
-            tblList.CellClick -= new DataGridViewCellEventHandler(Edit_Click);
-            tblList.Columns.Add(edit);
             tblList.DataSource = dt;
             tblList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             for (int i = 0; i < tblList.Columns.Count; i++)
             {
-                if (i != 2)
+                if (i != 1)
                 {
                     tblList.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
             }
-
-            tblList.Columns.Add(delete);
-            tblList.Columns[tblList.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            tblList.CellClick += new DataGridViewCellEventHandler(Edit_Click);
         }
 
         private void Edit_Click(object sender, DataGridViewCellEventArgs e)

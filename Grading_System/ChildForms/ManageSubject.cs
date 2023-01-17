@@ -31,9 +31,9 @@ namespace Grading_System.ChildForms
         protected override void ViewTable()
         {
             base.ViewTable();
-            tblList.Columns[1].HeaderText = "Subject ID";
-            tblList.Columns[1].Name = "ID";
-            tblList.Columns[2].HeaderText = "Subject Description";
+            tblList.Columns[0].HeaderText = "Subject ID";
+            tblList.Columns[0].Name = "ID";
+            tblList.Columns[1].HeaderText = "Subject Description";
         }
 
         protected override void Add(object sender, EventArgs e)

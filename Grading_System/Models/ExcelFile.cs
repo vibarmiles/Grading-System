@@ -18,7 +18,7 @@ namespace Grading_System.Models
         private int sectionId;
         private int teacherId;
         private int subjectId;
-        IGradesExcel grades;
+        private readonly IGradesExcel grades;
 
         public ExcelFile(string connectionString, int sectionId, int teacherId, int subjectId)
         {
@@ -78,7 +78,7 @@ namespace Grading_System.Models
             excel.Quit();
         }
 
-        public void Import(string filename)
+        public System.Data.DataTable Import(string filename)
         {
             System.Data.DataTable dt = new System.Data.DataTable();
             IGrades grades = new Grades(connectionString);
@@ -111,25 +111,34 @@ namespace Grading_System.Models
 
                     if (prelim > 100 || midterm > 100 || prefinal > 100 || final > 100 || prelim < 0 || midterm < 0 || prefinal < 0 || final < 0)
                     {
-                        MessageBox.Show("One of the Input is Invalid.\nImporting Canceled.");
-                        return;
+                        throw new Exception("One of the Input is Invalid.\nImporting Canceled.");
                     }
                 }
 
-                foreach (DataRow row in dt.Rows)
+                System.Data.DataTable dt2 = this.grades.ExportExcel(sectionId, teacherId, subjectId);
+
+                for (int i = 0; i < dt2.Rows.Count; i++)
                 {
-                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 1, Convert.ToDouble(row["1"]));
-                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 2, Convert.ToDouble(row["2"]));
-                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 3, Convert.ToDouble(row["3"]));
-                    grades.Update(Convert.ToInt32(row["StudentID"]), subjectId, teacherId, 4, Convert.ToDouble(row["4"]));
+                    double prelim = Convert.ToDouble(dt.Rows[i]["1"]);
+                    double midterm = Convert.ToDouble(dt.Rows[i]["2"]);
+                    double prefinal = Convert.ToDouble(dt.Rows[i]["3"]);
+                    double final = Convert.ToDouble(dt.Rows[i]["4"]);
+
+                    DataRow dr = dt2.Rows[i];
+                    dr["1"] = prelim;
+                    dr["2"] = midterm;
+                    dr["3"] = prefinal;
+                    dr["4"] = final;
+                    dr["Average"] = (prelim + midterm + final + prefinal)/4;
+                    dr["Grade"] = null;
                 }
 
-                MessageBox.Show("Data Import Finished!");
+                return dt2;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return;
+                return null;
             }
         }
     }

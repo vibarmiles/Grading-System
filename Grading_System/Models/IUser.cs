@@ -14,8 +14,7 @@ namespace Grading_System.Models
         string Fname { set; get; }
         string Mname { set; get; }
         string Lname { set; get; }
-        string Username { set; get; }
-        string Password { set; }
+        string Username { get; }
         string Gender { set; get; }
         string Position { set; get; }
     }
