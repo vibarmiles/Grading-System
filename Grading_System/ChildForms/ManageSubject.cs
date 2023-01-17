@@ -111,6 +111,7 @@ namespace Grading_System.ChildForms
                 }
             }
 
+            MessageBox.Show("Successfully Updated!");
             ViewTable();
             Cancel(sender, e);
         }
