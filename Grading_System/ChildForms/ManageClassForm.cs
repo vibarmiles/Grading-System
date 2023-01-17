@@ -106,6 +106,10 @@ namespace Grading_System.ChildForms
             if (input != "")
             {
                 teacher.TeacherID = teacherList.FirstOrDefault(x => x.Value == input).Key;
+            } else
+            {
+                MessageBox.Show("An Error has Occured!");
+                return;
             }
 
             foreach (DataGridViewRow row in tblSubjectList.Rows)
@@ -127,7 +131,7 @@ namespace Grading_System.ChildForms
             }
 
             MessageBox.Show("Successfully Updated!");
-            RefreshTable();
+            cbTeacher_SelectedValueChanged(sender, e);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -168,6 +172,13 @@ namespace Grading_System.ChildForms
         private void btnClassUpdate_Click(object sender, EventArgs e)
         {
             string input = cbSection.Text;
+
+            if (input == "")
+            {
+                MessageBox.Show("An Error has Occured!");
+                return;
+            }
+
             int section = sectionList.FirstOrDefault(x => x.Value == input).Key;
 
             if (input != "") 

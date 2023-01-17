@@ -37,6 +37,13 @@ namespace Grading_System.Models
             int iteration = 1;
             foreach(DataColumn column in dt.Columns)
             {
+                if (iteration == 1)
+                {
+                    table.Rows[1].Cells[iteration].Range.Text = "Subject";
+                    iteration++;
+                    continue;
+                }
+
                 table.Rows[1].Cells[iteration].Range.Text = column.ColumnName;
                 iteration++;
             }
@@ -45,7 +52,7 @@ namespace Grading_System.Models
             foreach (DataRow row in dt.Rows)
             {
                 Console.WriteLine(row["Average"].ToString());
-                table.Rows[iteration].Cells[1].Range.Text = "Subject";
+                table.Rows[iteration].Cells[1].Range.Text = row["SubjectName"].ToString();
                 table.Rows[iteration].Cells[2].Range.Text = row["1"].ToString();
                 table.Rows[iteration].Cells[3].Range.Text = row["2"].ToString();
                 table.Rows[iteration].Cells[4].Range.Text = row["3"].ToString();
