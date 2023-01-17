@@ -46,6 +46,8 @@ namespace Grading_System.ChildForms
 
         private void cbSection_DropDown(object sender, EventArgs e)
         {
+            cbSection.Items.Clear();
+
             if (position.Equals("Admin"))
             {
                 sectionList = sections.GetList();
@@ -65,6 +67,7 @@ namespace Grading_System.ChildForms
         private void cbSection_SelectedValueChanged(object sender, EventArgs e)
         {
             btnExportCard.Enabled = false;
+            btnUpdate.Enabled = false;
             btnExportBook.Enabled = false;
             string input = cbSection.Text;
             studentList = students.GetList(sectionList.FirstOrDefault(x => x.Value == input).Key);
@@ -104,6 +107,7 @@ namespace Grading_System.ChildForms
             cbSubjects.Items.Clear();
             btnExportBook.Enabled = false;
             btnImport.Enabled = false;
+            btnUpdate.Enabled = false;
             cbSubjects.Text = String.Empty;
             tblList.DataSource = grades.View(student, position, id);
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -148,6 +152,9 @@ namespace Grading_System.ChildForms
             cbSection.Text = String.Empty;
             cbStudent.Text = String.Empty;
             cbSubjects.Text = String.Empty;
+            cbSection_DropDown(sender, e);
+            cbStudent.Items.Clear();
+            cbSubjects.Items.Clear();
             btnExportBook.Enabled = false;
             btnExportCard.Enabled = false;
             btnImport.Enabled = false;
