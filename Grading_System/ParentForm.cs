@@ -62,7 +62,11 @@ namespace Grading_System
                     break;
             }
 
+<<<<<<< Updated upstream
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf;User ID=" + userId + ";Password=" + userId;
+=======
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\USERS\\LI XIAN\\DOCUMENTS\\GRADE SYSTEM\\GRADING-SYSTEM\\GRADING_SYSTEM\\GRADING_SYSTEM.MDF;User ID=" + userId + ";Password=" + userId;
+>>>>>>> Stashed changes
             Console.WriteLine(connectionString);
 
             lblPosition.Text = position;
