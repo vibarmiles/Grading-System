@@ -92,7 +92,7 @@ namespace Grading_System.Models
             {
                 connection.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT ST.[SubjectID], S.[SubjectName], T.[TeacherID], T.[Name], STS.[StudentID] FROM Teachers_Subjects ST INNER JOIN TeachersView T ON T.[TeacherID] = ST.[TeacherID] INNER JOIN Subjects S ON ST.[SubjectID]= S.[SubjectID] LEFT JOIN Students_Teachers_Subjects STS ON STS.[SubjectID]=ST.[SubjectID] AND STS.[TeacherID]=ST.[TeacherID] AND STS.[StudentID]=@id ORDER BY S.[SubjectID], T.[TeacherID]", connection))
+                using (SqlCommand cmd = new SqlCommand("SELECT ST.[SubjectID], S.[SubjectName], T.[TeacherID], (T.LastName + ', ' + T.FirstName + ' ' + T.MiddleName) AS Name, STS.[StudentID] FROM Teachers_Subjects ST INNER JOIN TeachersView T ON T.[TeacherID] = ST.[TeacherID] INNER JOIN Subjects S ON ST.[SubjectID]= S.[SubjectID] LEFT JOIN Students_Teachers_Subjects STS ON STS.[SubjectID]=ST.[SubjectID] AND STS.[TeacherID]=ST.[TeacherID] AND STS.[StudentID]=@id ORDER BY S.[SubjectID], T.[TeacherID]", connection))
                 {
                     cmd.Parameters.Add("id", SqlDbType.BigInt);
                     cmd.Parameters["id"].Value = id;

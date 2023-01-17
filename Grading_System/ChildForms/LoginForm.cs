@@ -14,7 +14,7 @@ namespace Grading_System.ChildForms
 {
     public partial class LoginForm : Form
     {
-        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf;User ID=LoginChecker;Password=LoginChecker";
+        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;User ID=LoginChecker;Password=LoginChecker";
         public LoginForm()
         {
             InitializeComponent();
@@ -46,6 +46,16 @@ namespace Grading_System.ChildForms
 
             if (account.Values.First() != "")
             {
+                if (account.Values.Last().Equals("Yes"))
+                {
+                    ChangeProfileForm profile = new ChangeProfileForm(account.Keys.First(), account.Values.First(), connectionString);
+                    if (profile.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("The Username and Password needs to be changed on the First Time Login");
+                        return;
+                    }
+                }
+
                 this.OnSubmit?.Invoke(account, EventArgs.Empty);
                 this.Close();
             } else

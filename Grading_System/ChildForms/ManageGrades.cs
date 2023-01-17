@@ -310,5 +310,13 @@ namespace Grading_System.ChildForms
                 }
             }
         }
+
+        public void RefreshTable()
+        {
+            cbSection.Items.Clear();
+            cbSubjects.Items.Clear();
+            cbStudent.Items.Clear();
+            tblList.Columns.Clear();
+        }
     }
 }

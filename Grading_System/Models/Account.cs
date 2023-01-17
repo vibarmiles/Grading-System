@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 using Grading_System.Classes;
 
 namespace Grading_System.Models
@@ -32,17 +33,69 @@ namespace Grading_System.Models
             return hash;
         }
 
+        public void ChangeProfile(string position, int id, string username, string password)
+        {
+            int userId = id;
+
+            if (position.Equals("Teacher"))
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT [TeacherID] FROM [Teachers] WHERE [UserID]=@id", con))
+                    {
+                        cmd.Parameters.Add("id", System.Data.SqlDbType.BigInt);
+                        cmd.Parameters["id"].Value = id;
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                userId = Convert.ToInt32(dr["TeacherID"]);
+                            }
+
+                            dr.Close();
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET [Username]=@username, [Password]=@password, [FirstLogin]=1 WHERE [UserID]=@id", conn))
+                    {
+                        cmd.Parameters.Add("id", System.Data.SqlDbType.BigInt).Value = userId;
+                        cmd.Parameters.Add("username", System.Data.SqlDbType.VarChar).Value = username;
+                        cmd.Parameters.Add("password", System.Data.SqlDbType.VarChar).Value = HashPassword(password);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Successfully Updated!");
+                    }
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public IDictionary<int, string> VerifyAccount(string username, string password)
         {
             Dictionary<int, string> account = new Dictionary<int, string>();
             string result = String.Empty;
             int id = 0;
+            string login = "Yes";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT [UserID], [Position] FROM [Users] WHERE [Username] = @username AND [Password] = @password", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT [UserID], [Position], [FirstLogin] FROM [Users] WHERE [Username] = @username AND [Password] = @password", con))
                 {
                     cmd.Parameters.Add("@username", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@username"].Value = username;
@@ -56,6 +109,11 @@ namespace Grading_System.Models
                         {
                             result = dr["Position"].ToString();
                             id = Convert.ToInt32(dr["UserID"]);
+
+                            if (Convert.ToInt32(dr["FirstLogin"]) == 1)
+                            {
+                                login = "No";
+                            }
                         }
 
                         dr.Close();
@@ -86,7 +144,9 @@ namespace Grading_System.Models
                 }
             }
 
+            Console.WriteLine(id);
             account.Add(id, result);
+            account.Add(-1, login);
             return account;
         }
     }

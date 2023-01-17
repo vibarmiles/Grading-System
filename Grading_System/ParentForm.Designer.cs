@@ -31,6 +31,7 @@
             this.pnlTaskbar = new System.Windows.Forms.Panel();
             this.Options = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rbtnChangeProfile = new System.Windows.Forms.RadioButton();
             this.rbtnClass = new System.Windows.Forms.RadioButton();
             this.rbtnAddRegistrar = new System.Windows.Forms.RadioButton();
             this.rbtnAddAsstTeacher = new System.Windows.Forms.RadioButton();
@@ -39,10 +40,10 @@
             this.rbtnAddSubject = new System.Windows.Forms.RadioButton();
             this.rbtnAddTeacher = new System.Windows.Forms.RadioButton();
             this.rbtnGrades = new System.Windows.Forms.RadioButton();
+            this.rbtnDashboard = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPosition = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.rbtnDashboard = new System.Windows.Forms.RadioButton();
             this.pnlTaskbar.SuspendLayout();
             this.Options.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -65,6 +66,7 @@
             this.Options.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Options.Controls.Add(this.panel2);
+            this.Options.Controls.Add(this.rbtnChangeProfile);
             this.Options.Controls.Add(this.rbtnClass);
             this.Options.Controls.Add(this.rbtnAddRegistrar);
             this.Options.Controls.Add(this.rbtnAddAsstTeacher);
@@ -90,10 +92,29 @@
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 469);
+            this.panel2.Location = new System.Drawing.Point(0, 573);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(212, 152);
+            this.panel2.Size = new System.Drawing.Size(212, 48);
             this.panel2.TabIndex = 4;
+            // 
+            // rbtnChangeProfile
+            // 
+            this.rbtnChangeProfile.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnChangeProfile.AutoSize = true;
+            this.rbtnChangeProfile.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.rbtnChangeProfile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbtnChangeProfile.FlatAppearance.BorderSize = 0;
+            this.rbtnChangeProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnChangeProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rbtnChangeProfile.Location = new System.Drawing.Point(0, 521);
+            this.rbtnChangeProfile.MinimumSize = new System.Drawing.Size(208, 52);
+            this.rbtnChangeProfile.Name = "rbtnChangeProfile";
+            this.rbtnChangeProfile.Size = new System.Drawing.Size(212, 52);
+            this.rbtnChangeProfile.TabIndex = 9;
+            this.rbtnChangeProfile.TabStop = true;
+            this.rbtnChangeProfile.Text = "Change Profile";
+            this.rbtnChangeProfile.UseVisualStyleBackColor = false;
+            this.rbtnChangeProfile.Click += new System.EventHandler(this.rbtnChangeProfile_Click);
             // 
             // rbtnClass
             // 
@@ -104,7 +125,7 @@
             this.rbtnClass.FlatAppearance.BorderSize = 0;
             this.rbtnClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnClass.Location = new System.Drawing.Point(0, 417);
+            this.rbtnClass.Location = new System.Drawing.Point(0, 469);
             this.rbtnClass.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnClass.Name = "rbtnClass";
             this.rbtnClass.Size = new System.Drawing.Size(212, 52);
@@ -123,7 +144,7 @@
             this.rbtnAddRegistrar.FlatAppearance.BorderSize = 0;
             this.rbtnAddRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddRegistrar.Location = new System.Drawing.Point(0, 365);
+            this.rbtnAddRegistrar.Location = new System.Drawing.Point(0, 417);
             this.rbtnAddRegistrar.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddRegistrar.Name = "rbtnAddRegistrar";
             this.rbtnAddRegistrar.Size = new System.Drawing.Size(212, 52);
@@ -142,7 +163,7 @@
             this.rbtnAddAsstTeacher.FlatAppearance.BorderSize = 0;
             this.rbtnAddAsstTeacher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddAsstTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddAsstTeacher.Location = new System.Drawing.Point(0, 313);
+            this.rbtnAddAsstTeacher.Location = new System.Drawing.Point(0, 365);
             this.rbtnAddAsstTeacher.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddAsstTeacher.Name = "rbtnAddAsstTeacher";
             this.rbtnAddAsstTeacher.Size = new System.Drawing.Size(212, 52);
@@ -161,7 +182,7 @@
             this.rbtnAddStudent.FlatAppearance.BorderSize = 0;
             this.rbtnAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddStudent.Location = new System.Drawing.Point(0, 261);
+            this.rbtnAddStudent.Location = new System.Drawing.Point(0, 313);
             this.rbtnAddStudent.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddStudent.Name = "rbtnAddStudent";
             this.rbtnAddStudent.Size = new System.Drawing.Size(212, 52);
@@ -180,7 +201,7 @@
             this.rbtnAddSection.FlatAppearance.BorderSize = 0;
             this.rbtnAddSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddSection.Location = new System.Drawing.Point(0, 209);
+            this.rbtnAddSection.Location = new System.Drawing.Point(0, 261);
             this.rbtnAddSection.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddSection.Name = "rbtnAddSection";
             this.rbtnAddSection.Size = new System.Drawing.Size(212, 52);
@@ -199,7 +220,7 @@
             this.rbtnAddSubject.FlatAppearance.BorderSize = 0;
             this.rbtnAddSubject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddSubject.Location = new System.Drawing.Point(0, 157);
+            this.rbtnAddSubject.Location = new System.Drawing.Point(0, 209);
             this.rbtnAddSubject.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddSubject.Name = "rbtnAddSubject";
             this.rbtnAddSubject.Size = new System.Drawing.Size(212, 52);
@@ -218,7 +239,7 @@
             this.rbtnAddTeacher.FlatAppearance.BorderSize = 0;
             this.rbtnAddTeacher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnAddTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnAddTeacher.Location = new System.Drawing.Point(0, 105);
+            this.rbtnAddTeacher.Location = new System.Drawing.Point(0, 157);
             this.rbtnAddTeacher.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnAddTeacher.Name = "rbtnAddTeacher";
             this.rbtnAddTeacher.Size = new System.Drawing.Size(212, 52);
@@ -237,7 +258,7 @@
             this.rbtnGrades.FlatAppearance.BorderSize = 0;
             this.rbtnGrades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnGrades.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnGrades.Location = new System.Drawing.Point(0, 53);
+            this.rbtnGrades.Location = new System.Drawing.Point(0, 105);
             this.rbtnGrades.MinimumSize = new System.Drawing.Size(208, 52);
             this.rbtnGrades.Name = "rbtnGrades";
             this.rbtnGrades.Size = new System.Drawing.Size(212, 52);
@@ -245,6 +266,25 @@
             this.rbtnGrades.Text = "Grades";
             this.rbtnGrades.UseVisualStyleBackColor = false;
             this.rbtnGrades.Click += new System.EventHandler(this.btnGrades_Click);
+            // 
+            // rbtnDashboard
+            // 
+            this.rbtnDashboard.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnDashboard.AutoSize = true;
+            this.rbtnDashboard.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.rbtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbtnDashboard.FlatAppearance.BorderSize = 0;
+            this.rbtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rbtnDashboard.Location = new System.Drawing.Point(0, 53);
+            this.rbtnDashboard.MinimumSize = new System.Drawing.Size(208, 52);
+            this.rbtnDashboard.Name = "rbtnDashboard";
+            this.rbtnDashboard.Size = new System.Drawing.Size(212, 52);
+            this.rbtnDashboard.TabIndex = 8;
+            this.rbtnDashboard.TabStop = true;
+            this.rbtnDashboard.Text = "Dashboard";
+            this.rbtnDashboard.UseVisualStyleBackColor = false;
+            this.rbtnDashboard.Click += new System.EventHandler(this.rbtnDashboard_Click);
             // 
             // panel1
             // 
@@ -282,25 +322,6 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // rbtnDashboard
-            // 
-            this.rbtnDashboard.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnDashboard.AutoSize = true;
-            this.rbtnDashboard.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.rbtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rbtnDashboard.FlatAppearance.BorderSize = 0;
-            this.rbtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbtnDashboard.Location = new System.Drawing.Point(0, 469);
-            this.rbtnDashboard.MinimumSize = new System.Drawing.Size(208, 52);
-            this.rbtnDashboard.Name = "rbtnDashboard";
-            this.rbtnDashboard.Size = new System.Drawing.Size(212, 52);
-            this.rbtnDashboard.TabIndex = 8;
-            this.rbtnDashboard.TabStop = true;
-            this.rbtnDashboard.Text = "Dashboard";
-            this.rbtnDashboard.UseVisualStyleBackColor = false;
-            this.rbtnDashboard.Click += new System.EventHandler(this.rbtnDashboard_Click);
-            // 
             // ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -310,6 +331,7 @@
             this.IsMdiContainer = true;
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "ParentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Grading System";
             this.pnlTaskbar.ResumeLayout(false);
             this.Options.ResumeLayout(false);
@@ -336,6 +358,7 @@
         private System.Windows.Forms.RadioButton rbtnClass;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton rbtnDashboard;
+        private System.Windows.Forms.RadioButton rbtnChangeProfile;
     }
 }
 

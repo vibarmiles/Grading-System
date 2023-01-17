@@ -153,7 +153,7 @@ namespace Grading_System.Models
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT S.StudentID, SV.Name FROM StudentsView SV INNER JOIN Students S ON S.[StudentID]=SV.[StudentID] WHERE S.[SectionID]=@id", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT S.StudentID, (SV.LastName + ', ' + SV.FirstName + ' ' + SV.MiddleName) AS Name FROM StudentsView SV INNER JOIN Students S ON S.[StudentID]=SV.[StudentID] WHERE S.[SectionID]=@id", con))
                 {
                     cmd.Parameters.Add("id", SqlDbType.BigInt);
                     cmd.Parameters["id"].Value = id;

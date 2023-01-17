@@ -5,6 +5,7 @@ CREATE LOGIN LoginChecker WITH PASSWORD = 'LoginChecker';
 CREATE USER Checker FOR LOGIN LoginChecker;
 GRANT SELECT ON Users TO Checker;
 GRANT SELECT ON Teachers TO Checker;
+GRANT UPDATE ON Users TO Checker;
 
 CREATE LOGIN SuperAdmin WITH PASSWORD = 'SuperAdmin';
 CREATE USER SuperAdmin FOR LOGIN SuperAdmin;
@@ -13,12 +14,14 @@ ALTER ROLE db_owner ADD MEMBER SuperAdmin;
 CREATE LOGIN AssistantTeacher WITH PASSWORD = 'AssistantTeacher';
 CREATE USER AssistantTeacher FOR LOGIN AssistantTeacher;
 ALTER ROLE db_datareader ADD MEMBER AssistantTeacher;
+GRANT UPDATE ON Users TO AssistantTeacher;
 
 CREATE LOGIN Teacher WITH PASSWORD = 'Teacher';
 CREATE USER Teacher FOR LOGIN Teacher;
 CREATE ROLE TeacherRole;
 GRANT SELECT ON DATABASE :: [C:\USERS\VIBAR\SOURCE\REPOS\GRADING_SYSTEM\GRADING_SYSTEM\GRADING_SYSTEM.MDF] TO TeacherRole;
 GRANT UPDATE ON Grades TO TeacherRole;
+GRANT UPDATE ON Users TO TeacherRole;
 ALTER ROLE TeacherRole ADD MEMBER Teacher;
 
 CREATE LOGIN Registrar WITH PASSWORD = 'Registrar';

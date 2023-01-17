@@ -298,7 +298,7 @@ namespace Grading_System.Models
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID, Name FROM TeachersView", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID, (LastName + ', ' + FirstName + ' ' + MiddleName) AS Name FROM TeachersView", con))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

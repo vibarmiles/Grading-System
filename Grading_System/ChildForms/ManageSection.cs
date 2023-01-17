@@ -23,8 +23,6 @@ namespace Grading_System.ChildForms
             InitializeComponent();
             section = new Section(connectionString);
             teacher = new Teacher(connectionString);
-            BtnUpdate = btnUpdate;
-            BtnAdd = btnAdd;
             TblList = tblList;
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => 
@@ -32,19 +30,30 @@ namespace Grading_System.ChildForms
                 this.Dock = DockStyle.Fill;
                 cbAdvisers_DropDown(sender, e);
             });
+
             ViewTable();
+
+            tblList.KeyDown += new KeyEventHandler((sender, e) =>
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    foreach (DataGridViewRow row in tblList.SelectedRows)
+                    {
+                        ids.Enqueue(row.Cells["ID"].Value.ToString());
+                        Console.WriteLine(row.Cells["ID"].Value.ToString());
+                    }
+                }
+            });
         }
 
         protected override void ViewTable()
         {
             base.ViewTable();
-            tblList.Columns[1].HeaderText = "Section ID";
-            tblList.Columns[1].Name = "ID";
-            tblList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            tblList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tblList.Columns[1].HeaderText = "Section";
+            tblList.Columns[3].HeaderText = "Year Level";
         }
 
-        protected override void Add(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
             string name = txtSectionName.Text;
             string adviser = cbAdvisers.Text;
@@ -52,52 +61,77 @@ namespace Grading_System.ChildForms
 
             if (name != "" && adviser != "" && yearlvl > 0)
             {
-                section.Name = name;
-                section.AdviserId = advisers.FirstOrDefault(x => x.Value == adviser).Key;
-                section.YearLevel = yearlvl;
-                section.Add();
-                Cancel(sender, e);
-                ViewTable();
+                dt.Rows.Add(null, name, adviser, yearlvl);
             }
             else
             {
                 MessageBox.Show("Invalid/Missing Input!");
             }
+
+            Cancel(sender, e);
         }
 
-        protected override void Edit()
+        private void Update(object sender, EventArgs e)
         {
-            section.GetValues(Id);
-            txtSectionName.Text = section.Name;
-            cbAdvisers.Text = section.AdviserName;
-            txtYearLevel.Text = section.YearLevel.ToString();
-        }
-
-        protected override void Update(object sender, EventArgs e)
-        {
-            string name = txtSectionName.Text;
-            string adviser = cbAdvisers.Text;
-            int yearlvl = InputValidator.CheckIntTextBox(txtYearLevel.Text);
-
-            if (name != "" && adviser != "" && yearlvl > 0)
+            while (ids.Count > 0)
             {
-                section.Name = name;
-                section.AdviserId = advisers.FirstOrDefault(x => x.Value == adviser).Key;
-                section.YearLevel = yearlvl;
-                section.Update(Id);
-                Cancel(sender, e);
-                ViewTable();
+                Console.WriteLine("Deleted!");
+                section.Delete(ids.Dequeue());
             }
-            else
-            {
-                MessageBox.Show("Invalid/Missing Input!");
-            }
-        }
 
-        protected override void Delete()
-        {
-            section.Delete(Id);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
+
+                string name = row["SectionName"].ToString();
+                string adviser = row["Adviser"].ToString();
+                int yearlvl = InputValidator.CheckIntTextBox(row["YearLevel"].ToString());
+
+                if (name == "" || adviser == "" || yearlvl <= 0)
+                {
+                    MessageBox.Show("Invalid Table Input!");
+                    return;
+                }
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
+
+                string name = row["SectionName"].ToString();
+                string adviser = row["Adviser"].ToString();
+                int yearlvl = InputValidator.CheckIntTextBox(row["YearLevel"].ToString());
+
+                if (name != "" && adviser != "" && yearlvl > 0)
+                {
+                    section.Name = name;
+                    section.AdviserId = advisers.FirstOrDefault(x => x.Value == adviser).Key;
+                    section.YearLevel = yearlvl;
+
+                    string id = row["ID"].ToString();
+                    Console.WriteLine(id);
+
+                    if (id == "")
+                    {
+                        Console.WriteLine("Add");
+                        section.Add();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Update");
+                        section.Update(id);
+                    }
+                }
+            }
+
             ViewTable();
+            Cancel(sender, e);
         }
 
         private void cbAdvisers_DropDown(object sender, EventArgs e)
@@ -114,6 +148,33 @@ namespace Grading_System.ChildForms
         public void RefreshTable()
         {
             ViewTable();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ViewTable();
+            ids.Clear();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            string name = txtSectionName.Text;
+            string adviser = cbAdvisers.Text;
+            int yearlvl = InputValidator.CheckIntTextBox(txtYearLevel.Text);
+
+            if (name != "" && adviser != "" && yearlvl > 0)
+            {
+                DataGridViewRow row = tblList.SelectedRows[0];
+                row.Cells["SectionName"].Value = name;
+                row.Cells["Adviser"].Value = adviser;
+                row.Cells["YearLevel"].Value = yearlvl;
+            }
+            else
+            {
+                MessageBox.Show("Invalid/Missing Input!");
+            }
+
+            Cancel(sender, e);
         }
     }
 }

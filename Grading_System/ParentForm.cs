@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Grading_System.ChildForms;
+using Grading_System.Classes;
+using Grading_System.Models;
 
 namespace Grading_System
 {
     public partial class ParentForm : Form
     {
         private string userId = String.Empty;
+        string connectionString;
         private string position;
         private int id;
         private Dictionary<int, string> account;
@@ -40,11 +43,8 @@ namespace Grading_System
                 return;
             }
 
-            foreach (KeyValuePair<int, string> kvp in account)
-            {
-                position = kvp.Value;
-                id = kvp.Key;
-            }
+            position = account.Values.First();
+            id = account.Keys.First();
 
             switch (position)
             {
@@ -62,7 +62,7 @@ namespace Grading_System
                     break;
             }
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Li Xian\\Documents\\Grade System\\Grading-System\\Grading_System\\Grading_System.mdf;User ID=" + userId + ";Password=" + userId;
+            connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vibar\\source\\repos\\Grading_System\\Grading_System\\Grading_System.mdf;User ID=" + userId + ";Password=" + userId;
             Console.WriteLine(connectionString);
 
             lblPosition.Text = position;
@@ -117,6 +117,7 @@ namespace Grading_System
 
             rbtnDashboard.Visible = true;
             btnLogout.Visible = true;
+            rbtnChangeProfile.Visible = true;
 
             dashboard = new Dashboard(connectionString, position, id);
             dashboard.MdiParent = this;
@@ -179,6 +180,7 @@ namespace Grading_System
             rbtnAddRegistrar.Visible = false;
             rbtnClass.Visible = false;
             rbtnDashboard.Visible = false;
+            rbtnChangeProfile.Visible = false;
             lblPosition.Text = "Login";
 
             login.Show();
@@ -194,6 +196,7 @@ namespace Grading_System
                 return;
             }
 
+            grades.RefreshTable();
             grades.BringToFront();
         }
 
@@ -256,7 +259,17 @@ namespace Grading_System
                 return;
             }
 
+            dashboard.RefreshTable();
             dashboard.BringToFront();
+        }
+
+        private void rbtnChangeProfile_Click(object sender, EventArgs e)
+        {
+            ChangeProfileForm profile = new ChangeProfileForm(account.Keys.First(), account.Values.First(), connectionString);
+            if (profile.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
         }
     }
 }
