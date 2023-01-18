@@ -41,12 +41,14 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.cbReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbReset);
             this.panel1.Controls.Add(this.cbGender);
             this.panel1.Controls.Add(this.txtMiddleName);
             this.panel1.Controls.Add(this.txtFirstName);
@@ -192,6 +194,18 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // cbReset
+            // 
+            this.cbReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbReset.Location = new System.Drawing.Point(832, 197);
+            this.cbReset.Name = "cbReset";
+            this.cbReset.Size = new System.Drawing.Size(206, 44);
+            this.cbReset.TabIndex = 10;
+            this.cbReset.Text = "Reset Password";
+            this.cbReset.UseVisualStyleBackColor = true;
+            this.cbReset.Click += new System.EventHandler(this.cbReset_Click);
+            // 
             // ManageAsstTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -227,5 +241,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button cbReset;
     }
 }

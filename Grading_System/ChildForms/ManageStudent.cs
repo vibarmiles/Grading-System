@@ -83,6 +83,11 @@ namespace Grading_System.ChildForms
 
         private void Update(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Save Changes?", "Update Database", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
             while (ids.Count > 0)
             {
                 Console.WriteLine("Deleted!");

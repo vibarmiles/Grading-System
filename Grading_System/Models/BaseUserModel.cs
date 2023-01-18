@@ -78,6 +78,32 @@ namespace Grading_System.Models
             }
         }
 
+        public void ResetPassword(int id, string password)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Password=@password WHERE UserID=@id)", con))
+                    {
+                        Console.WriteLine(id + " " + password);
+                        cmd.Parameters.Add("password", SqlDbType.VarChar).Value = HashPassword(username);
+                        cmd.Parameters.Add("id", SqlDbType.BigInt).Value = id;
+                        cmd.ExecuteNonQuery();
+                        //Nag sasaing lang ako...
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void GetValues(string id)
         {
             DataTable dt = new DataTable();

@@ -17,5 +17,7 @@ namespace Grading_System.Models
         string Username { get; }
         string Gender { set; get; }
         string Position { set; get; }
+
+        void ResetPassword(int id, string password);
     }
 }

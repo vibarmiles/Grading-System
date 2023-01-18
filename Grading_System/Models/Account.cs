@@ -84,6 +84,24 @@ namespace Grading_System.Models
             }
         }
 
+        public string GetUsername(int id, string position)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT U.Username FROM Users U LEFT JOIN Teachers T ON U.UserID=T.UserID WHERE (T.TeacherID=@id AND @position='Teacher') OR (U.UserID=@id AND @position!='Teacher')", conn))
+                {
+                    cmd.Parameters.Add("id", System.Data.SqlDbType.BigInt).Value = id;
+                    cmd.Parameters.Add("position", System.Data.SqlDbType.VarChar).Value = position;
+                    Console.WriteLine(id + " " + position);
+                    return (string)cmd.ExecuteScalar();
+                }
+
+                conn.Close();
+            }
+        }
+
         public IDictionary<int, string> VerifyAccount(string username, string password)
         {
             Dictionary<int, string> account = new Dictionary<int, string>();

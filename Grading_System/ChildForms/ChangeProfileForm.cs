@@ -31,6 +31,10 @@ namespace Grading_System.ChildForms
                     btnConfirm_Click(sender, e);
                 }
             });
+            Login login = new Login(new Account(connectionString));
+            login.Id = id;
+            login.Position = position;
+            txtUsername.Text = login.GetUsername();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

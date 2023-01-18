@@ -102,6 +102,11 @@ namespace Grading_System.ChildForms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Save Changes?", "Update Database", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
             string input = cbTeacher.Text;
             
             if (input != "")

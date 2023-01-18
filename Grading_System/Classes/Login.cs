@@ -33,5 +33,10 @@ namespace Grading_System.Classes
         {
             account.ChangeProfile(position, id, username, password);
         }
+
+        public string GetUsername()
+        {
+            return account.GetUsername(id, position);
+        }
     }
 }
