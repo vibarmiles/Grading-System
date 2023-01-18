@@ -86,13 +86,12 @@ namespace Grading_System.Models
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Password=@password WHERE UserID=@id)", con))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Password=@password, FirstLogin=0 WHERE UserID=@id", con))
                     {
                         Console.WriteLine(id + " " + password);
-                        cmd.Parameters.Add("password", SqlDbType.VarChar).Value = HashPassword(username);
+                        cmd.Parameters.Add("password", SqlDbType.VarChar).Value = HashPassword(password);
                         cmd.Parameters.Add("id", SqlDbType.BigInt).Value = id;
                         cmd.ExecuteNonQuery();
-                        //Nag sasaing lang ako...
                     }
 
                     con.Close();

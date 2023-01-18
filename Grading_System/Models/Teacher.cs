@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Grading_System.Models
 {
-    internal class Teacher : BaseUserModel, ITeacher, IObjectList
+    internal class Teacher : BaseUserModel, ITeacher, IObjectList, IUser
     {
         private string connectionString;
         private string specialization;
@@ -232,6 +232,31 @@ namespace Grading_System.Models
 
             DataRow row = dt.Rows[0];
             specialization = row["Specialization"].ToString();
+        }
+
+        public new void ResetPassword(int id, string password)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Password=@password, FirstLogin=0 WHERE UserID=(SELECT UserID FROM Teachers WHERE TeacherID=@id)", con))
+                    {
+                        Console.WriteLine(id + " " + password);
+                        cmd.Parameters.Add("password", SqlDbType.VarChar).Value = HashPassword(password);
+                        cmd.Parameters.Add("id", SqlDbType.BigInt).Value = id;
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public new void Update(string id)

@@ -146,5 +146,18 @@ namespace Grading_System.ChildForms
             ViewTable();
             ids.Clear();
         }
+
+        private void cbReset_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to set their password to their username?", "Reset Password", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in tblList.SelectedRows)
+                {
+                    teacher.ResetPassword(Convert.ToInt32(row.Cells["ID"].Value), row.Cells["Username"].Value.ToString());
+                }
+
+                MessageBox.Show("Password/s reset");
+            }
+        }
     }
 }

@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.cbReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +78,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbReset);
             this.panel1.Controls.Add(this.cbGender);
             this.panel1.Controls.Add(this.txtMiddleName);
             this.panel1.Controls.Add(this.txtFirstName);
@@ -192,6 +194,18 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // cbReset
+            // 
+            this.cbReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbReset.Location = new System.Drawing.Point(832, 194);
+            this.cbReset.Name = "cbReset";
+            this.cbReset.Size = new System.Drawing.Size(206, 44);
+            this.cbReset.TabIndex = 11;
+            this.cbReset.Text = "Reset Password";
+            this.cbReset.UseVisualStyleBackColor = true;
+            this.cbReset.Click += new System.EventHandler(this.cbReset_Click);
+            // 
             // ManageRegistrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -226,5 +240,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button cbReset;
     }
 }

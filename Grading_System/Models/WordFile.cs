@@ -32,23 +32,46 @@ namespace Grading_System.Models
 
             Word.Application word = new Word.Application();
             Word.Document document = word.Documents.Add();
-            Word.Table table = document.Tables.Add(document.Range(), dt.Rows.Count + 1, 7);
+            document.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
+            Word.Range range = document.Range();
+            Word.Table table = document.Tables.Add(range, dt.Rows.Count + 4, 7);
+
+            table.Cell(1, 2).Merge(table.Cell(1, 5));
+            table.Cell(2, 2).Merge(table.Cell(2, 5));
+            table.Cell(3, 2).Merge(table.Cell(3, 7));
+
+            table.Rows[1].Cells[1].Range.Text = "Name:";
+            table.Rows[2].Cells[1].Range.Text = "Adviser:";
+            table.Rows[1].Cells[3].Range.Text = "Year Level:";
+            table.Rows[2].Cells[3].Range.Text = "Section:";
+            table.Rows[3].Cells[1].Range.Text = "School Year";
+
+            table.Rows[1].Cells[2].Range.Text = dt.Rows[0]["Name"].ToString();
+            table.Rows[2].Cells[2].Range.Text = dt.Rows[0]["Adviser"].ToString();
+            table.Rows[1].Cells[4].Range.Text = dt.Rows[0]["YearLevel"].ToString();
+            table.Rows[2].Cells[4].Range.Text = dt.Rows[0]["SectionName"].ToString();
+            table.Rows[3].Cells[2].Range.Text = dt.Rows[0]["SchoolYear"].ToString();
+
+            dt.Columns.Remove("Name");
+            dt.Columns.Remove("Adviser");
+            dt.Columns.Remove("YearLevel");
+            dt.Columns.Remove("SectionName");
+            dt.Columns.Remove("SchoolYear");
 
             int iteration = 1;
             foreach(DataColumn column in dt.Columns)
             {
                 if (iteration == 1)
                 {
-                    table.Rows[1].Cells[iteration].Range.Text = "Subject";
+                    table.Rows[4].Cells[iteration].Range.Text = "Subject";
                     iteration++;
                     continue;
                 }
-
-                table.Rows[1].Cells[iteration].Range.Text = column.ColumnName;
+                table.Rows[4].Cells[iteration].Range.Text = column.ColumnName;
                 iteration++;
             }
 
-            iteration = 2;
+            iteration = 5;
             foreach (DataRow row in dt.Rows)
             {
                 Console.WriteLine(row["Average"].ToString());
@@ -60,6 +83,21 @@ namespace Grading_System.Models
                 table.Rows[iteration].Cells[6].Range.Text = row["Average"].ToString();
                 table.Rows[iteration].Cells[7].Range.Text = row["Grade"].ToString();
                 iteration++;
+            }
+
+            table.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            table.Borders.OutsideLineWidth = WdLineWidth.wdLineWidth150pt;
+            table.Borders.OutsideColor = WdColor.wdColorBlack;
+            table.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            table.Borders.InsideLineWidth = WdLineWidth.wdLineWidth150pt;
+            table.Borders.InsideColor = WdColor.wdColorBlack;
+            table.Rows[4].Range.Font.Bold = 1;
+            table.Cell(1, 3).Range.Bold = 1;
+            table.Cell(2, 3).Range.Bold = 1;
+
+            for (int i = 1; i <= table.Rows.Count; i++)
+            {
+                table.Cell(i, 1).Range.Font.Bold = 1;
             }
 
             try
@@ -79,7 +117,6 @@ namespace Grading_System.Models
             {
                 MessageBox.Show(ex.Message);
             }
-
             word.Quit();
         }
     }

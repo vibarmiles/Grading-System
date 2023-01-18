@@ -143,7 +143,7 @@ namespace Grading_System.Models
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT SubjectName, [1], [2], [3], [4], Average FROM GradesPivotedView WHERE [StudentID]=@studentId", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT G.SubjectName, G.[1], G.[2], G.[3], G.[4], G.Average, (Stud.[LastName] + ', ' + Stud.[FirstName] + ' ' + Stud.[MiddleName]) AS Name, S.[YearLevel], S.[SectionName], STS.[SchoolYear], (T.[LastName] + ', ' + T.[FirstName] + ' ' + T.[MiddleName]) AS Adviser FROM GradesPivotedView G INNER JOIN Sections S ON G.[SectionID]=S.[SectionID] INNER JOIN TeachersView T ON S.[TeacherID]=T.[TeacherID] INNER JOIN Students_Teachers_Subjects STS ON STS.[TeacherID]=G.[TeacherID] AND STS.[SectionID]=G.[SectionID] AND STS.[StudentID]=G.[StudentID] AND STS.[SubjectID]=G.[SubjectID] INNER JOIN Students Stud ON Stud.[StudentID]=G.[StudentID] WHERE G.[StudentID]=@studentId", conn))
                 {
                     cmd.Parameters.Add("studentId", SqlDbType.Int).Value = studentId;
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
