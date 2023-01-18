@@ -1,4 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿﻿using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -34,23 +34,25 @@ namespace Grading_System.Models
             Word.Document document = word.Documents.Add();
             document.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
             Word.Range range = document.Range();
-            Word.Table table = document.Tables.Add(range, dt.Rows.Count + 4, 7);
+            Word.Table table = document.Tables.Add(range, dt.Rows.Count + 5, 7);
 
-            table.Cell(1, 2).Merge(table.Cell(1, 5));
+            table.Cell(1, 1).Merge(table.Cell(1, 7));
             table.Cell(2, 2).Merge(table.Cell(2, 5));
-            table.Cell(3, 2).Merge(table.Cell(3, 7));
+            table.Cell(3, 2).Merge(table.Cell(3, 5));
+            table.Cell(4, 2).Merge(table.Cell(4, 7));
 
-            table.Rows[1].Cells[1].Range.Text = "Name:";
-            table.Rows[2].Cells[1].Range.Text = "Adviser:";
-            table.Rows[1].Cells[3].Range.Text = "Year Level:";
-            table.Rows[2].Cells[3].Range.Text = "Section:";
-            table.Rows[3].Cells[1].Range.Text = "School Year";
+            table.Rows[1].Cells[1].Range.Text = "GRADE CARD";
+            table.Rows[2].Cells[1].Range.Text = "Name:";
+            table.Rows[3].Cells[1].Range.Text = "Adviser:";
+            table.Rows[2].Cells[3].Range.Text = "Year Level:";
+            table.Rows[3].Cells[3].Range.Text = "Section:";
+            table.Rows[4].Cells[1].Range.Text = "School Year";
 
-            table.Rows[1].Cells[2].Range.Text = dt.Rows[0]["Name"].ToString();
-            table.Rows[2].Cells[2].Range.Text = dt.Rows[0]["Adviser"].ToString();
-            table.Rows[1].Cells[4].Range.Text = dt.Rows[0]["YearLevel"].ToString();
-            table.Rows[2].Cells[4].Range.Text = dt.Rows[0]["SectionName"].ToString();
-            table.Rows[3].Cells[2].Range.Text = dt.Rows[0]["SchoolYear"].ToString();
+            table.Rows[2].Cells[2].Range.Text = dt.Rows[0]["Name"].ToString();
+            table.Rows[3].Cells[2].Range.Text = dt.Rows[0]["Adviser"].ToString();
+            table.Rows[2].Cells[4].Range.Text = dt.Rows[0]["YearLevel"].ToString();
+            table.Rows[3].Cells[4].Range.Text = dt.Rows[0]["SectionName"].ToString();
+            table.Rows[4].Cells[2].Range.Text = dt.Rows[0]["SchoolYear"].ToString();
 
             dt.Columns.Remove("Name");
             dt.Columns.Remove("Adviser");
@@ -59,19 +61,23 @@ namespace Grading_System.Models
             dt.Columns.Remove("SchoolYear");
 
             int iteration = 1;
-            foreach(DataColumn column in dt.Columns)
+            foreach (DataColumn column in dt.Columns)
             {
                 if (iteration == 1)
                 {
-                    table.Rows[4].Cells[iteration].Range.Text = "Subject";
+                    table.Rows[1].Cells[iteration].Range.Text = "Subject";
+                    table.Rows[5].Cells[iteration].Range.Text = "Subject";
                     iteration++;
                     continue;
                 }
-                table.Rows[4].Cells[iteration].Range.Text = column.ColumnName;
+
+                table.Rows[1].Cells[iteration].Range.Text = column.ColumnName;
+                table.Rows[5].Cells[iteration].Range.Text = column.ColumnName;
                 iteration++;
             }
 
-            iteration = 5;
+            iteration = 2;
+            iteration = 6;
             foreach (DataRow row in dt.Rows)
             {
                 Console.WriteLine(row["Average"].ToString());
@@ -91,9 +97,13 @@ namespace Grading_System.Models
             table.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
             table.Borders.InsideLineWidth = WdLineWidth.wdLineWidth150pt;
             table.Borders.InsideColor = WdColor.wdColorBlack;
-            table.Rows[4].Range.Font.Bold = 1;
-            table.Cell(1, 3).Range.Bold = 1;
+            table.Rows[1].Range.Font.Bold = 1;
+            table.Rows[5].Range.Font.Bold = 1;
+            table.Rows[1].Range.Font.Size = 24;
+            table.Rows[1].Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            table.Cell(1, 1).Range.Bold = 1;
             table.Cell(2, 3).Range.Bold = 1;
+            table.Cell(3, 3).Range.Bold = 1;
 
             for (int i = 1; i <= table.Rows.Count; i++)
             {
@@ -117,7 +127,7 @@ namespace Grading_System.Models
             {
                 MessageBox.Show(ex.Message);
             }
+
             word.Quit();
         }
     }
-}
