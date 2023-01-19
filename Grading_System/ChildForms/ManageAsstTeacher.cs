@@ -15,8 +15,9 @@ namespace Grading_System.ChildForms
     public partial class ManageAsstTeacher : BaseManageObject
     {
         private readonly IUser assistantTeacher;
+        private string position;
 
-        public ManageAsstTeacher(string connectionString) : base(new AssistantTeacher(connectionString))
+        public ManageAsstTeacher(string connectionString, string position) : base(new AssistantTeacher(connectionString))
         {
             InitializeComponent();
             assistantTeacher = new AssistantTeacher(connectionString);
@@ -24,6 +25,11 @@ namespace Grading_System.ChildForms
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
             ViewTable();
+            this.position = position;
+            if (!position.Equals("Admin"))
+            {
+                cbReset.Hide();
+            }
 
             tblList.KeyDown += new KeyEventHandler((sender, e) =>
             {

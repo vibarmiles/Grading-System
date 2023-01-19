@@ -95,6 +95,7 @@ namespace Grading_System.ChildForms
             tblList.Columns.Clear();
             DataTable dt = new DataTable();
             DataColumn id = new DataColumn("ID");
+            id.DataType = typeof(int);
             DataColumn name = new DataColumn("Name");
             dt.Columns.Add(id);
             dt.Columns.Add(name);
@@ -104,6 +105,7 @@ namespace Grading_System.ChildForms
                 dt.Rows.Add(student.Key, student.Value);
             }
 
+            dt.DefaultView.Sort = "ID";
             tblList.DataSource = dt;
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
@@ -154,13 +156,22 @@ namespace Grading_System.ChildForms
 
             cbStudent.Items.Clear();
             tblList.Columns.Clear();
-            DataTable dt = gradeExcel.ExportExcel(section, teacher, subject);
+            DataTable dt = grades.GetSectionGrades(section, teacher, subject);
 
             tblList.DataSource = dt;
             tblList.Columns[0].HeaderText = "ID";
             tblList.Columns[0].Name = "ID";
             tblList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            tblList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            tblList.Columns[2].HeaderText = "1st Quarter";
+            tblList.Columns[3].HeaderText = "2nd Quarter";
+            tblList.Columns[4].HeaderText = "3rd Quarter";
+            tblList.Columns[5].HeaderText = "4th Quarter";
 
             foreach (string student in studentList.Values)
             {

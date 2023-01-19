@@ -14,6 +14,7 @@ namespace Grading_System.Models
     {
         private string connectionString;
         private string name;
+        private double ww, pt, qa;
 
         public Subject(string connectionString) : base(connectionString, "Subjects", "SubjectID")
         {
@@ -21,6 +22,9 @@ namespace Grading_System.Models
         }
 
         public string Name { get => name; set => name = value; }
+        public double WrittenWork { get => ww; set => ww = value; }
+        public double PerformanceTask { get => pt; set => pt = value; }
+        public double QuarterlyAssessment { get => qa; set => qa = value; }
 
         public void Add()
         {
@@ -30,10 +34,12 @@ namespace Grading_System.Models
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Subjects ([SubjectName]) VALUES (@name)", con))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Subjects ([SubjectName], [WrittenWord], [PerformanceTask], [QuarterlyAssessment]) VALUES (@name, @ww, @pt, @qa)", con))
                     {
-                        cmd.Parameters.Add("name", SqlDbType.VarChar);
-                        cmd.Parameters["name"].Value = name;
+                        cmd.Parameters.Add("name", SqlDbType.VarChar).Value = Name;
+                        cmd.Parameters.Add("ww", SqlDbType.Decimal).Value = WrittenWork;
+                        cmd.Parameters.Add("pt", SqlDbType.Decimal).Value = PerformanceTask;
+                        cmd.Parameters.Add("qa", SqlDbType.Decimal).Value = QuarterlyAssessment;
                         cmd.ExecuteNonQuery();
                     }
 
@@ -143,12 +149,15 @@ namespace Grading_System.Models
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("UPDATE Subjects SET [SubjectName]=@name WHERE [SubjectID]=@id", con))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Subjects SET [SubjectName]=@name, [WrittenWork]=@ww, [PerformanceTask]=@pt, [QuarterlyAssessment]=@qa WHERE [SubjectID]=@id", con))
                     {
                         cmd.Parameters.Add("name", SqlDbType.VarChar);
                         cmd.Parameters["name"].Value = name;
                         cmd.Parameters.Add("id", SqlDbType.BigInt);
                         cmd.Parameters["id"].Value = Int32.Parse(id);
+                        cmd.Parameters.Add("ww", SqlDbType.Decimal).Value = WrittenWork;
+                        cmd.Parameters.Add("pt", SqlDbType.Decimal).Value = PerformanceTask;
+                        cmd.Parameters.Add("qa", SqlDbType.Decimal).Value = QuarterlyAssessment;
                         cmd.ExecuteNonQuery();
                     }
 

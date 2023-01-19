@@ -42,6 +42,9 @@ namespace Grading_System.ChildForms
         {
             base.ViewTable();
             tblList.Columns[1].HeaderText = "Subject Description";
+            tblList.Columns[2].DefaultCellStyle.Format = "N2";
+            tblList.Columns[3].DefaultCellStyle.Format = "N2";
+            tblList.Columns[4].DefaultCellStyle.Format = "N2"; //Kakain muna ako...
         }
 
         private void Add(object sender, EventArgs e)
@@ -79,8 +82,11 @@ namespace Grading_System.ChildForms
                 }
 
                 string name = row["SubjectName"].ToString();
+                double ww = Convert.ToDouble(row["WrittenWork"]);
+                double pt = Convert.ToDouble(row["PerformanceTask"]);
+                double qa = Convert.ToDouble(row["QuarterlyAssessment"]);
 
-                if (name == "")
+                if (name == "" || ww < 0 || pt < 0 || qa < 0 || ww > 100 || pt > 100 || qa > 100 || (ww + pt + qa) != 100)
                 {
                     MessageBox.Show("Invalid Table Input!");
                     return;
@@ -95,10 +101,16 @@ namespace Grading_System.ChildForms
                 }
 
                 string name = row["SubjectName"].ToString();
+                double ww = Convert.ToDouble(row["WrittenWork"]);
+                double pt = Convert.ToDouble(row["PerformanceTask"]);
+                double qa = Convert.ToDouble(row["QuarterlyAssessment"]);
 
-                if (name != "")
+                if (name != "" && ww > 0 && pt > 0 && qa > 0 && ww <= 100 && pt <= 100 && qa <= 100 && (ww + pt + qa) == 100)
                 {
                     subject.Name = name;
+                    subject.WrittenWork = ww;
+                    subject.PerformanceTask = pt;
+                    subject.QuarterlyAssessment = qa;
 
                     string id = row["ID"].ToString();
                     Console.WriteLine(id);

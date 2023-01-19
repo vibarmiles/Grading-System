@@ -77,9 +77,9 @@ namespace Grading_System
                 rbtnClass.Visible = true;
 
                 student = new ManageStudent(connectionString);
-                teacher = new ManageTeacher(connectionString);
+                teacher = new ManageTeacher(connectionString, position);
                 subject = new ManageSubject(connectionString);
-                asstTeacher = new ManageAsstTeacher(connectionString);
+                asstTeacher = new ManageAsstTeacher(connectionString, position);
                 section = new ManageSection(connectionString);
                 classForm = new ManageClassForm(connectionString);
 

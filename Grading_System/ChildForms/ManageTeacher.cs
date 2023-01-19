@@ -16,8 +16,9 @@ namespace Grading_System.ChildForms
     public partial class ManageTeacher : BaseManageObject
     {
         private readonly ITeacher teacher;
+        private string position;
 
-        public ManageTeacher(string connectionString) : base(new Teacher(connectionString))
+        public ManageTeacher(string connectionString, string position) : base(new Teacher(connectionString))
         {
             InitializeComponent();
             teacher = new Teacher(connectionString);
@@ -25,6 +26,11 @@ namespace Grading_System.ChildForms
             Panel = panel1;
             this.Load += new EventHandler((sender, e) => this.Dock = DockStyle.Fill);
             ViewTable();
+            this.position = position;
+            if (!position.Equals("Admin"))
+            {
+                cbReset.Hide();
+            }
 
             tblList.KeyDown += new KeyEventHandler((sender, e) =>
             {

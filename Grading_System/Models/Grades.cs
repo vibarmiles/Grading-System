@@ -59,7 +59,7 @@ namespace Grading_System.Models
             }
         }
 
-        public DataTable ExportExcel(int sectionId, int teacherId, int subjectId)
+        public DataTable GetSectionGrades(int sectionId, int teacherId, int subjectId)
         {
             DataTable dt = new DataTable();
 
@@ -80,6 +80,29 @@ namespace Grading_System.Models
             }
 
             return this.AddRow(dt);
+        }
+
+        public DataTable ExportExcel(int sectionId, int teacherId, int subjectId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT G.StudentID, G.Name, S.QuarterlyAssessment, S.PerformanceTask, S.WrittenWork FROM GradesPivotedView G INNER JOIN Subjects S ON G.[SubjectID]=S.[SubjectID] WHERE G.[SubjectID]=@subjectId AND G.[TeacherID]=@teacherId AND G.[SectionID]=@sectionId", conn))
+                {
+                    cmd.Parameters.Add("sectionId", SqlDbType.Int).Value = sectionId;
+                    cmd.Parameters.Add("teacherId", SqlDbType.Int).Value = teacherId;
+                    cmd.Parameters.Add("subjectId", SqlDbType.Int).Value = subjectId;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+
+                conn.Close();
+            }
+
+            return dt;
         }
 
         private DataTable AddRow(DataTable dt)
