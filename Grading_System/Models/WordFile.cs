@@ -65,13 +65,11 @@ namespace Grading_System.Models
             {
                 if (iteration == 1)
                 {
-                    table.Rows[1].Cells[iteration].Range.Text = "Subject";
                     table.Rows[5].Cells[iteration].Range.Text = "Subject";
                     iteration++;
                     continue;
                 }
 
-                table.Rows[1].Cells[iteration].Range.Text = column.ColumnName;
                 table.Rows[5].Cells[iteration].Range.Text = column.ColumnName;
                 iteration++;
             }
